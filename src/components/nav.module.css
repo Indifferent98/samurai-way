@@ -1,0 +1,13 @@
+.item {
+  display: block;
+  text-decoration: none;
+  color: rgb(246, 246, 246);
+  padding-bottom: 20px;
+}
+.nav {
+  padding: 15px;
+  border: 1px solid #000;
+  grid-area: n;
+  background-color: rgb(89, 85, 85);
+  text-align: center;
+}

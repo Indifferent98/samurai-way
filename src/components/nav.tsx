@@ -1,18 +1,19 @@
 import React from "react";
-import "./nav.css";
+import "./nav.module.css";
+let classes = { nav: "nav_nav__d87vm ", item: "nav_item__a8t02 " };
 const Nav = (): JSX.Element => {
   return (
-    <nav className="nav">
-      <a href="#" className="item">
+    <nav className={classes.nav}>
+      <a href="#" className={classes.item}>
         Profile
       </a>
-      <a href="#" className="item">
+      <a href="#" className={classes.item}>
         Messages
       </a>
-      <a href="#" className="item">
+      <a href="#" className={classes.item}>
         News
       </a>
-      <a href="#" className="item">
+      <a href="#" className={classes.item}>
         Music
       </a>
     </nav>

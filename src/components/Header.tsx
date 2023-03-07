@@ -1,10 +1,14 @@
 import React from "react";
-import "./Header.css";
+import "./Header.module.css";
+let classes = {
+  header: "Header_header__k2I3s ",
+  headerLogo: "Header_headerLogo__yjqCZ",
+};
 const Header = (): JSX.Element => {
   return (
-    <header className="header">
+    <header className={classes.header}>
       <img
-        className="headerLogo"
+        className={classes.headerLogo}
         src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-facebook_-512.png"
         alt=""
       />
