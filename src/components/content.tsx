@@ -1,6 +1,6 @@
 import React from "react";
 import "./content.module.css";
-let classes = {
+const classes = {
   content: "content_content__-a1Yl",
   contentImg: "content_contentImg__d16sr",
   contentAvatar: "content_contentAvatar__6a3WE",

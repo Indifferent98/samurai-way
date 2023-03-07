@@ -1,6 +1,7 @@
 import React from "react";
 import "./Header.module.css";
-let classes = {
+
+const classes = {
   header: "Header_header__k2I3s ",
   headerLogo: "Header_headerLogo__yjqCZ",
 };
