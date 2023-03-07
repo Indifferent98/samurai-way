@@ -16,7 +16,7 @@ const Content = (): JSX.Element => {
         <div className="profileInfo"> Evgeny </div>
       </div>
       <div>
-        My posts
+        My postsss
         <div>New Post</div>
         <div>Post1</div>
         <div>Post2</div>
