@@ -1,6 +1,6 @@
 import React from "react";
 import "./content.module.css";
-import { MyPosts } from "./MyPosts/Post/MyPosts";
+import { MyPosts } from "./MyPosts/MyPosts";
 const classes = {
   content: "content_content__vXRFo",
   contentImg: "content_contentImg__buA7k ",
