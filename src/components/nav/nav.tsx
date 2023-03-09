@@ -1,6 +1,6 @@
 import React from "react";
 import "./nav.module.css";
-const classes = { nav: "nav_nav__d87vm ", item: "nav_item__a8t02 " };
+const classes = { nav: "nav_nav__3Z1IF", item: "nav_item__fwMVs" };
 const Nav = (): JSX.Element => {
   return (
     <nav className={classes.nav}>

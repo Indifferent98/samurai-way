@@ -2,8 +2,8 @@ import React from "react";
 import "./Header.module.css";
 
 const classes = {
-  header: "Header_header__k2I3s ",
-  headerLogo: "Header_headerLogo__yjqCZ",
+  header: "Header_header__6LwXb",
+  headerLogo: "Header_headerLogo__opDnb",
 };
 const Header = (): JSX.Element => {
   return (

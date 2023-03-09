@@ -1,12 +1,13 @@
 import React from "react";
 import "./content.module.css";
+import { MyPosts } from "./MyPosts/Post/MyPosts";
 const classes = {
-  content: "content_content__-a1Yl",
-  contentImg: "content_contentImg__d16sr",
-  contentAvatar: "content_contentAvatar__6a3WE",
-  profileHeadder: "content_profileHeadder__6oXrN",
-  profileInfo: "content_profileInfo__7WeUC",
-  profileInfoItem: "content_profileInfoItem__2jxmA ",
+  content: "content_content__vXRFo",
+  contentImg: "content_contentImg__buA7k ",
+  contentAvatar: "content_contentAvatar__5Q-Bi",
+  profileHeadder: "content_profileHeadder__vS6gI",
+  profileInfo: "content_profileInfo__rpCcW",
+  profileInfoItem: "content_profileInfoItem__8lqpQ",
 };
 const Content = (): JSX.Element => {
   return (
@@ -29,13 +30,7 @@ const Content = (): JSX.Element => {
           <div className={classes.profileInfoItem}>About me:</div>
         </div>
       </div>
-      <div>
-        My postsss
-        <div>New Post</div>
-        <div>Post1</div>
-        <div>Post2</div>
-        <div>Post3</div>
-      </div>
+      <MyPosts />
     </div>
   );
 };

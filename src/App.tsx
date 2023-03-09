@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import { Header } from "./components/Header";
-import { Nav } from "./components/nav";
-import { Content } from "./components/content";
+import { Header } from "./components/header/Header";
+import { Nav } from "./components/nav/nav";
+import { Content } from "./components/content/content";
 
 function App(): JSX.Element {
   return (
