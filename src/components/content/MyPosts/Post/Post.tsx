@@ -14,7 +14,7 @@ const Post = (props: PostPropsType): JSX.Element => {
       <img
         src="https://i.pinimg.com/originals/fb/d4/85/fbd485151b22d7ccfb912435ac65315a.jpg"
         alt=""
-      />{" "}
+      />
       {props.message}
       <div>
         <span>Like: {props.like}</span>
