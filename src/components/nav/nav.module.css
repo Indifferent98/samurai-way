@@ -2,7 +2,7 @@
   display: block;
   text-decoration: none;
   color: rgb(246, 246, 246);
-  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 .nav {
   padding: 15px;
@@ -10,4 +10,9 @@
   grid-area: n;
   background-color: rgb(89, 85, 85);
   text-align: center;
+}
+.item.activeLink {
+  color: gold;
+
+  font-size: larger;
 }
