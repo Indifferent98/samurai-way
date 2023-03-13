@@ -19,6 +19,7 @@ const MyPosts = (): JSX.Element => {
       <Post like={15} message="First dsdsdd" />
       <Post like={0} message="fdgdf s" />
       <Post like={2} message="CheckPost" />
+      <Post like={3333} message="ttttttttt" />
     </div>
   );
 };

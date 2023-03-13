@@ -4,7 +4,7 @@ body {
 .app-wrapper {
   display: grid;
   grid-template-columns: 2fr 10fr;
-  grid-template-rows: 60px 1200px;
+  grid-template-rows: 60px;
   grid-template-areas:
     "h h"
     "n c";
@@ -16,4 +16,10 @@ body {
 
 .profileInfo {
   border: 1px solid #000;
+}
+.app-wrapper-content {
+  border: 1px solid #000;
+  grid-area: c;
+  padding: 15px;
+  background-color: rgb(180, 176, 176);
 }

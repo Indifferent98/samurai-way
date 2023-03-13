@@ -11,7 +11,7 @@ const classes = {
 };
 const Content = (): JSX.Element => {
   return (
-    <div className={classes.content}>
+    <div>
       <img
         className={classes.contentImg}
         src="https://icocnews.ru/wp-content/uploads/2015/09/priroda.jpg"
