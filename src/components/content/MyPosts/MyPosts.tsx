@@ -1,19 +1,18 @@
 import React from "react";
-import "./MyPosts.module.css";
+import s from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
-let classes = {
-  item: "MyPosts_item__gV+xB img",
-};
 
 const MyPosts = (): JSX.Element => {
   return (
     <div>
-      My postsss
-      <div>
-        New Post
-        <textarea name="" id=""></textarea>
-        <button>Add Post</button>
-        <button>Remove</button>
+      <div className={s.changePost}>
+        My postsss
+        <div>
+          New Post
+          <textarea name="" id=""></textarea>
+          <button>Add Post</button>
+          <button>Remove</button>
+        </div>
       </div>
       <Post like={2} message="Privet" />
       <Post like={15} message="First dsdsdd" />
