@@ -1,6 +1,6 @@
 import React from "react";
 import s from "..//Dialogs.module.css";
-export const Maxim = () => {
+export const Maxim = (): JSX.Element => {
   return (
     <div className={s.messages}>
       <div className={s.message}>Hello Maxim</div>

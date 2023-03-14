@@ -1,6 +1,6 @@
 import React from "react";
 import s from "..//Dialogs.module.css";
-export const Vladimir = () => {
+export const Vladimir = (): JSX.Element => {
   return (
     <div className={s.messages}>
       <div className={s.message}>Hello Vladimir</div>

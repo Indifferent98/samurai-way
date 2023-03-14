@@ -1,6 +1,6 @@
 import React from "react";
 import s from "..//Dialogs.module.css";
-export const Timur = () => {
+export const Timur = (): JSX.Element => {
   return (
     <div className={s.messages}>
       <div className={s.message}>Hello Timur</div>

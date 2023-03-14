@@ -1,6 +1,6 @@
 import React from "react";
 import s from "..//Dialogs.module.css";
-export const Stepan = () => {
+export const Stepan = (): JSX.Element => {
   return (
     <div className={s.messages}>
       <div className={s.message}>Hello Stepan</div>
