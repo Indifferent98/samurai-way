@@ -8,19 +8,37 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { News } from "./components/News/News";
+import { dialogsDataArrayType, messageDataArrayType, myPostsData } from ".";
 
-function App(): JSX.Element {
+type AppPropsType = {
+  dialogsData: dialogsDataArrayType[];
+  messageData: messageDataArrayType[];
+  myPostsData: myPostsData[];
+};
+
+function App(props: AppPropsType): JSX.Element {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
         <Nav />
         <div className="app-wrapper-content">
-          <Route path="/Dialogs" component={Dialogs}></Route>
-          <Route path="/Content" component={Content}></Route>
-          <Route path="/Music" component={Music}></Route>
-          <Route path="/Settings" component={Settings}></Route>
-          <Route path="/News" component={News}></Route>
+          <Route
+            path="/Dialogs"
+            render={() => (
+              <Dialogs
+                messageData={props.messageData}
+                dialogsData={props.dialogsData}
+              />
+            )}
+          />
+          <Route
+            path="/Content"
+            render={() => <Content myPostsData={props.myPostsData} />}
+          />
+          <Route path="/Music" render={() => <Music />} />
+          <Route path="/Settings" render={() => <Settings />} />
+          <Route path="/News" render={() => <News />} />
         </div>
       </div>
     </BrowserRouter>

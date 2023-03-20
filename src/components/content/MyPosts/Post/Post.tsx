@@ -14,6 +14,7 @@ const Post = (props: PostPropsType): JSX.Element => {
         alt=""
       />
       {props.message}
+
       <div>
         <span>Like: {props.like}</span>
       </div>

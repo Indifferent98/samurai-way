@@ -2,6 +2,7 @@ import React from "react";
 import s from "./content.module.css";
 import { MyPosts } from "./MyPosts/MyPosts";
 import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
+import { myPostsData } from "../..";
 // const classes = {
 //   content: "content_content__vXRFo",
 //   contentImg: "content_contentImg__buA7k ",
@@ -10,11 +11,15 @@ import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
 //   profileInfo: "content_profileInfo__rpCcW",
 //   profileInfoItem: "content_profileInfoItem__8lqpQ",
 // };
-const Content = (): JSX.Element => {
+type ContentPropsType = {
+  myPostsData: myPostsData[];
+};
+
+const Content = (props: ContentPropsType): JSX.Element => {
   return (
     <div>
       <ProfileInfo />
-      <MyPosts />
+      <MyPosts myPostsData={props.myPostsData} />
     </div>
   );
 };
