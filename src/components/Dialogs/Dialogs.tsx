@@ -7,10 +7,14 @@ import { Maxim } from "./DialogWith/Maxim";
 import { Stepan } from "./DialogWith/Stepan";
 import { Vladimir } from "./DialogWith/Vladimir";
 
+type MessagePropsType = {
+  messageData: string;
+};
 type DialogPropsType = {
   name: string;
   id: string;
 };
+
 const DialogItem = (props: DialogPropsType): JSX.Element => {
   let path = "/Dialogs/" + props.id;
 
@@ -20,33 +24,74 @@ const DialogItem = (props: DialogPropsType): JSX.Element => {
     </NavLink>
   );
 };
-type MessagePropsType = {
-  message: string;
-};
+
 const Message = (props: MessagePropsType): JSX.Element => {
   return (
     <div className={s.messages}>
-      <div className={s.message}>Hello Igor</div>
-      <div className={s.message}>{props.message}</div>
-      <div className={s.message}>How is your Learning</div>
+      {/* <div className={s.message}>Hello Igor</div> */}
+      <div className={s.message}>{props.messageData}</div>
+      {/* <div className={s.message}>How is your Learning</div> */}
     </div>
   );
 };
 
-export const Dialogs = (): JSX.Element => {
+type dialogsDataArrayType = {
+  id: number;
+  name: string;
+};
+export type messageDataArrayType = {
+  id: number;
+  message: string;
+};
+
+//типизировать пропсы
+export const Dialogs = (props: any): JSX.Element => {
+  let dialogsData: dialogsDataArrayType[] = [
+    { id: 1, name: "Timur" },
+    { id: 2, name: "Vladimir" },
+    { id: 3, name: "Maxim" },
+    { id: 4, name: "Igor" },
+    { id: 5, name: "Stepan" },
+  ];
+  let messageData: messageDataArrayType[] = [
+    { id: 1, message: "Hi" },
+    { id: 2, message: "Hello" },
+    { id: 3, message: "How Are you" },
+    { id: 4, message: "Fine" },
+    { id: 5, message: "Lets found smth" },
+  ];
   return (
     <BrowserRouter>
       <div className={s.dialogs}>
         <div className={s.dialog}>
-          <DialogItem name="Timur" id="1" />
-          <DialogItem name="Vladimir" id="2" />
-          <DialogItem name="Maxim" id="3" />
-          <DialogItem name="Igor" id="4" />
-          <DialogItem name="Stepan" id="5" />
+          <DialogItem
+            name={dialogsData[0].name}
+            id={dialogsData[0].id.toString()}
+          />
+          <DialogItem
+            name={dialogsData[1].name}
+            id={dialogsData[1].id.toString()}
+          />
+          <DialogItem
+            name={dialogsData[2].name}
+            id={dialogsData[2].id.toString()}
+          />
+          <DialogItem
+            name={dialogsData[3].name}
+            id={dialogsData[3].id.toString()}
+          />
+          <DialogItem
+            name={dialogsData[4].name}
+            id={dialogsData[4].id.toString()}
+          />
         </div>
-
-        <Message message="346546" />
-
+        <div className={s.message}>
+          <Message messageData={messageData[0].message} />
+          <Message messageData={messageData[1].message} />
+          <Message messageData={messageData[2].message} />
+          <Message messageData={messageData[3].message} />
+          <Message messageData={messageData[4].message} />
+        </div>
         {/* <Route path={"/Dialogs/1"} component={Message }></Route>
         <Route path={"/Dialogs/4"} component={Message}></Route>
         <Route path={"/Dialogs/2"} component={Message}></Route>
