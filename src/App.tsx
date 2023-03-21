@@ -23,7 +23,7 @@ function App(props: AppPropsType): JSX.Element {
         <Nav list={props.appState.navBar} />
         <div className="app-wrapper-Profile">
           <Route
-            path="/Dialogs"
+            path="/Messages"
             render={() => <Dialogs state={props.appState.messagesPage} />}
           />
           <Route
