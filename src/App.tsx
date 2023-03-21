@@ -25,14 +25,16 @@ function App(props: AppPropsType): JSX.Element {
             path="/Dialogs"
             render={() => (
               <Dialogs
-                messageData={props.appState.messageData}
-                dialogsData={props.appState.dialogsData}
+                messageData={props.appState.messagesPage.messageData}
+                dialogsData={props.appState.messagesPage.dialogsData}
               />
             )}
           />
           <Route
             path="/Content"
-            render={() => <Content myPostsData={props.appState.myPostsData} />}
+            render={() => (
+              <Content myPostsData={props.appState.profilePage.myPostsData} />
+            )}
           />
           <Route path="/Music" render={() => <Music />} />
           <Route path="/Settings" render={() => <Settings />} />

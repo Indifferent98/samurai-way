@@ -20,11 +20,6 @@ export type messageDataArrayType = {
   id: number;
   message: string;
 };
-export type stateType = {
-  dialogsData: dialogsDataArrayType[];
-  messageData: messageDataArrayType[];
-  myPostsData: myPostsData[];
-};
 
 const dialogsData: dialogsDataArrayType[] = [
   { id: 1, name: "Timur" },
@@ -50,9 +45,17 @@ const myPostsData: myPostsData[] = [
   { id: 5, message: "Lets found smth", likesCount: 0 },
   { id: 6, message: "Check Our Posts", likesCount: 66 },
 ];
-
+export type stateType = {
+  messagesPage: {
+    dialogsData: dialogsDataArrayType[];
+    messageData: messageDataArrayType[];
+  };
+  profilePage: { myPostsData: myPostsData[] };
+};
 export const state: stateType = {
-  dialogsData: dialogsData,
-  messageData: messageData,
-  myPostsData: myPostsData,
+  messagesPage: {
+    dialogsData: dialogsData,
+    messageData: messageData,
+  },
+  profilePage: { myPostsData: myPostsData },
 };
