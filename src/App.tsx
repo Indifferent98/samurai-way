@@ -2,13 +2,14 @@ import React from "react";
 import "./App.css";
 import { Header } from "./components/header/Header";
 import { Nav } from "./components/nav/nav";
-import { Content } from "./components/content/content";
+
 import { Dialogs } from "./components/Dialogs/Dialogs";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { News } from "./components/News/News";
 import { stateType } from "./Redux/state";
+import { Profile } from "./components/Profile/Profile";
 
 type AppPropsType = {
   appState: stateType;
@@ -19,21 +20,16 @@ function App(props: AppPropsType): JSX.Element {
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
-        <Nav />
-        <div className="app-wrapper-content">
+        <Nav list={props.appState.navBar} />
+        <div className="app-wrapper-Profile">
           <Route
             path="/Dialogs"
-            render={() => (
-              <Dialogs
-                messageData={props.appState.messagesPage.messageData}
-                dialogsData={props.appState.messagesPage.dialogsData}
-              />
-            )}
+            render={() => <Dialogs state={props.appState.messagesPage} />}
           />
           <Route
-            path="/Content"
+            path="/Profile"
             render={() => (
-              <Content myPostsData={props.appState.profilePage.myPostsData} />
+              <Profile myPostsData={props.appState.profilePage.myPostsData} />
             )}
           />
           <Route path="/Music" render={() => <Music />} />

@@ -20,6 +20,7 @@ export type messageDataArrayType = {
   id: number;
   message: string;
 };
+const navBar: string[] = ["Profile", "Messages", "News", "Music", "Settings"];
 
 const dialogsData: dialogsDataArrayType[] = [
   { id: 1, name: "Timur" },
@@ -51,6 +52,7 @@ export type stateType = {
     messageData: messageDataArrayType[];
   };
   profilePage: { myPostsData: myPostsData[] };
+  navBar: string[];
 };
 export const state: stateType = {
   messagesPage: {
@@ -58,4 +60,5 @@ export const state: stateType = {
     messageData: messageData,
   },
   profilePage: { myPostsData: myPostsData },
+  navBar: navBar,
 };

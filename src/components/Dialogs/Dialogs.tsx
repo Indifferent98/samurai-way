@@ -8,14 +8,18 @@ import { Stepan } from "./DialogWith/Stepan";
 import { Vladimir } from "./DialogWith/Vladimir";
 import { DialogItem } from "./DialogItem/DialogItem";
 import { Message } from "./Message/Message";
-import { dialogsDataArrayType, messageDataArrayType } from "../../Redux/state";
-
+import { dialogsDataArrayType } from "../../Redux/state";
+import { messageDataArrayType } from "../../Redux/state";
 //типизировать пропсы
 type DialogsPropsType = {
-  dialogsData: dialogsDataArrayType[];
-  messageData: messageDataArrayType[];
+  state: {
+    dialogsData: dialogsDataArrayType[];
+    messageData: messageDataArrayType[];
+  };
 };
+
 export const Dialogs = (props: DialogsPropsType): JSX.Element => {
+  debugger;
   // const dialogsData: dialogsDataArrayType[] = [
   //   { id: 1, name: "Timur" },
   //   { id: 2, name: "Vladimir" },
@@ -31,10 +35,10 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   //   { id: 5, message: "Tost" },
   // ];
 
-  const dialogsDataForApplication = props.dialogsData.map((t) => (
+  const dialogsDataForApplication = props.state.dialogsData.map((t) => (
     <DialogItem name={t.name} id={t.id.toString()} />
   ));
-  const messageDataForApplication = props.messageData.map((t) => (
+  const messageDataForApplication = props.state.messageData.map((t) => (
     <Message messageData={t.message} />
   ));
   return (

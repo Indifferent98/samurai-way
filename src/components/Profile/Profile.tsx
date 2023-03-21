@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./content.module.css";
+import s from "./profile.module.css";
 import { MyPosts } from "./MyPosts/MyPosts";
 import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
 import { myPostsData } from "../../Redux/state";
@@ -16,7 +16,7 @@ type ContentPropsType = {
   myPostsData: myPostsData[];
 };
 
-const Content = (props: ContentPropsType): JSX.Element => {
+const Profile = (props: ContentPropsType): JSX.Element => {
   return (
     <div>
       <ProfileInfo />
@@ -24,4 +24,4 @@ const Content = (props: ContentPropsType): JSX.Element => {
     </div>
   );
 };
-export { Content };
+export { Profile };

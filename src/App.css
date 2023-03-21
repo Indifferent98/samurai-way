@@ -17,7 +17,7 @@ body {
 .profileInfo {
   border: 1px solid #000;
 }
-.app-wrapper-content {
+.app-wrapper-Profile {
   border: 1px solid #000;
   grid-area: c;
   padding: 15px;
