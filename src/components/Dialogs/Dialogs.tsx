@@ -8,7 +8,7 @@ import { Stepan } from "./DialogWith/Stepan";
 import { Vladimir } from "./DialogWith/Vladimir";
 import { DialogItem } from "./DialogItem/DialogItem";
 import { Message } from "./Message/Message";
-import { dialogsDataArrayType, messageDataArrayType } from "../..";
+import { dialogsDataArrayType, messageDataArrayType } from "../../Redux/state";
 
 //типизировать пропсы
 type DialogsPropsType = {

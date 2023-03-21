@@ -2,7 +2,8 @@ import React from "react";
 import s from "./content.module.css";
 import { MyPosts } from "./MyPosts/MyPosts";
 import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
-import { myPostsData } from "../..";
+import { myPostsData } from "../../Redux/state";
+
 // const classes = {
 //   content: "content_content__vXRFo",
 //   contentImg: "content_contentImg__buA7k ",

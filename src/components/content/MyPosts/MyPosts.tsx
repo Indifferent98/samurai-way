@@ -1,7 +1,8 @@
 import React from "react";
 import s from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
-import { myPostsData } from "../../..";
+import { myPostsData } from "../../../Redux/state";
+
 // import { messageDataArrayType } from "../../Dialogs/Dialogs";
 
 type MyPostsPropsType = {

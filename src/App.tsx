@@ -8,12 +8,10 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { News } from "./components/News/News";
-import { dialogsDataArrayType, messageDataArrayType, myPostsData } from ".";
+import { stateType } from "./Redux/state";
 
 type AppPropsType = {
-  dialogsData: dialogsDataArrayType[];
-  messageData: messageDataArrayType[];
-  myPostsData: myPostsData[];
+  appState: stateType;
 };
 
 function App(props: AppPropsType): JSX.Element {
@@ -27,14 +25,14 @@ function App(props: AppPropsType): JSX.Element {
             path="/Dialogs"
             render={() => (
               <Dialogs
-                messageData={props.messageData}
-                dialogsData={props.dialogsData}
+                messageData={props.appState.messageData}
+                dialogsData={props.appState.dialogsData}
               />
             )}
           />
           <Route
             path="/Content"
-            render={() => <Content myPostsData={props.myPostsData} />}
+            render={() => <Content myPostsData={props.appState.myPostsData} />}
           />
           <Route path="/Music" render={() => <Music />} />
           <Route path="/Settings" render={() => <Settings />} />
