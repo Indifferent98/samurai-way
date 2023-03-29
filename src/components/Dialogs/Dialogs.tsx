@@ -44,7 +44,8 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
 
   const messageTitle = React.createRef<HTMLTextAreaElement>();
   const addMessageTitleHandler = () => {
-    alert(messageTitle.current?.value);
+    let title = messageTitle.current?.value;
+    alert(title);
   };
   return (
     <div className={s.dialogs}>

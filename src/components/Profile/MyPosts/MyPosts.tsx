@@ -7,6 +7,7 @@ import { myPostsData } from "../../../Redux/state";
 
 type MyPostsPropsType = {
   myPostsData: myPostsData[];
+  addPost: (title: string) => void;
 };
 
 const MyPosts = (props: MyPostsPropsType): JSX.Element => {
@@ -20,7 +21,11 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
   //   console.log(e.currentTarget.value);
   // };
   const addPostButtonHandler = () => {
-    let text = newPostTitle.current?.value;
+    if (newPostTitle.current) {
+      debugger;
+      props.addPost(newPostTitle.current.value);
+      console.log(props.myPostsData);
+    }
   };
   return (
     <div>

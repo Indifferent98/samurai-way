@@ -13,6 +13,7 @@ import { Profile } from "./components/Profile/Profile";
 
 type AppPropsType = {
   appState: stateType;
+  addPost: (title: string) => void;
 };
 
 function App(props: AppPropsType): JSX.Element {
@@ -28,7 +29,10 @@ function App(props: AppPropsType): JSX.Element {
         <Route
           path="/Profile"
           render={() => (
-            <Profile myPostsData={props.appState.profilePage.myPostsData} />
+            <Profile
+              addPost={props.addPost}
+              myPostsData={props.appState.profilePage.myPostsData}
+            />
           )}
         />
         <Route path="/Music" render={() => <Music />} />

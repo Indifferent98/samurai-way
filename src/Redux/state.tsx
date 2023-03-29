@@ -1,4 +1,5 @@
 import React from "react";
+import { renderTree } from "..";
 
 export type MessagePropsType = {
   messageData: string;
@@ -54,6 +55,12 @@ export type stateType = {
   profilePage: { myPostsData: myPostsData[] };
   navBar: string[];
 };
+export const addPost = (title: string): void => {
+  let newPost: myPostsData = { id: 77, message: title, likesCount: 0 };
+  state.profilePage.myPostsData.unshift(newPost);
+  renderTree();
+};
+
 export const state: stateType = {
   messagesPage: {
     dialogsData: dialogsData,
