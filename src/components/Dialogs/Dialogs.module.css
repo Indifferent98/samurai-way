@@ -20,4 +20,15 @@
   text-align: center;
 }
 .message {
+  display: flex;
+  flex-direction: column;
+}
+.growDiv {
+  flex-grow: 1;
+}
+.handler {
+  height: 50px;
+
+  text-align: right;
+  margin-right: 120px;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent, LegacyRef, RefObject, useState } from "react";
 import s from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
 import { myPostsData } from "../../../Redux/state";
@@ -13,14 +13,29 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
   let postsForApplicationPost = props.myPostsData.map((t) => (
     <Post like={t.likesCount} message={t.message} />
   ));
+
+  const newPostTitle = React.createRef<HTMLTextAreaElement>();
+
+  // const textAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  //   console.log(e.currentTarget.value);
+  // };
+  const addPostButtonHandler = () => {
+    let text = newPostTitle.current?.value;
+  };
   return (
     <div>
       <div className={s.changePost}>
         My postsss
         <div>
           New Post
-          <textarea name="" id=""></textarea>
-          <button>Add Post</button>
+          <textarea
+            // onChange={textAreaHandler}
+            ref={newPostTitle}
+            placeholder="Что нового?"
+            name=""
+            id=""
+          ></textarea>
+          <button onClick={addPostButtonHandler}>Add Post</button>
           <button>Remove</button>
         </div>
       </div>

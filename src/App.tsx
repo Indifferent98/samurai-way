@@ -4,7 +4,7 @@ import { Header } from "./components/header/Header";
 import { Nav } from "./components/nav/nav";
 
 import { Dialogs } from "./components/Dialogs/Dialogs";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { News } from "./components/News/News";
@@ -17,27 +17,25 @@ type AppPropsType = {
 
 function App(props: AppPropsType): JSX.Element {
   return (
-    <BrowserRouter>
-      <div className="app-wrapper">
-        <Header />
-        <Nav list={props.appState.navBar} />
-        <div className="app-wrapper-Profile">
-          <Route
-            path="/Messages"
-            render={() => <Dialogs state={props.appState.messagesPage} />}
-          />
-          <Route
-            path="/Profile"
-            render={() => (
-              <Profile myPostsData={props.appState.profilePage.myPostsData} />
-            )}
-          />
-          <Route path="/Music" render={() => <Music />} />
-          <Route path="/Settings" render={() => <Settings />} />
-          <Route path="/News" render={() => <News />} />
-        </div>
+    <div className="app-wrapper">
+      <Header />
+      <Nav list={props.appState.navBar} />
+      <div className="app-wrapper-Profile">
+        <Route
+          path="/Messages"
+          render={() => <Dialogs state={props.appState.messagesPage} />}
+        />
+        <Route
+          path="/Profile"
+          render={() => (
+            <Profile myPostsData={props.appState.profilePage.myPostsData} />
+          )}
+        />
+        <Route path="/Music" render={() => <Music />} />
+        <Route path="/Settings" render={() => <Settings />} />
+        <Route path="/News" render={() => <News />} />
       </div>
-    </BrowserRouter>
+    </div>
   );
 }
 

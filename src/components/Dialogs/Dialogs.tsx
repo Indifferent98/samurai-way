@@ -41,17 +41,30 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   const messageDataForApplication = props.state.messageData.map((t) => (
     <Message messageData={t.message} />
   ));
+
+  const messageTitle = React.createRef<HTMLTextAreaElement>();
+  const addMessageTitleHandler = () => {
+    alert(messageTitle.current?.value);
+  };
   return (
-    <BrowserRouter>
-      <div className={s.dialogs}>
-        <div className={s.dialog}>{dialogsDataForApplication}</div>
-        <div className={s.message}>{messageDataForApplication}</div>
-        {/* <Route path={"/Dialogs/1"} component={Message }></Route>
+    <div className={s.dialogs}>
+      <div className={s.dialog}>{dialogsDataForApplication}</div>
+      <div className={s.message}>
+        {messageDataForApplication}
+        {/* GROW DIV ATTENTION */}
+        <div className={s.growDiv}></div>
+        {/* GROW DIV ATTENTION */}
+        <div className={s.handler}>
+          <textarea ref={messageTitle} name="" id=""></textarea>
+          <button onClick={addMessageTitleHandler}>Send Message</button>
+        </div>
+      </div>
+
+      {/* <Route path={"/Dialogs/1"} component={Message }></Route>
         <Route path={"/Dialogs/4"} component={Message}></Route>
         <Route path={"/Dialogs/2"} component={Message}></Route>
         <Route path={"/Dialogs/3"} component={Message}></Route>
         <Route path={"/Dialogs/5"} component={Message}></Route> */}
-      </div>
-    </BrowserRouter>
+    </div>
   );
 };
