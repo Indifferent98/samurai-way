@@ -1,17 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom";
+
 import "./index.css";
-import App from "./App";
-import { addPost, state } from "./Redux/state";
-import { BrowserRouter } from "react-router-dom";
 
-export const renderTree = () => {
-  ReactDOM.render(
-    <BrowserRouter>
-      <App appState={state} addPost={addPost} />
-    </BrowserRouter>,
-    document.getElementById("root")
-  );
-};
+import { state } from "./Redux/state";
 
-renderTree();
+import { renderEntireTree } from "./Render";
+
+// ReactDOM.render(
+//   <BrowserRouter>
+//     <App appState={state} addPost={addPost} />
+//   </BrowserRouter>,
+//   document.getElementById("root")
+// );
+
+renderEntireTree(state);

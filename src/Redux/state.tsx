@@ -1,5 +1,5 @@
 import React from "react";
-import { renderTree } from "..";
+import { renderEntireTree } from "../Render";
 
 export type MessagePropsType = {
   messageData: string;
@@ -52,20 +52,19 @@ export type stateType = {
     dialogsData: dialogsDataArrayType[];
     messageData: messageDataArrayType[];
   };
-  profilePage: { myPostsData: myPostsData[] };
+  profilePage: { myPostsData: myPostsData[]; addPost: (title: string) => void };
   navBar: string[];
 };
-export const addPost = (title: string): void => {
+const addPost = (title: string): void => {
   let newPost: myPostsData = { id: 77, message: title, likesCount: 0 };
   state.profilePage.myPostsData.unshift(newPost);
-  renderTree();
+  renderEntireTree(state);
 };
-
 export const state: stateType = {
   messagesPage: {
     dialogsData: dialogsData,
     messageData: messageData,
   },
-  profilePage: { myPostsData: myPostsData },
+  profilePage: { myPostsData: myPostsData, addPost: addPost },
   navBar: navBar,
 };

@@ -24,6 +24,7 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
     if (newPostTitle.current) {
       debugger;
       props.addPost(newPostTitle.current.value);
+      newPostTitle.current.value = "";
       console.log(props.myPostsData);
     }
   };
