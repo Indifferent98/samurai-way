@@ -9,13 +9,14 @@ import { Vladimir } from "./DialogWith/Vladimir";
 import { DialogItem } from "./DialogItem/DialogItem";
 import { Message } from "./Message/Message";
 import { dialogsDataArrayType } from "../../Redux/state";
-import { messageDataArrayType } from "../../Redux/state";
+import { messageDataType } from "../../Redux/state";
 //типизировать пропсы
 type DialogsPropsType = {
   state: {
     dialogsData: dialogsDataArrayType[];
-    messageData: messageDataArrayType[];
+    messageData: messageDataType[];
   };
+  addMessage: (title: string) => void;
 };
 
 export const Dialogs = (props: DialogsPropsType): JSX.Element => {
@@ -44,8 +45,11 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
 
   const messageTitle = React.createRef<HTMLTextAreaElement>();
   const addMessageTitleHandler = () => {
-    let title = messageTitle.current?.value;
-    alert(title);
+    if (messageTitle.current) {
+      let title = messageTitle.current.value;
+      props.addMessage(title);
+      messageTitle.current.value = "";
+    }
   };
   return (
     <div className={s.dialogs}>

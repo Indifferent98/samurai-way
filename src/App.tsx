@@ -13,6 +13,8 @@ import { Profile } from "./components/Profile/Profile";
 
 type AppPropsType = {
   appState: stateType;
+  addPost: (title: string) => void;
+  addMessage: (title: string) => void;
 };
 
 function App(props: AppPropsType): JSX.Element {
@@ -23,13 +25,18 @@ function App(props: AppPropsType): JSX.Element {
       <div className="app-wrapper-Profile">
         <Route
           path="/Messages"
-          render={() => <Dialogs state={props.appState.messagesPage} />}
+          render={() => (
+            <Dialogs
+              state={props.appState.messagesPage}
+              addMessage={props.addMessage}
+            />
+          )}
         />
         <Route
           path="/Profile"
           render={() => (
             <Profile
-              addPost={props.appState.profilePage.addPost}
+              addPost={props.addPost}
               myPostsData={props.appState.profilePage.myPostsData}
             />
           )}

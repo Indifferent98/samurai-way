@@ -17,7 +17,7 @@ export type dialogsDataArrayType = {
   id: number;
   name: string;
 };
-export type messageDataArrayType = {
+export type messageDataType = {
   id: number;
   message: string;
 };
@@ -31,7 +31,7 @@ const dialogsData: dialogsDataArrayType[] = [
   { id: 5, name: "Stepan" },
   { id: 6, name: "HowAreYou" },
 ];
-const messageData: messageDataArrayType[] = [
+const messageData: messageDataType[] = [
   { id: 1, message: "Hmmm" },
   { id: 2, message: "Butter" },
   { id: 3, message: "Milk" },
@@ -50,14 +50,19 @@ const myPostsData: myPostsData[] = [
 export type stateType = {
   messagesPage: {
     dialogsData: dialogsDataArrayType[];
-    messageData: messageDataArrayType[];
+    messageData: messageDataType[];
   };
-  profilePage: { myPostsData: myPostsData[]; addPost: (title: string) => void };
+  profilePage: { myPostsData: myPostsData[] };
   navBar: string[];
 };
-const addPost = (title: string): void => {
+export const addPost = (title: string): void => {
   let newPost: myPostsData = { id: 77, message: title, likesCount: 0 };
   state.profilePage.myPostsData.unshift(newPost);
+  renderEntireTree(state);
+};
+export const addMessage = (title: string): void => {
+  let newMessage: messageDataType = { id: 77, message: title };
+  messageData.push(newMessage);
   renderEntireTree(state);
 };
 export const state: stateType = {
@@ -65,6 +70,6 @@ export const state: stateType = {
     dialogsData: dialogsData,
     messageData: messageData,
   },
-  profilePage: { myPostsData: myPostsData, addPost: addPost },
+  profilePage: { myPostsData: myPostsData },
   navBar: navBar,
 };
