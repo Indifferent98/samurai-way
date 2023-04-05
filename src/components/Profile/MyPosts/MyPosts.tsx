@@ -3,8 +3,6 @@ import s from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
 import { myPostsData } from "../../../Redux/state";
 
-// import { messageDataArrayType } from "../../Dialogs/Dialogs";
-
 type MyPostsPropsType = {
   myPostsData: myPostsData[];
   addPost: () => void;
@@ -17,12 +15,9 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
     <Post like={t.likesCount} message={t.message} />
   ));
 
-  // const textAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-  //   console.log(e.currentTarget.value);
-  // };
   const addPostButtonHandler = () => props.addPost();
 
-  const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
+  const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) =>
     props.updatePostTitle(e.currentTarget.value);
 
   return (
@@ -32,12 +27,9 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
         <div>
           New Post
           <textarea
-            // onChange={textAreaHandler}
             value={props.newPostProfileTitle}
-            onChange={onPostChange}
+            onChange={onPostChangeHandler}
             placeholder="Что нового?"
-            name=""
-            id=""
           ></textarea>
           <button onClick={addPostButtonHandler}>Add Post</button>
           <button>Remove</button>
@@ -45,11 +37,6 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
       </div>
 
       {postsForApplicationPost}
-      {/* <Post like={myPostsData[0].likesCount} message={myPostsData[0].message} />
-      <Post like={myPostsData[1].likesCount} message={myPostsData[1].message} />
-      <Post like={myPostsData[2].likesCount} message={myPostsData[2].message} />
-      <Post like={myPostsData[3].likesCount} message={myPostsData[3].message} />
-      <Post like={myPostsData[4].likesCount} message={myPostsData[4].message} /> */}
     </div>
   );
 };
