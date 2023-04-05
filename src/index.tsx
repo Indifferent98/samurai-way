@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { addMessage, addPost } from "./Redux/state";
 
-const renderEntireTree = (state: stateType) => {
+const renderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
       <App appState={state} addPost={addPost} addMessage={addMessage} />
@@ -15,5 +15,5 @@ const renderEntireTree = (state: stateType) => {
   );
 };
 
-renderEntireTree(state); //первая отрисовка
+renderEntireTree(); //первая отрисовка
 subscriber(renderEntireTree); //меняет entireTree в state

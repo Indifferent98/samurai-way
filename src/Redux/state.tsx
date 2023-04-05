@@ -76,12 +76,12 @@ export const addPost = (): void => {
   };
   state.profilePage.myPostsData.unshift(newPost);
   state.profilePage.newPostProfileTitle = "";
-  renderEntireTree(state);
+  renderEntireTree();
 };
 const updateMessageTitle = (title: string) => {
   state.messagesPage.newMessageToMessagesTitle = title;
 
-  renderEntireTree(state);
+  renderEntireTree();
 };
 export const addMessage = (): void => {
   let newMessage: messageDataType = {
@@ -90,15 +90,14 @@ export const addMessage = (): void => {
   };
   messageData.push(newMessage);
   state.messagesPage.newMessageToMessagesTitle = "";
-  renderEntireTree(state);
+  renderEntireTree();
 };
 const updatePostTitle = (title: string) => {
   state.profilePage.newPostProfileTitle = title;
-  console.log(state);
-  renderEntireTree(state);
+  renderEntireTree();
 };
-let renderEntireTree = (p: stateType) => {};
-export const subscriber = (observer: any) => {
+let renderEntireTree = () => {};
+export const subscriber = (observer: () => void) => {
   renderEntireTree = observer;
 };
 //changeFunc +
