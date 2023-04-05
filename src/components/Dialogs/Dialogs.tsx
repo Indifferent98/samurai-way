@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import s from "./Dialogs.module.css";
 import { BrowserRouter, NavLink, Route } from "react-router-dom";
 import { Timur } from "./DialogWith/Timur";
@@ -22,7 +22,6 @@ type DialogsPropsType = {
 };
 
 export const Dialogs = (props: DialogsPropsType): JSX.Element => {
-  debugger;
   // const dialogsData: dialogsDataArrayType[] = [
   //   { id: 1, name: "Timur" },
   //   { id: 2, name: "Vladimir" },
@@ -45,18 +44,13 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
     <Message messageData={t.message} />
   ));
 
-  const messageTitle = React.createRef<HTMLTextAreaElement>();
   const addMessageTitleHandler = () => {
-    if (messageTitle.current) {
-      // let title = messageTitle.current.value;
-      props.addMessage();
-      // messageTitle.current.value = "";
-    }
+    // let title = messageTitle.current.value;
+    props.addMessage();
+    // messageTitle.current.value = "";
   };
-  const onChangeTextAreaHandler = () => {
-    if (messageTitle.current) {
-      props.updateMessageTitle(messageTitle.current.value);
-    }
+  const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    props.updateMessageTitle(e.currentTarget.value);
   };
   return (
     <div className={s.dialogs}>
@@ -70,9 +64,6 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
           <textarea
             onChange={onChangeTextAreaHandler}
             value={props.newMessageToMessagesTitle}
-            ref={messageTitle}
-            name=""
-            id=""
           ></textarea>
           <button onClick={addMessageTitleHandler}>Send Message</button>
         </div>

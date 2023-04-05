@@ -1,15 +1,12 @@
-import "./index.css";
-
-import { state, subscriber } from "./Redux/state";
-
 import React from "react";
+import "./index.css";
+import { state, stateType, subscriber } from "./Redux/state";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-
 import App from "./App";
-import { addMessage, addPost, stateType } from "./Redux/state";
+import { addMessage, addPost } from "./Redux/state";
 
-const renderEntireTree = () => {
+const renderEntireTree = (state: stateType) => {
   ReactDOM.render(
     <BrowserRouter>
       <App appState={state} addPost={addPost} addMessage={addMessage} />
@@ -17,5 +14,6 @@ const renderEntireTree = () => {
     document.getElementById("root")
   );
 };
-renderEntireTree();
-subscriber(renderEntireTree);
+
+renderEntireTree(state); //первая отрисовка
+subscriber(renderEntireTree); //меняет entireTree в state

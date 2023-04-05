@@ -1,11 +1,5 @@
 import React from "react";
-
-let renderEntireTree = (p: any) => {
-  console.log("State was changed");
-};
-export const subscriber = (observer: any) => {
-  renderEntireTree = observer;
-};
+///types -
 export type MessagePropsType = {
   messageData: string;
 };
@@ -26,9 +20,24 @@ export type messageDataType = {
   id: number;
   message: string;
 };
-const navBar: string[] = ["Profile", "Messages", "News", "Music", "Settings"];
+export type stateType = {
+  messagesPage: {
+    dialogsData: dialogsDataArrayType[];
+    messageData: messageDataType[];
+    newMessageToMessagesTitle: string;
+    updateMessageTitle: (title: string) => void;
+  };
+  profilePage: {
+    myPostsData: myPostsData[];
+    newPostProfileTitle: string;
+    updatePostTitle: (title: string) => void;
+  };
+  navBar: string[];
+};
+///types +
 
-const dialogsData: dialogsDataArrayType[] = [
+///data -
+const dialogsDataUsers: dialogsDataArrayType[] = [
   { id: 1, name: "Timur" },
   { id: 2, name: "Vladimir" },
   { id: 3, name: "Maxim" },
@@ -52,23 +61,13 @@ const myPostsData: myPostsData[] = [
   { id: 5, message: "Lets found smth", likesCount: 0 },
   { id: 6, message: "Check Our Posts", likesCount: 66 },
 ];
+const navBar: string[] = ["Profile", "Messages", "News", "Music", "Settings"];
+
 let newPostProfileTitle: string = "";
 let newMessageToMessagesTitle: string = "";
+///data +
 
-export type stateType = {
-  messagesPage: {
-    dialogsData: dialogsDataArrayType[];
-    messageData: messageDataType[];
-    newMessageToMessagesTitle: string;
-    updateMessageTitle: (title: string) => void;
-  };
-  profilePage: {
-    myPostsData: myPostsData[];
-    newPostProfileTitle: string;
-    updatePostTitle: (title: string) => void;
-  };
-  navBar: string[];
-};
+//changeFunc -
 export const addPost = (): void => {
   let newPost: myPostsData = {
     id: 77,
@@ -98,9 +97,16 @@ const updatePostTitle = (title: string) => {
   console.log(state);
   renderEntireTree(state);
 };
+let renderEntireTree = (p: stateType) => {};
+export const subscriber = (observer: any) => {
+  renderEntireTree = observer;
+};
+//changeFunc +
+
+///State
 export const state: stateType = {
   messagesPage: {
-    dialogsData: dialogsData,
+    dialogsData: dialogsDataUsers,
     messageData: messageData,
     newMessageToMessagesTitle: newMessageToMessagesTitle,
     updateMessageTitle: updateMessageTitle,

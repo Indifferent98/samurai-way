@@ -17,23 +17,14 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
     <Post like={t.likesCount} message={t.message} />
   ));
 
-  const newPostTitle = React.createRef<HTMLTextAreaElement>();
-
   // const textAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
   //   console.log(e.currentTarget.value);
   // };
-  const addPostButtonHandler = () => {
-    if (newPostTitle.current) {
-      props.addPost();
-      // newPostTitle.current.value = "";
-    }
-  };
-  const onPostChange = () => {
-    if (newPostTitle.current) {
-      const title = newPostTitle.current.value;
-      props.updatePostTitle(title);
-    }
-  };
+  const addPostButtonHandler = () => props.addPost();
+
+  const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
+    props.updatePostTitle(e.currentTarget.value);
+
   return (
     <div>
       <div className={s.changePost}>
@@ -44,7 +35,6 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
             // onChange={textAreaHandler}
             value={props.newPostProfileTitle}
             onChange={onPostChange}
-            ref={newPostTitle}
             placeholder="Что нового?"
             name=""
             id=""
