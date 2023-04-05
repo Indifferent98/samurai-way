@@ -47,29 +47,63 @@ const myPostsData: myPostsData[] = [
   { id: 5, message: "Lets found smth", likesCount: 0 },
   { id: 6, message: "Check Our Posts", likesCount: 66 },
 ];
+let newPostProfileTitle: string = "";
+let newMessageToMessagesTitle: string = "";
+
 export type stateType = {
   messagesPage: {
     dialogsData: dialogsDataArrayType[];
     messageData: messageDataType[];
+    newMessageToMessagesTitle: string;
+    updateMessageTitle: (title: string) => void;
   };
-  profilePage: { myPostsData: myPostsData[] };
+  profilePage: {
+    myPostsData: myPostsData[];
+    newPostProfileTitle: string;
+    updatePostTitle: (title: string) => void;
+  };
   navBar: string[];
 };
-export const addPost = (title: string): void => {
-  let newPost: myPostsData = { id: 77, message: title, likesCount: 0 };
+export const addPost = (): void => {
+  let newPost: myPostsData = {
+    id: 77,
+    message: state.profilePage.newPostProfileTitle,
+    likesCount: 0,
+  };
   state.profilePage.myPostsData.unshift(newPost);
+  state.profilePage.newPostProfileTitle = "";
   renderEntireTree(state);
 };
-export const addMessage = (title: string): void => {
-  let newMessage: messageDataType = { id: 77, message: title };
+const updateMessageTitle = (title: string) => {
+  state.messagesPage.newMessageToMessagesTitle = title;
+
+  renderEntireTree(state);
+};
+export const addMessage = (): void => {
+  let newMessage: messageDataType = {
+    id: 77,
+    message: state.messagesPage.newMessageToMessagesTitle,
+  };
   messageData.push(newMessage);
+  state.messagesPage.newMessageToMessagesTitle = "";
+  renderEntireTree(state);
+};
+const updatePostTitle = (title: string) => {
+  state.profilePage.newPostProfileTitle = title;
+  console.log(state);
   renderEntireTree(state);
 };
 export const state: stateType = {
   messagesPage: {
     dialogsData: dialogsData,
     messageData: messageData,
+    newMessageToMessagesTitle: newMessageToMessagesTitle,
+    updateMessageTitle: updateMessageTitle,
   },
-  profilePage: { myPostsData: myPostsData },
+  profilePage: {
+    myPostsData: myPostsData,
+    newPostProfileTitle: newPostProfileTitle,
+    updatePostTitle: updatePostTitle,
+  },
   navBar: navBar,
 };

@@ -14,14 +14,21 @@ import { myPostsData } from "../../Redux/state";
 // };
 type ContentPropsType = {
   myPostsData: myPostsData[];
-  addPost: (title: string) => void;
+  addPost: () => void;
+  newPostProfileTitle: string;
+  updatePostTitle: (title: string) => void;
 };
 
 const Profile = (props: ContentPropsType): JSX.Element => {
   return (
     <div>
       <ProfileInfo />
-      <MyPosts addPost={props.addPost} myPostsData={props.myPostsData} />
+      <MyPosts
+        updatePostTitle={props.updatePostTitle}
+        addPost={props.addPost}
+        newPostProfileTitle={props.newPostProfileTitle}
+        myPostsData={props.myPostsData}
+      />
     </div>
   );
 };

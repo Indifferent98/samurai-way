@@ -16,7 +16,9 @@ type DialogsPropsType = {
     dialogsData: dialogsDataArrayType[];
     messageData: messageDataType[];
   };
-  addMessage: (title: string) => void;
+  addMessage: () => void;
+  updateMessageTitle: (title: string) => void;
+  newMessageToMessagesTitle: string;
 };
 
 export const Dialogs = (props: DialogsPropsType): JSX.Element => {
@@ -46,9 +48,14 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   const messageTitle = React.createRef<HTMLTextAreaElement>();
   const addMessageTitleHandler = () => {
     if (messageTitle.current) {
-      let title = messageTitle.current.value;
-      props.addMessage(title);
-      messageTitle.current.value = "";
+      // let title = messageTitle.current.value;
+      props.addMessage();
+      // messageTitle.current.value = "";
+    }
+  };
+  const onChangeTextAreaHandler = () => {
+    if (messageTitle.current) {
+      props.updateMessageTitle(messageTitle.current.value);
     }
   };
   return (
@@ -60,7 +67,13 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
         <div className={s.growDiv}></div>
         {/* GROW DIV ATTENTION */}
         <div className={s.handler}>
-          <textarea ref={messageTitle} name="" id=""></textarea>
+          <textarea
+            onChange={onChangeTextAreaHandler}
+            value={props.newMessageToMessagesTitle}
+            ref={messageTitle}
+            name=""
+            id=""
+          ></textarea>
           <button onClick={addMessageTitleHandler}>Send Message</button>
         </div>
       </div>

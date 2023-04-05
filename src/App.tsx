@@ -13,8 +13,8 @@ import { Profile } from "./components/Profile/Profile";
 
 type AppPropsType = {
   appState: stateType;
-  addPost: (title: string) => void;
-  addMessage: (title: string) => void;
+  addPost: () => void;
+  addMessage: () => void;
 };
 
 function App(props: AppPropsType): JSX.Element {
@@ -27,6 +27,12 @@ function App(props: AppPropsType): JSX.Element {
           path="/Messages"
           render={() => (
             <Dialogs
+              updateMessageTitle={
+                props.appState.messagesPage.updateMessageTitle
+              }
+              newMessageToMessagesTitle={
+                props.appState.messagesPage.newMessageToMessagesTitle
+              }
               state={props.appState.messagesPage}
               addMessage={props.addMessage}
             />
@@ -37,6 +43,10 @@ function App(props: AppPropsType): JSX.Element {
           render={() => (
             <Profile
               addPost={props.addPost}
+              newPostProfileTitle={
+                props.appState.profilePage.newPostProfileTitle
+              }
+              updatePostTitle={props.appState.profilePage.updatePostTitle}
               myPostsData={props.appState.profilePage.myPostsData}
             />
           )}

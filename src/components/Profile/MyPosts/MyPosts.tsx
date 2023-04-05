@@ -7,7 +7,9 @@ import { myPostsData } from "../../../Redux/state";
 
 type MyPostsPropsType = {
   myPostsData: myPostsData[];
-  addPost: (title: string) => void;
+  addPost: () => void;
+  newPostProfileTitle: string;
+  updatePostTitle: (title: string) => void;
 };
 
 const MyPosts = (props: MyPostsPropsType): JSX.Element => {
@@ -22,10 +24,14 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
   // };
   const addPostButtonHandler = () => {
     if (newPostTitle.current) {
-      debugger;
-      props.addPost(newPostTitle.current.value);
-      newPostTitle.current.value = "";
-      console.log(props.myPostsData);
+      props.addPost();
+      // newPostTitle.current.value = "";
+    }
+  };
+  const onPostChange = () => {
+    if (newPostTitle.current) {
+      const title = newPostTitle.current.value;
+      props.updatePostTitle(title);
     }
   };
   return (
@@ -36,6 +42,8 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
           New Post
           <textarea
             // onChange={textAreaHandler}
+            value={props.newPostProfileTitle}
+            onChange={onPostChange}
             ref={newPostTitle}
             placeholder="Что нового?"
             name=""
