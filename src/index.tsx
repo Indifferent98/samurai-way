@@ -1,16 +1,21 @@
-import React from "react";
-
 import "./index.css";
 
-import { state } from "./Redux/state";
+import { state, subscriber } from "./Redux/state";
 
-import { renderEntireTree } from "./Render";
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
-// ReactDOM.render(
-//   <BrowserRouter>
-//     <App appState={state} addPost={addPost} />
-//   </BrowserRouter>,
-//   document.getElementById("root")
-// );
+import App from "./App";
+import { addMessage, addPost, stateType } from "./Redux/state";
 
-renderEntireTree(state);
+const renderEntireTree = () => {
+  ReactDOM.render(
+    <BrowserRouter>
+      <App appState={state} addPost={addPost} addMessage={addMessage} />
+    </BrowserRouter>,
+    document.getElementById("root")
+  );
+};
+renderEntireTree();
+subscriber(renderEntireTree);

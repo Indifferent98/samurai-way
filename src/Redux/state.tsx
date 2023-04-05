@@ -1,6 +1,11 @@
 import React from "react";
-import { renderEntireTree } from "../Render";
 
+let renderEntireTree = (p: any) => {
+  console.log("State was changed");
+};
+export const subscriber = (observer: any) => {
+  renderEntireTree = observer;
+};
 export type MessagePropsType = {
   messageData: string;
 };
