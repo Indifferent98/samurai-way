@@ -20,6 +20,20 @@ type DialogsPropsType = {
   newMessageToMessagesTitle: string;
 };
 
+type addMessageActionCreatorType = () => ActionAddMessageType;
+type updateMessageTitleActionCreatorType = (
+  title: string
+) => ActionUpdateMessageTitleType;
+
+const updateMessageTitleCreator: updateMessageTitleActionCreatorType = (
+  title
+) => {
+  return { title: title, type: "UPDATE-MESSAGE-TITLE" };
+};
+const addMessageCreator: addMessageActionCreatorType = () => {
+  return { type: "ADD-MESSAGE" };
+};
+
 export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   const dialogsDataForApplication = props.state.dialogsData.map((t) => (
     <DialogItem name={t.name} id={t.id.toString()} />
@@ -29,15 +43,11 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   ));
 
   const addMessageTitleHandler = () => {
-    const action: ActionAddMessageType = { type: "ADD-MESSAGE" };
-    props.dispatch(action);
+    props.dispatch(addMessageCreator());
   };
   const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const action: ActionUpdateMessageTitleType = {
-      type: "UPDATE-MESSAGE-TITLE",
-      title: e.currentTarget.value,
-    };
-    props.dispatch(action);
+    const title = e.currentTarget.value;
+    props.dispatch(updateMessageTitleCreator(title));
   };
   return (
     <div className={s.dialogs}>

@@ -13,23 +13,32 @@ type MyPostsPropsType = {
   newPostProfileTitle: string;
   dispatch: (action: dispatchActionTypes) => void;
 };
+type addPostActionCreatorType = () => ActionAddPostType;
+
+type updatePostTitleActionCreatorType = (
+  title: string
+) => ActionUpdatePostTitleType;
+
+const addPostActionCreator: addPostActionCreatorType = () => {
+  return { type: "ADD-POST" };
+};
+
+const updatePostTitleActionCreator: updatePostTitleActionCreatorType = (
+  title
+) => {
+  return { type: "UPDATE-POST-TITLE", title: title };
+};
 
 const MyPosts = (props: MyPostsPropsType): JSX.Element => {
   let postsForApplicationPost = props.myPostsData.map((t) => (
     <Post like={t.likesCount} message={t.message} />
   ));
 
-  const addPostButtonHandler = () => {
-    const action: ActionAddPostType = { type: "ADD-POST" };
-    props.dispatch(action);
-  };
+  const addPostButtonHandler = () => props.dispatch(addPostActionCreator());
 
   const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const action: ActionUpdatePostTitleType = {
-      type: "UPDATE-POST-TITLE",
-      title: e.currentTarget.value,
-    };
-    props.dispatch(action);
+    const title = e.currentTarget.value;
+    props.dispatch(updatePostTitleActionCreator(title));
   };
 
   return (
