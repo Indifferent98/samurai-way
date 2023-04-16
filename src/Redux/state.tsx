@@ -1,6 +1,16 @@
 import React from "react";
 
 ///types -
+type addMessageActionCreatorType = () => ActionAddMessageType;
+
+type updateMessageTitleActionCreatorType = (
+  title: string
+) => ActionUpdateMessageTitleType;
+type addPostActionCreatorType = () => ActionAddPostType;
+
+type updatePostTitleActionCreatorType = (
+  title: string
+) => ActionUpdatePostTitleType;
 
 export type myPostsData = {
   id: number;
@@ -135,3 +145,25 @@ export const store: StoreType = {
     return this._state;
   },
 };
+///data+
+
+///Function-
+export const updateMessageTitleCreator: updateMessageTitleActionCreatorType = (
+  title
+) => {
+  return { title: title, type: "UPDATE-MESSAGE-TITLE" };
+};
+export const addMessageCreator: addMessageActionCreatorType = () => {
+  return { type: "ADD-MESSAGE" };
+};
+
+export const addPostActionCreator: addPostActionCreatorType = () => {
+  return { type: "ADD-POST" };
+};
+
+export const updatePostTitleActionCreator: updatePostTitleActionCreatorType = (
+  title
+) => {
+  return { type: "UPDATE-POST-TITLE", title: title };
+};
+///Function+

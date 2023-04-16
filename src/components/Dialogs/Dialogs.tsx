@@ -4,10 +4,10 @@ import s from "./Dialogs.module.css";
 import { DialogItem } from "./DialogItem/DialogItem";
 import { Message } from "./Message/Message";
 import {
-  ActionAddMessageType,
-  ActionUpdateMessageTitleType,
+  addMessageCreator,
   dialogsDataType,
   dispatchActionTypes,
+  updateMessageTitleCreator,
 } from "../../Redux/state";
 import { messageDataType } from "../../Redux/state";
 
@@ -20,20 +20,6 @@ type DialogsPropsType = {
   newMessageToMessagesTitle: string;
 };
 
-type addMessageActionCreatorType = () => ActionAddMessageType;
-type updateMessageTitleActionCreatorType = (
-  title: string
-) => ActionUpdateMessageTitleType;
-
-const updateMessageTitleCreator: updateMessageTitleActionCreatorType = (
-  title
-) => {
-  return { title: title, type: "UPDATE-MESSAGE-TITLE" };
-};
-const addMessageCreator: addMessageActionCreatorType = () => {
-  return { type: "ADD-MESSAGE" };
-};
-
 export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   const dialogsDataForApplication = props.state.dialogsData.map((t) => (
     <DialogItem name={t.name} id={t.id.toString()} />
@@ -43,11 +29,13 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   ));
 
   const addMessageTitleHandler = () => {
-    props.dispatch(addMessageCreator());
+    const action = addMessageCreator();
+    props.dispatch(action);
   };
   const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const title = e.currentTarget.value;
-    props.dispatch(updateMessageTitleCreator(title));
+    const action = updateMessageTitleCreator(title);
+    props.dispatch(action);
   };
   return (
     <div className={s.dialogs}>
