@@ -19,16 +19,20 @@ export const profileReducer = (
   state: initialStateType = initialState,
   action: dispatchActionTypes
 ): initialStateType => {
-  if (action.type === "ADD-POST") {
-    const newPost: myPostsDataType = {
-      id: 77,
-      message: state.newPostProfileTitle,
-      likesCount: 0,
-    };
-    state.myPostsData.unshift(newPost);
-    state.newPostProfileTitle = "";
-  } else if (action.type === "UPDATE-POST-TITLE") {
-    state.newPostProfileTitle = action.title;
+  switch (action.type) {
+    case "ADD-POST":
+      const newPost: myPostsDataType = {
+        id: 77,
+        message: state.newPostProfileTitle,
+        likesCount: 0,
+      };
+      state.myPostsData.unshift(newPost);
+      state.newPostProfileTitle = "";
+      return state;
+
+    case "UPDATE-POST-TITLE":
+      state.newPostProfileTitle = action.title;
+      return state;
   }
 
   return state;

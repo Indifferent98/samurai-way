@@ -32,15 +32,19 @@ export const dialogsReducer = (
   state: initialStateType = initialState,
   action: dispatchActionTypes
 ): initialStateType => {
-  if (action.type === "ADD-MESSAGE") {
-    const newMessage: messageDataType = {
-      id: 77,
-      message: state.newMessageToMessagesTitle,
-    };
-    state.messageData.push(newMessage);
-    state.newMessageToMessagesTitle = "";
-  } else if (action.type === "UPDATE-MESSAGE-TITLE") {
-    state.newMessageToMessagesTitle = action.title;
+  switch (action.type) {
+    case "ADD-MESSAGE":
+      const newMessage: messageDataType = {
+        id: 77,
+        message: state.newMessageToMessagesTitle,
+      };
+      state.messageData.push(newMessage);
+      state.newMessageToMessagesTitle = "";
+      return state;
+
+    case "UPDATE-MESSAGE-TITLE":
+      state.newMessageToMessagesTitle = action.title;
+      return state;
   }
 
   return state;
