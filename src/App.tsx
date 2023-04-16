@@ -14,10 +14,6 @@ import { Profile } from "./components/Profile/Profile";
 type AppPropsType = {
   appState: stateType;
   dispatch: (action: dispatchActionTypes) => void;
-  // addPost: () => void;
-  // addMessage: () => void;
-  // updateMessageTitle: (title: string) => void;
-  // updatePostTitle: (title: string) => void;
 };
 
 function App(props: AppPropsType): JSX.Element {

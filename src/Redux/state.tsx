@@ -1,19 +1,13 @@
 import React from "react";
 
 ///types -
-export type MessagePropsType = {
-  messageData: string;
-};
-export type DialogPropsType = {
-  name: string;
-  id: string;
-};
+
 export type myPostsData = {
   id: number;
   message: string;
   likesCount: number;
 };
-export type dialogsDataArrayType = {
+export type dialogsDataType = {
   id: number;
   name: string;
 };
@@ -23,10 +17,9 @@ export type messageDataType = {
 };
 export type stateType = {
   messagesPage: {
-    dialogsData: dialogsDataArrayType[];
+    dialogsData: dialogsDataType[];
     messageData: messageDataType[];
     newMessageToMessagesTitle: string;
-    // updateMessageTitle: (title: string) => void;
   };
   profilePage: {
     myPostsData: myPostsData[];
@@ -58,10 +51,6 @@ export type dispatchActionTypes =
 export type StoreType = {
   _state: stateType;
   callSubscriber: () => void;
-  // updateMessageTitle: (title: string) => void;
-  // updatePostTitle: (title: string) => void;
-  // addPost: () => void;
-  // addMessage: () => void;
   subscriber: (observer: () => void) => void;
   getState: () => stateType;
   dispatch: (action: dispatchActionTypes) => void;
@@ -69,7 +58,7 @@ export type StoreType = {
 ///types +
 
 ///data -
-const dialogsDataUsers: dialogsDataArrayType[] = [
+const dialogsDataUsers: dialogsDataType[] = [
   { id: 1, name: "Timur" },
   { id: 2, name: "Vladimir" },
   { id: 3, name: "Maxim" },

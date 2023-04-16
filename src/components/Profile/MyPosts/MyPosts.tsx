@@ -1,4 +1,4 @@
-import React, { ChangeEvent, LegacyRef, RefObject, useState } from "react";
+import React, { ChangeEvent } from "react";
 import s from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
 import {
@@ -10,10 +10,7 @@ import {
 
 type MyPostsPropsType = {
   myPostsData: myPostsData[];
-
   newPostProfileTitle: string;
-  // addPost: () => void;
-  // updatePostTitle: (title: string) => void;
   dispatch: (action: dispatchActionTypes) => void;
 };
 
@@ -50,7 +47,6 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
           <button>Remove</button>
         </div>
       </div>
-
       {postsForApplicationPost}
     </div>
   );

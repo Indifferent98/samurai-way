@@ -6,18 +6,16 @@ import { Message } from "./Message/Message";
 import {
   ActionAddMessageType,
   ActionUpdateMessageTitleType,
-  dialogsDataArrayType,
+  dialogsDataType,
   dispatchActionTypes,
 } from "../../Redux/state";
 import { messageDataType } from "../../Redux/state";
 
 type DialogsPropsType = {
   state: {
-    dialogsData: dialogsDataArrayType[];
+    dialogsData: dialogsDataType[];
     messageData: messageDataType[];
   };
-  // addMessage: () => void;
-  // updateMessageTitle: (title: string) => void;
   dispatch: (action: dispatchActionTypes) => void;
   newMessageToMessagesTitle: string;
 };
