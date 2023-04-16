@@ -8,15 +8,16 @@ import { Route } from "react-router-dom";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { News } from "./components/News/News";
-import { stateType } from "./Redux/state";
+import { dispatchActionTypes, stateType } from "./Redux/state";
 import { Profile } from "./components/Profile/Profile";
 
 type AppPropsType = {
   appState: stateType;
-  addPost: () => void;
-  addMessage: () => void;
-  updateMessageTitle: (title: string) => void;
-  updatePostTitle: (title: string) => void;
+  dispatch: (action: dispatchActionTypes) => void;
+  // addPost: () => void;
+  // addMessage: () => void;
+  // updateMessageTitle: (title: string) => void;
+  // updatePostTitle: (title: string) => void;
 };
 
 function App(props: AppPropsType): JSX.Element {
@@ -29,12 +30,11 @@ function App(props: AppPropsType): JSX.Element {
           path="/Messages"
           render={() => (
             <Dialogs
-              updateMessageTitle={props.updateMessageTitle}
+              dispatch={props.dispatch}
               newMessageToMessagesTitle={
                 props.appState.messagesPage.newMessageToMessagesTitle
               }
               state={props.appState.messagesPage}
-              addMessage={props.addMessage}
             />
           )}
         />
@@ -42,11 +42,10 @@ function App(props: AppPropsType): JSX.Element {
           path="/Profile"
           render={() => (
             <Profile
-              addPost={props.addPost}
+              dispatch={props.dispatch}
               newPostProfileTitle={
                 props.appState.profilePage.newPostProfileTitle
               }
-              updatePostTitle={props.updatePostTitle}
               myPostsData={props.appState.profilePage.myPostsData}
             />
           )}

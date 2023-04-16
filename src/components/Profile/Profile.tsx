@@ -2,7 +2,11 @@ import React from "react";
 import s from "./profile.module.css";
 import { MyPosts } from "./MyPosts/MyPosts";
 import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
-import { myPostsData } from "../../Redux/state";
+import {
+  ActionUpdatePostTitleType,
+  dispatchActionTypes,
+  myPostsData,
+} from "../../Redux/state";
 
 // const classes = {
 //   content: "content_content__vXRFo",
@@ -14,18 +18,21 @@ import { myPostsData } from "../../Redux/state";
 // };
 type ContentPropsType = {
   myPostsData: myPostsData[];
-  addPost: () => void;
+
   newPostProfileTitle: string;
-  updatePostTitle: (title: string) => void;
+
+  dispatch: (action: dispatchActionTypes) => void;
+  // updatePostTitle: (title: string) => void;
+  // addPost: () => void;
 };
 
 const Profile = (props: ContentPropsType): JSX.Element => {
+  // const actionUpdatePostTitle:ActionUpdatePostTitleType={type:"UPDATE-POST-TITLE" }
   return (
     <div>
       <ProfileInfo />
       <MyPosts
-        updatePostTitle={props.updatePostTitle}
-        addPost={props.addPost}
+        dispatch={props.dispatch}
         newPostProfileTitle={props.newPostProfileTitle}
         myPostsData={props.myPostsData}
       />

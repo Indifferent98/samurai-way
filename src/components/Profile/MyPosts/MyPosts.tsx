@@ -1,13 +1,20 @@
 import React, { ChangeEvent, LegacyRef, RefObject, useState } from "react";
 import s from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
-import { myPostsData } from "../../../Redux/state";
+import {
+  ActionAddPostType,
+  ActionUpdatePostTitleType,
+  dispatchActionTypes,
+  myPostsData,
+} from "../../../Redux/state";
 
 type MyPostsPropsType = {
   myPostsData: myPostsData[];
-  addPost: () => void;
+
   newPostProfileTitle: string;
-  updatePostTitle: (title: string) => void;
+  // addPost: () => void;
+  // updatePostTitle: (title: string) => void;
+  dispatch: (action: dispatchActionTypes) => void;
 };
 
 const MyPosts = (props: MyPostsPropsType): JSX.Element => {
@@ -15,10 +22,17 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
     <Post like={t.likesCount} message={t.message} />
   ));
 
-  const addPostButtonHandler = () => props.addPost();
+  const addPostButtonHandler = () => {
+    const action: ActionAddPostType = { type: "ADD-POST" };
+    props.dispatch(action);
+  };
 
   const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.updatePostTitle(e.currentTarget.value);
+    const action: ActionUpdatePostTitleType = {
+      type: "UPDATE-POST-TITLE",
+      title: e.currentTarget.value,
+    };
+    props.dispatch(action);
   };
 
   return (

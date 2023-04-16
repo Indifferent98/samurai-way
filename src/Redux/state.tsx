@@ -34,15 +34,37 @@ export type stateType = {
   };
   navBar: string[];
 };
+
+export type ActionAddPostType = {
+  type: "ADD-POST";
+};
+export type ActionUpdatePostTitleType = {
+  type: "UPDATE-POST-TITLE";
+  title: string;
+};
+export type ActionAddMessageType = {
+  type: "ADD-MESSAGE";
+};
+export type ActionUpdateMessageTitleType = {
+  type: "UPDATE-MESSAGE-TITLE";
+  title: string;
+};
+export type dispatchActionTypes =
+  | ActionAddPostType
+  | ActionUpdatePostTitleType
+  | ActionAddMessageType
+  | ActionUpdateMessageTitleType;
+
 export type StoreType = {
   _state: stateType;
   callSubscriber: () => void;
-  updateMessageTitle: (title: string) => void;
-  updatePostTitle: (title: string) => void;
-  addPost: () => void;
-  addMessage: () => void;
+  // updateMessageTitle: (title: string) => void;
+  // updatePostTitle: (title: string) => void;
+  // addPost: () => void;
+  // addMessage: () => void;
   subscriber: (observer: () => void) => void;
   getState: () => stateType;
+  dispatch: (action: dispatchActionTypes) => void;
 };
 ///types +
 
@@ -75,21 +97,6 @@ const navBar: string[] = ["Profile", "Messages", "News", "Music", "Settings"];
 
 let newPostProfileTitle: string = "";
 let newMessageToMessagesTitle: string = "";
-///data +
-
-///State
-// export const state: stateType = {
-//   messagesPage: {
-//     dialogsData: dialogsDataUsers,
-//     messageData: messageData,
-//     newMessageToMessagesTitle: newMessageToMessagesTitle,
-//   },
-//   profilePage: {
-//     myPostsData: myPostsData,
-//     newPostProfileTitle: newPostProfileTitle,
-//   },
-//   navBar: navBar,
-// };
 
 export const store: StoreType = {
   _state: {
@@ -104,34 +111,34 @@ export const store: StoreType = {
     },
     navBar: navBar,
   },
+
+  dispatch(action) {
+    if (action.type === "ADD-POST") {
+      const newPost: myPostsData = {
+        id: 77,
+        message: this._state.profilePage.newPostProfileTitle,
+        likesCount: 0,
+      };
+      this._state.profilePage.myPostsData.unshift(newPost);
+      this._state.profilePage.newPostProfileTitle = "";
+      this.callSubscriber();
+    } else if (action.type === "UPDATE-POST-TITLE") {
+      this._state.profilePage.newPostProfileTitle = action.title;
+      this.callSubscriber();
+    } else if (action.type === "ADD-MESSAGE") {
+      const newMessage: messageDataType = {
+        id: 77,
+        message: this._state.messagesPage.newMessageToMessagesTitle,
+      };
+      messageData.push(newMessage);
+      this._state.messagesPage.newMessageToMessagesTitle = "";
+      this.callSubscriber();
+    } else if (action.type === "UPDATE-MESSAGE-TITLE") {
+      this._state.messagesPage.newMessageToMessagesTitle = action.title;
+      this.callSubscriber();
+    }
+  },
   callSubscriber() {},
-  updateMessageTitle(title) {
-    this._state.messagesPage.newMessageToMessagesTitle = title;
-    this.callSubscriber();
-  },
-  updatePostTitle(title) {
-    this._state.profilePage.newPostProfileTitle = title;
-    this.callSubscriber();
-  },
-  addPost() {
-    const newPost: myPostsData = {
-      id: 77,
-      message: this._state.profilePage.newPostProfileTitle,
-      likesCount: 0,
-    };
-    this._state.profilePage.myPostsData.unshift(newPost);
-    this._state.profilePage.newPostProfileTitle = "";
-    this.callSubscriber();
-  },
-  addMessage() {
-    const newMessage: messageDataType = {
-      id: 77,
-      message: this._state.messagesPage.newMessageToMessagesTitle,
-    };
-    messageData.push(newMessage);
-    this._state.messagesPage.newMessageToMessagesTitle = "";
-    this.callSubscriber();
-  },
   subscriber(observer) {
     this.callSubscriber = observer;
   },

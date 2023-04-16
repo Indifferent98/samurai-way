@@ -3,7 +3,12 @@ import s from "./Dialogs.module.css";
 
 import { DialogItem } from "./DialogItem/DialogItem";
 import { Message } from "./Message/Message";
-import { dialogsDataArrayType } from "../../Redux/state";
+import {
+  ActionAddMessageType,
+  ActionUpdateMessageTitleType,
+  dialogsDataArrayType,
+  dispatchActionTypes,
+} from "../../Redux/state";
 import { messageDataType } from "../../Redux/state";
 
 type DialogsPropsType = {
@@ -11,8 +16,9 @@ type DialogsPropsType = {
     dialogsData: dialogsDataArrayType[];
     messageData: messageDataType[];
   };
-  addMessage: () => void;
-  updateMessageTitle: (title: string) => void;
+  // addMessage: () => void;
+  // updateMessageTitle: (title: string) => void;
+  dispatch: (action: dispatchActionTypes) => void;
   newMessageToMessagesTitle: string;
 };
 
@@ -25,10 +31,15 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   ));
 
   const addMessageTitleHandler = () => {
-    props.addMessage();
+    const action: ActionAddMessageType = { type: "ADD-MESSAGE" };
+    props.dispatch(action);
   };
   const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.updateMessageTitle(e.currentTarget.value);
+    const action: ActionUpdateMessageTitleType = {
+      type: "UPDATE-MESSAGE-TITLE",
+      title: e.currentTarget.value,
+    };
+    props.dispatch(action);
   };
   return (
     <div className={s.dialogs}>

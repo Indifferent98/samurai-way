@@ -10,10 +10,10 @@ const renderEntireTree = () => {
     <BrowserRouter>
       <App
         appState={store.getState()}
-        addPost={store.addPost.bind(store)}
-        addMessage={store.addMessage.bind(store)}
-        updateMessageTitle={store.updateMessageTitle.bind(store)}
-        updatePostTitle={store.updatePostTitle.bind(store)}
+        dispatch={store.dispatch.bind(store)}
+        // addMessage={store.addMessage.bind(store)}
+        // updateMessageTitle={store.updateMessageTitle.bind(store)}
+        // updatePostTitle={store.updatePostTitle.bind(store)}
       />
     </BrowserRouter>,
     document.getElementById("root")
