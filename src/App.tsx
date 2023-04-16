@@ -15,6 +15,8 @@ type AppPropsType = {
   appState: stateType;
   addPost: () => void;
   addMessage: () => void;
+  updateMessageTitle: (title: string) => void;
+  updatePostTitle: (title: string) => void;
 };
 
 function App(props: AppPropsType): JSX.Element {
@@ -27,9 +29,7 @@ function App(props: AppPropsType): JSX.Element {
           path="/Messages"
           render={() => (
             <Dialogs
-              updateMessageTitle={
-                props.appState.messagesPage.updateMessageTitle
-              }
+              updateMessageTitle={props.updateMessageTitle}
               newMessageToMessagesTitle={
                 props.appState.messagesPage.newMessageToMessagesTitle
               }
@@ -46,7 +46,7 @@ function App(props: AppPropsType): JSX.Element {
               newPostProfileTitle={
                 props.appState.profilePage.newPostProfileTitle
               }
-              updatePostTitle={props.appState.profilePage.updatePostTitle}
+              updatePostTitle={props.updatePostTitle}
               myPostsData={props.appState.profilePage.myPostsData}
             />
           )}

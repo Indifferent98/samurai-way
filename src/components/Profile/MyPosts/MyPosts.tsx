@@ -17,8 +17,9 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
 
   const addPostButtonHandler = () => props.addPost();
 
-  const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) =>
+  const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     props.updatePostTitle(e.currentTarget.value);
+  };
 
   return (
     <div>

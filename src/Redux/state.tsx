@@ -1,4 +1,5 @@
 import React from "react";
+
 ///types -
 export type MessagePropsType = {
   messageData: string;
@@ -25,14 +26,23 @@ export type stateType = {
     dialogsData: dialogsDataArrayType[];
     messageData: messageDataType[];
     newMessageToMessagesTitle: string;
-    updateMessageTitle: (title: string) => void;
+    // updateMessageTitle: (title: string) => void;
   };
   profilePage: {
     myPostsData: myPostsData[];
     newPostProfileTitle: string;
-    updatePostTitle: (title: string) => void;
   };
   navBar: string[];
+};
+export type StoreType = {
+  _state: stateType;
+  callSubscriber: () => void;
+  updateMessageTitle: (title: string) => void;
+  updatePostTitle: (title: string) => void;
+  addPost: () => void;
+  addMessage: () => void;
+  subscriber: (observer: () => void) => void;
+  getState: () => stateType;
 };
 ///types +
 
@@ -67,53 +77,65 @@ let newPostProfileTitle: string = "";
 let newMessageToMessagesTitle: string = "";
 ///data +
 
-//changeFunc -
-export const addPost = (): void => {
-  let newPost: myPostsData = {
-    id: 77,
-    message: state.profilePage.newPostProfileTitle,
-    likesCount: 0,
-  };
-  state.profilePage.myPostsData.unshift(newPost);
-  state.profilePage.newPostProfileTitle = "";
-  renderEntireTree();
-};
-const updateMessageTitle = (title: string) => {
-  state.messagesPage.newMessageToMessagesTitle = title;
-
-  renderEntireTree();
-};
-export const addMessage = (): void => {
-  let newMessage: messageDataType = {
-    id: 77,
-    message: state.messagesPage.newMessageToMessagesTitle,
-  };
-  messageData.push(newMessage);
-  state.messagesPage.newMessageToMessagesTitle = "";
-  renderEntireTree();
-};
-const updatePostTitle = (title: string) => {
-  state.profilePage.newPostProfileTitle = title;
-  renderEntireTree();
-};
-let renderEntireTree = () => {};
-export const subscriber = (observer: () => void) => {
-  renderEntireTree = observer;
-};
-//changeFunc +
-
 ///State
-export const state: stateType = {
-  messagesPage: {
-    dialogsData: dialogsDataUsers,
-    messageData: messageData,
-    newMessageToMessagesTitle: newMessageToMessagesTitle,
-    updateMessageTitle: updateMessageTitle,
+// export const state: stateType = {
+//   messagesPage: {
+//     dialogsData: dialogsDataUsers,
+//     messageData: messageData,
+//     newMessageToMessagesTitle: newMessageToMessagesTitle,
+//   },
+//   profilePage: {
+//     myPostsData: myPostsData,
+//     newPostProfileTitle: newPostProfileTitle,
+//   },
+//   navBar: navBar,
+// };
+
+export const store: StoreType = {
+  _state: {
+    messagesPage: {
+      dialogsData: dialogsDataUsers,
+      messageData: messageData,
+      newMessageToMessagesTitle: newMessageToMessagesTitle,
+    },
+    profilePage: {
+      myPostsData: myPostsData,
+      newPostProfileTitle: newPostProfileTitle,
+    },
+    navBar: navBar,
   },
-  profilePage: {
-    myPostsData: myPostsData,
-    newPostProfileTitle: newPostProfileTitle,
-    updatePostTitle: updatePostTitle,
+  callSubscriber() {},
+  updateMessageTitle(title) {
+    this._state.messagesPage.newMessageToMessagesTitle = title;
+    this.callSubscriber();
   },
-  navBar: navBar,
+  updatePostTitle(title) {
+    this._state.profilePage.newPostProfileTitle = title;
+    this.callSubscriber();
+  },
+  addPost() {
+    const newPost: myPostsData = {
+      id: 77,
+      message: this._state.profilePage.newPostProfileTitle,
+      likesCount: 0,
+    };
+    this._state.profilePage.myPostsData.unshift(newPost);
+    this._state.profilePage.newPostProfileTitle = "";
+    this.callSubscriber();
+  },
+  addMessage() {
+    const newMessage: messageDataType = {
+      id: 77,
+      message: this._state.messagesPage.newMessageToMessagesTitle,
+    };
+    messageData.push(newMessage);
+    this._state.messagesPage.newMessageToMessagesTitle = "";
+    this.callSubscriber();
+  },
+  subscriber(observer) {
+    this.callSubscriber = observer;
+  },
+  getState() {
+    return this._state;
+  },
 };
