@@ -3,13 +3,12 @@ import s from "./Dialogs.module.css";
 
 import { DialogItem } from "./DialogItem/DialogItem";
 import { Message } from "./Message/Message";
+import { dialogsDataType, dispatchActionTypes } from "../../Redux/state";
+import { messageDataType } from "../../Redux/state";
 import {
   addMessageCreator,
-  dialogsDataType,
-  dispatchActionTypes,
   updateMessageTitleCreator,
-} from "../../Redux/state";
-import { messageDataType } from "../../Redux/state";
+} from "../../Redux/dialogsReducer";
 
 type DialogsPropsType = {
   state: {

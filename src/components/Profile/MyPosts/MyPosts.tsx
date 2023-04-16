@@ -1,12 +1,11 @@
 import React, { ChangeEvent } from "react";
 import s from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
+import { dispatchActionTypes, myPostsDataType } from "../../../Redux/state";
 import {
   addPostActionCreator,
-  dispatchActionTypes,
-  myPostsDataType,
   updatePostTitleActionCreator,
-} from "../../../Redux/state";
+} from "../../../Redux/profileReducer";
 type MyPostsPropsType = {
   myPostsData: myPostsDataType[];
   newPostProfileTitle: string;

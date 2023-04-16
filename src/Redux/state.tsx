@@ -1,6 +1,14 @@
 import React from "react";
-import { profileReducer } from "./profileReducer";
-import { dialogsReducer } from "./dialogsReducer";
+import {
+  addPostActionCreator,
+  profileReducer,
+  updatePostTitleActionCreator,
+} from "./profileReducer";
+import {
+  addMessageCreator,
+  dialogsReducer,
+  updateMessageTitleCreator,
+} from "./dialogsReducer";
 import { navBarReducer } from "./navBarReducer";
 
 ///types -
@@ -122,24 +130,3 @@ export const store: StoreType = {
   },
 };
 ///data+
-
-///Function-
-export const updateMessageTitleCreator = (title: string) => {
-  return { title: title, type: "UPDATE-MESSAGE-TITLE" } as const;
-};
-
-export const addMessageCreator = () =>
-  ({
-    type: "ADD-MESSAGE",
-  } as const);
-
-export const updatePostTitleActionCreator = (title: string) => {
-  return { type: "UPDATE-POST-TITLE", title: title } as const;
-};
-
-export const addPostActionCreator = () =>
-  ({
-    type: "ADD-POST",
-  } as const);
-
-///Function+

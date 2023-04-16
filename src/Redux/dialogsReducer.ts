@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  dialogsDataType,
-  dispatchActionTypes,
-  messageDataType,
-  store,
-} from "./state";
+import { dialogsDataType, dispatchActionTypes, messageDataType } from "./state";
 
 const initialState = {
   dialogsData: [
@@ -28,6 +23,15 @@ const initialState = {
 
 type initialStateType = typeof initialState;
 
+export const updateMessageTitleCreator = (title: string) => {
+  return { title: title, type: "UPDATE-MESSAGE-TITLE" } as const;
+};
+
+export const addMessageCreator = () =>
+  ({
+    type: "ADD-MESSAGE",
+  } as const);
+
 export const dialogsReducer = (
   state: initialStateType = initialState,
   action: dispatchActionTypes
@@ -46,6 +50,5 @@ export const dialogsReducer = (
       state.newMessageToMessagesTitle = action.title;
       return state;
   }
-
   return state;
 };
