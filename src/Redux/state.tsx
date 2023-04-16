@@ -1,62 +1,72 @@
 import React from "react";
 
 ///types -
-type addMessageActionCreatorType = () => ActionAddMessageType;
+type addMessageActionCreatorType = ReturnType<typeof addMessageCreator>;
 
-type updateMessageTitleActionCreatorType = (
-  title: string
-) => ActionUpdateMessageTitleType;
-type addPostActionCreatorType = () => ActionAddPostType;
+type updateMessageTitleActionCreatorType = ReturnType<
+  typeof updateMessageTitleCreator
+>;
 
-type updatePostTitleActionCreatorType = (
-  title: string
-) => ActionUpdatePostTitleType;
+type addPostActionCreatorType = ReturnType<typeof addPostActionCreator>;
+
+type updatePostTitleActionCreatorType = ReturnType<
+  typeof updatePostTitleActionCreator
+>;
 
 export type myPostsData = {
   id: number;
   message: string;
   likesCount: number;
 };
+
 export type dialogsDataType = {
   id: number;
   name: string;
 };
+
 export type messageDataType = {
   id: number;
   message: string;
 };
+
 export type stateType = {
   messagesPage: {
     dialogsData: dialogsDataType[];
     messageData: messageDataType[];
     newMessageToMessagesTitle: string;
   };
+
   profilePage: {
     myPostsData: myPostsData[];
     newPostProfileTitle: string;
   };
+
   navBar: string[];
 };
 
-export type ActionAddPostType = {
-  type: "ADD-POST";
-};
-export type ActionUpdatePostTitleType = {
-  type: "UPDATE-POST-TITLE";
-  title: string;
-};
-export type ActionAddMessageType = {
-  type: "ADD-MESSAGE";
-};
-export type ActionUpdateMessageTitleType = {
-  type: "UPDATE-MESSAGE-TITLE";
-  title: string;
-};
+// export type ActionAddPostType = {
+//   type: "ADD-POST";
+// };
+
+// export type ActionUpdatePostTitleType = {
+//   type: "UPDATE-POST-TITLE";
+//   title: string;
+// };
+
+// export type ActionAddMessageType = {
+//   type: "ADD-MESSAGE";
+// };
+
+// export type ActionUpdateMessageTitleType = {
+//   type: "UPDATE-MESSAGE-TITLE";
+//   title: string;
+// };
+
 export type dispatchActionTypes =
-  | ActionAddPostType
-  | ActionUpdatePostTitleType
-  | ActionAddMessageType
-  | ActionUpdateMessageTitleType;
+  | addMessageActionCreatorType
+  | updateMessageTitleActionCreatorType
+  | addPostActionCreatorType
+  | updatePostTitleActionCreatorType;
 
 export type StoreType = {
   _state: stateType;
@@ -65,9 +75,11 @@ export type StoreType = {
   getState: () => stateType;
   dispatch: (action: dispatchActionTypes) => void;
 };
+
 ///types +
 
 ///data -
+
 const dialogsDataUsers: dialogsDataType[] = [
   { id: 1, name: "Timur" },
   { id: 2, name: "Vladimir" },
@@ -76,6 +88,7 @@ const dialogsDataUsers: dialogsDataType[] = [
   { id: 5, name: "Stepan" },
   { id: 6, name: "HowAreYou" },
 ];
+
 const messageData: messageDataType[] = [
   { id: 1, message: "Hmmm" },
   { id: 2, message: "Butter" },
@@ -84,6 +97,7 @@ const messageData: messageDataType[] = [
   { id: 5, message: "Tost" },
   { id: 6, message: "CheckNewValue" },
 ];
+
 const myPostsData: myPostsData[] = [
   { id: 1, message: "Hi Whats New?", likesCount: 3 },
   { id: 2, message: "Hello", likesCount: 6 },
@@ -92,9 +106,11 @@ const myPostsData: myPostsData[] = [
   { id: 5, message: "Lets found smth", likesCount: 0 },
   { id: 6, message: "Check Our Posts", likesCount: 66 },
 ];
+
 const navBar: string[] = ["Profile", "Messages", "News", "Music", "Settings"];
 
 let newPostProfileTitle: string = "";
+
 let newMessageToMessagesTitle: string = "";
 
 export const store: StoreType = {
@@ -138,9 +154,11 @@ export const store: StoreType = {
     }
   },
   callSubscriber() {},
+
   subscriber(observer) {
     this.callSubscriber = observer;
   },
+
   getState() {
     return this._state;
   },
@@ -148,22 +166,21 @@ export const store: StoreType = {
 ///data+
 
 ///Function-
-export const updateMessageTitleCreator: updateMessageTitleActionCreatorType = (
-  title
-) => {
-  return { title: title, type: "UPDATE-MESSAGE-TITLE" };
-};
-export const addMessageCreator: addMessageActionCreatorType = () => {
-  return { type: "ADD-MESSAGE" };
+export const updateMessageTitleCreator = (title: string) => {
+  return { title: title, type: "UPDATE-MESSAGE-TITLE" } as const;
 };
 
-export const addPostActionCreator: addPostActionCreatorType = () => {
-  return { type: "ADD-POST" };
-};
+export const addMessageCreator = () =>
+  ({
+    type: "ADD-MESSAGE",
+  } as const);
 
-export const updatePostTitleActionCreator: updatePostTitleActionCreatorType = (
-  title
-) => {
-  return { type: "UPDATE-POST-TITLE", title: title };
+export const addPostActionCreator = () =>
+  ({
+    type: "ADD-POST",
+  } as const);
+
+export const updatePostTitleActionCreator = (title: string) => {
+  return { type: "UPDATE-POST-TITLE", title: title } as const;
 };
 ///Function+
