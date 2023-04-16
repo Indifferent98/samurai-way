@@ -46,6 +46,7 @@ function App(props: AppPropsType): JSX.Element {
           )}
         />
         <Route path="/Music" render={() => <Music />} />
+
         <Route path="/Settings" render={() => <Settings />} />
         <Route path="/News" render={() => <News />} />
       </div>

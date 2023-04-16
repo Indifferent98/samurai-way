@@ -4,11 +4,11 @@ import { Post } from "./Post/Post";
 import {
   addPostActionCreator,
   dispatchActionTypes,
-  myPostsData,
+  myPostsDataType,
   updatePostTitleActionCreator,
 } from "../../../Redux/state";
 type MyPostsPropsType = {
-  myPostsData: myPostsData[];
+  myPostsData: myPostsDataType[];
   newPostProfileTitle: string;
   dispatch: (action: dispatchActionTypes) => void;
 };

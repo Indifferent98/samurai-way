@@ -24,6 +24,7 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   const dialogsDataForApplication = props.state.dialogsData.map((t) => (
     <DialogItem name={t.name} id={t.id.toString()} />
   ));
+
   const messageDataForApplication = props.state.messageData.map((t) => (
     <Message messageData={t.message} />
   ));
@@ -32,11 +33,13 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
     const action = addMessageCreator();
     props.dispatch(action);
   };
+
   const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const title = e.currentTarget.value;
     const action = updateMessageTitleCreator(title);
     props.dispatch(action);
   };
+
   return (
     <div className={s.dialogs}>
       <div className={s.dialog}>{dialogsDataForApplication}</div>
@@ -47,6 +50,7 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
         {/* GROW DIV ATTENTION */}
         <div className={s.handler}>
           <textarea
+            placeholder={"Enter your message"}
             onChange={onChangeTextAreaHandler}
             value={props.newMessageToMessagesTitle}
           ></textarea>
