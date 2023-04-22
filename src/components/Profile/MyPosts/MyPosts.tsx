@@ -8,9 +8,11 @@ import {
   updatePostTitleActionCreator,
 } from "../../../Redux/profileReducer";
 type MyPostsPropsType = {
+  addPostButtonHandler: () => void;
+
   myPostsData: myPostsDataType[];
   newPostProfileTitle: string;
-  dispatch: (action: dispatchActionTypes) => void;
+  onPostChangeHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 const MyPosts = (props: MyPostsPropsType): JSX.Element => {
@@ -19,14 +21,11 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
   ));
 
   const addPostButtonHandler = () => {
-    const action = addPostActionCreator();
-    props.dispatch(action);
+    props.addPostButtonHandler();
   };
 
   const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const title = e.currentTarget.value;
-    const action = updatePostTitleActionCreator(title);
-    props.dispatch(action);
+    props.onPostChangeHandler(e);
   };
 
   return (

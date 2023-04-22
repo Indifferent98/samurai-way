@@ -59,8 +59,9 @@ export type dispatchActionTypes =
 //   getState: () => stateType;
 //   dispatch: (action: dispatchActionTypes) => void;
 // };
+export type AppStateType = ReturnType<typeof reducers>;
 
-const reducers = combineReducers({
+export const reducers = combineReducers({
   navBar: navBarReducer,
   profilePage: profileReducer,
   messagesPage: dialogsReducer,

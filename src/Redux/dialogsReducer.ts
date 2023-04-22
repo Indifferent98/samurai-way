@@ -30,9 +30,8 @@ const initialState = {
 
 type initialStateType = typeof initialState;
 
-export const updateMessageTitleCreator = (title: string) => {
-  return { title: title, type: "UPDATE-MESSAGE-TITLE" } as const;
-};
+export const updateMessageTitleCreator = (title: string) =>
+  ({ title: title, type: "UPDATE-MESSAGE-TITLE" } as const);
 
 export const addMessageCreator = () =>
   ({

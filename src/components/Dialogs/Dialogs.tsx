@@ -13,32 +13,29 @@ import {
 } from "../../Redux/dialogsReducer";
 
 type DialogsPropsType = {
-  state: {
-    dialogsData: dialogsDataType[];
-    messageData: messageDataType[];
-  };
-  dispatch: (action: dispatchActionTypes) => void;
+  dialogsData: dialogsDataType[];
+  messageData: messageDataType[];
+
   newMessageToMessagesTitle: string;
+  onChangeTextAreaHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  addMessageTitleHandler: () => void;
 };
 
 export const Dialogs = (props: DialogsPropsType): JSX.Element => {
-  const dialogsDataForApplication = props.state.dialogsData.map((t) => (
+  const dialogsDataForApplication = props.dialogsData.map((t) => (
     <DialogItem name={t.name} id={t.id.toString()} />
   ));
 
-  const messageDataForApplication = props.state.messageData.map((t) => (
+  const messageDataForApplication = props.messageData.map((t) => (
     <Message messageData={t.message} />
   ));
 
   const addMessageTitleHandler = () => {
-    const action = addMessageCreator();
-    props.dispatch(action);
+    props.addMessageTitleHandler();
   };
 
-  const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const title = e.currentTarget.value;
-    const action = updateMessageTitleCreator(title);
-    props.dispatch(action);
+  const onChangeTextAreaHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    props.onChangeTextAreaHandler(e);
   };
 
   return (
@@ -50,11 +47,11 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
         <div className={s.growDiv}></div>
         {/* GROW DIV ATTENTION */}
         <div className={s.handler}>
-          <textarea
+          <input
             placeholder={"Enter your message"}
             onChange={onChangeTextAreaHandler}
             value={props.newMessageToMessagesTitle}
-          ></textarea>
+          ></input>
           <button onClick={addMessageTitleHandler}>Send Message</button>
         </div>
       </div>

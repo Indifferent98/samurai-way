@@ -33,7 +33,6 @@ export const profileReducer = (
   state: initialStateType = initialState,
   action: dispatchActionTypes
 ): initialStateType => {
-  debugger;
   switch (action.type) {
     case "ADD-POST":
       const newPost: myPostsDataType = {

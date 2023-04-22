@@ -5,18 +5,18 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { stateType, store } from "./Redux/Redux-store";
-const renderEntireTree = (state: stateType) => {
+const renderEntireTree = (store: any) => {
   ReactDOM.render(
     <BrowserRouter>
-      <App appState={state} dispatch={store.dispatch.bind(store)} />
+      <App store={store} dispatch={store.dispatch.bind(store)} />
     </BrowserRouter>,
     document.getElementById("root")
   );
 };
 
 //первая отрисовка
-renderEntireTree(store.getState());
+renderEntireTree(store);
 store.subscribe(() => {
   const state = store.getState();
-  renderEntireTree(state);
+  renderEntireTree(store);
 }); //меняет callSubscriber в state

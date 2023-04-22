@@ -10,42 +10,25 @@ import { News } from "./components/News/News";
 import { dispatchActionTypes, stateType } from "./Redux/Redux-store";
 
 import { Profile } from "./components/Profile/Profile";
+import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 
 type AppPropsType = {
-  appState: stateType;
+  store: any;
   dispatch: (action: dispatchActionTypes) => void;
 };
 
 function App(props: AppPropsType): JSX.Element {
+  const state = props.store.getState();
   return (
     <div className="app-wrapper">
       <Header />
-      <Nav list={props.appState.navBar} />
+      <Nav list={state.navBar} />
       <div className="app-wrapper-Profile">
         <Route
           path="/Messages"
-          render={() => (
-            <Dialogs
-              dispatch={props.dispatch}
-              newMessageToMessagesTitle={
-                props.appState.messagesPage.newMessageToMessagesTitle
-              }
-              state={props.appState.messagesPage}
-            />
-          )}
+          render={() => <DialogsContainer store={props.store} />}
         />
-        <Route
-          path="/Profile"
-          render={() => (
-            <Profile
-              dispatch={props.dispatch}
-              newPostProfileTitle={
-                props.appState.profilePage.newPostProfileTitle
-              }
-              myPostsData={props.appState.profilePage.myPostsData}
-            />
-          )}
-        />
+        <Route path="/Profile" render={() => <Profile store={props.store} />} />
         <Route path="/Music" render={() => <Music />} />
 
         <Route path="/Settings" render={() => <Settings />} />
