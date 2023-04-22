@@ -1,6 +1,13 @@
 import React from "react";
-import { dialogsDataType, dispatchActionTypes, messageDataType } from "./state";
-
+import { dispatchActionTypes } from "./Redux-store";
+export type messageDataType = {
+  id: number;
+  message: string;
+};
+export type dialogsDataType = {
+  id: number;
+  name: string;
+};
 const initialState = {
   dialogsData: [
     { id: 1, name: "Timur" },

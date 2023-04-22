@@ -1,5 +1,5 @@
 import React from "react";
-import { dispatchActionTypes, store } from "./state";
+import { dispatchActionTypes, store } from "./Redux-store";
 
 const initialState = [
   "Profile",

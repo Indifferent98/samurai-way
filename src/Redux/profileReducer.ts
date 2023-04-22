@@ -1,6 +1,11 @@
 import React from "react";
-import { dispatchActionTypes, myPostsDataType } from "./state";
+import { dispatchActionTypes } from "./Redux-store";
 
+export type myPostsDataType = {
+  id: number;
+  message: string;
+  likesCount: number;
+};
 const initialState = {
   myPostsData: [
     { id: 1, message: "Hi Whats New?", likesCount: 3 },
@@ -28,6 +33,7 @@ export const profileReducer = (
   state: initialStateType = initialState,
   action: dispatchActionTypes
 ): initialStateType => {
+  debugger;
   switch (action.type) {
     case "ADD-POST":
       const newPost: myPostsDataType = {
