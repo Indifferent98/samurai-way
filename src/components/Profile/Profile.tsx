@@ -12,9 +12,9 @@ type ContentPropsType = {
 
 export const Profile = (props: ContentPropsType): JSX.Element => {
   return (
-    <div>
+    <>
       <ProfileInfo />
       <MyPostsContainer store={props.store} />
-    </div>
+    </>
   );
 };

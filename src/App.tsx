@@ -14,7 +14,6 @@ import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 
 type AppPropsType = {
   store: any;
-  dispatch: (action: dispatchActionTypes) => void;
 };
 
 function App(props: AppPropsType): JSX.Element {
