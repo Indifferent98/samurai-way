@@ -9,6 +9,8 @@ type mapStateToProps = {
   navBar: initialStateNavType;
 };
 
+export type NavPropsType = mapStateToProps;
+
 const mapStateToProps = (state: mapStateToProps): mapStateToProps => {
   return {
     navBar: state.navBar,

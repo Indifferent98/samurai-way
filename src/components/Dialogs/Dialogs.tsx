@@ -3,26 +3,8 @@ import s from "./Dialogs.module.css";
 
 import { DialogItem } from "./DialogItem/DialogItem";
 import { Message } from "./Message/Message";
-import { dispatchActionTypes } from "../../Redux/Redux-store";
 
-import {
-  addMessageCreator,
-  dialogsDataType,
-  messageDataType,
-  updateMessageTitleCreator,
-} from "../../Redux/dialogsReducer";
-
-type DialogsPropsType = {
-  messagesPage: {
-    dialogsData: dialogsDataType[];
-    messageData: messageDataType[];
-    newMessageToMessagesTitle: string;
-  };
-
-  onChangeTextAreaHandler: (e: ChangeEvent<HTMLInputElement>) => void;
-
-  addMessageTitleHandler: () => void;
-};
+import { DialogsPropsType } from "./DialogsContainer";
 
 export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   const dialogsDataForApplication = props.messagesPage.dialogsData.map((t) => (

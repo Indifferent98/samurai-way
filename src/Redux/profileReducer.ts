@@ -42,13 +42,15 @@ export const profileReducer = (
         message: state.newPostProfileTitle,
         likesCount: 0,
       };
-      state.myPostsData.unshift(newPost);
-      state.newPostProfileTitle = "";
-      return state;
+
+      return {
+        ...state,
+        myPostsData: [newPost, ...state.myPostsData],
+        newPostProfileTitle: "",
+      };
 
     case "UPDATE-POST-TITLE":
-      state.newPostProfileTitle = action.title;
-      return state;
+      return { ...state, newPostProfileTitle: action.title };
   }
-  return state;
+  return { ...state };
 };

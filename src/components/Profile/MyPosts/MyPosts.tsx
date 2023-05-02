@@ -1,19 +1,8 @@
 import React, { ChangeEvent } from "react";
 import s from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
-import { dispatchActionTypes } from "../../../Redux/Redux-store";
-import {
-  addPostActionCreator,
-  myPostsDataType,
-  updatePostTitleActionCreator,
-} from "../../../Redux/profileReducer";
-type MyPostsPropsType = {
-  profilePage: { myPostsData: myPostsDataType[]; newPostProfileTitle: string };
 
-  addPostButtonHandler: () => void;
-
-  onPostChangeHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-};
+import { MyPostsPropsType } from "./MyPostsContainer";
 
 const MyPosts = (props: MyPostsPropsType): JSX.Element => {
   debugger;

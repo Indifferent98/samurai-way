@@ -52,13 +52,15 @@ export const dialogsReducer = (
         id: 77,
         message: state.newMessageToMessagesTitle,
       };
-      state.messageData.push(newMessage);
-      state.newMessageToMessagesTitle = "";
-      return state;
+
+      return {
+        ...state,
+        messageData: [...state.messageData, newMessage],
+        newMessageToMessagesTitle: "",
+      };
 
     case "UPDATE-MESSAGE-TITLE":
-      state.newMessageToMessagesTitle = action.title;
-      return state;
+      return { ...state, newMessageToMessagesTitle: action.title };
   }
   return state;
 };

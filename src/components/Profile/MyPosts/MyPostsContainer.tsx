@@ -1,15 +1,8 @@
 import React, { ChangeEvent } from "react";
-import s from "./MyPosts.module.css";
-import { Post } from "./Post/Post";
-import {
-  AppStateType,
-  dispatchActionTypes,
-  store,
-} from "../../../Redux/Redux-store";
+
 import {
   addPostActionCreator,
   initialStateProfileType,
-  myPostsDataType,
   updatePostTitleActionCreator,
 } from "../../../Redux/profileReducer";
 import { MyPosts } from "./MyPosts";
@@ -25,6 +18,8 @@ type MapDispatchPropsType = {
   onPostChangeHandler: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   addPostButtonHandler: () => void;
 };
+
+export type MyPostsPropsType = MapStatePropsType & MapDispatchPropsType;
 
 const mapStateToProps = (state: MapStatePropsType): MapStatePropsType => {
   return {

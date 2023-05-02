@@ -1,13 +1,11 @@
 import React from "react";
 import "./App.css";
 import { Header } from "./components/header/Header";
-import { Nav } from "./components/nav/nav";
-import { Dialogs } from "./components/Dialogs/Dialogs";
+
 import { Route } from "react-router-dom";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { News } from "./components/News/News";
-import { dispatchActionTypes } from "./Redux/Redux-store";
 
 import { Profile } from "./components/Profile/Profile";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
