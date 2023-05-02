@@ -7,12 +7,13 @@ import { Message } from "./Message/Message";
 import {
   addMessageCreator,
   dialogsDataType,
+  initialStateDialogsType,
   messageDataType,
   updateMessageTitleCreator,
 } from "../../Redux/dialogsReducer";
 import { Dialogs } from "./Dialogs";
 import { connect } from "react-redux";
-import { dispatchActionTypes } from "../../Redux/Redux-store";
+import { AppStateType, dispatchActionTypes } from "../../Redux/Redux-store";
 
 // export const DialogsContainer = (): JSX.Element => {
 //   return (
@@ -38,9 +39,13 @@ import { dispatchActionTypes } from "../../Redux/Redux-store";
 //   );
 // };
 
-const mapStateToProps = (state: any) => {
+type mapStateToPropsType = {
+  messagesPage: initialStateDialogsType;
+};
+
+const mapStateToProps = (state: mapStateToPropsType) => {
   return {
-    messagePage: state.messagePage,
+    messagesPage: state.messagesPage,
   };
 };
 

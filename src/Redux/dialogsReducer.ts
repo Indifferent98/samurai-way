@@ -8,7 +8,7 @@ export type dialogsDataType = {
   id: number;
   name: string;
 };
-const initialState = {
+const initialState: initialStateDialogsType = {
   dialogsData: [
     { id: 1, name: "Timur" },
     { id: 2, name: "Vladimir" },
@@ -16,7 +16,7 @@ const initialState = {
     { id: 4, name: "Igor" },
     { id: 5, name: "Stepan" },
     { id: 6, name: "HowAreYou" },
-  ] as Array<dialogsDataType>,
+  ],
   messageData: [
     { id: 1, message: "Hmmm" },
     { id: 2, message: "Butter" },
@@ -24,11 +24,15 @@ const initialState = {
     { id: 4, message: "Bread" },
     { id: 5, message: "Tost" },
     { id: 6, message: "CheckNewValue" },
-  ] as Array<messageDataType>,
-  newMessageToMessagesTitle: "" as string,
+  ],
+  newMessageToMessagesTitle: "",
 };
 
-type initialStateType = typeof initialState;
+export type initialStateDialogsType = {
+  dialogsData: dialogsDataType[];
+  messageData: messageDataType[];
+  newMessageToMessagesTitle: string;
+};
 
 export const updateMessageTitleCreator = (title: string) =>
   ({ title: title, type: "UPDATE-MESSAGE-TITLE" } as const);
@@ -39,9 +43,9 @@ export const addMessageCreator = () =>
   } as const);
 
 export const dialogsReducer = (
-  state: initialStateType = initialState,
+  state: initialStateDialogsType = initialState,
   action: dispatchActionTypes
-): initialStateType => {
+): initialStateDialogsType => {
   switch (action.type) {
     case "ADD-MESSAGE":
       const newMessage: messageDataType = {

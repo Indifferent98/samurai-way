@@ -13,26 +13,28 @@ import {
 } from "../../Redux/dialogsReducer";
 
 type DialogsPropsType = {
-  messagePage: {
+  messagesPage: {
     dialogsData: dialogsDataType[];
     messageData: messageDataType[];
     newMessageToMessagesTitle: string;
   };
 
   onChangeTextAreaHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+
   addMessageTitleHandler: () => void;
 };
 
 export const Dialogs = (props: DialogsPropsType): JSX.Element => {
-  const dialogsDataForApplication = props.messagePage.dialogsData.map((t) => (
+  const dialogsDataForApplication = props.messagesPage.dialogsData.map((t) => (
     <DialogItem name={t.name} id={t.id.toString()} />
   ));
 
-  const messageDataForApplication = props.messagePage.messageData.map((t) => (
+  const messageDataForApplication = props.messagesPage.messageData.map((t) => (
     <Message messageData={t.message} />
   ));
 
   const addMessageTitleHandler = () => {
+    debugger;
     props.addMessageTitleHandler();
   };
 
@@ -52,7 +54,7 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
           <input
             placeholder={"Enter your message"}
             onChange={onChangeTextAreaHandler}
-            value={props.messagePage.newMessageToMessagesTitle}
+            value={props.messagesPage.newMessageToMessagesTitle}
           ></input>
           <button onClick={addMessageTitleHandler}>Send Message</button>
         </div>

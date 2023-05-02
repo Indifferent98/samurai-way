@@ -6,7 +6,7 @@ export type myPostsDataType = {
   message: string;
   likesCount: number;
 };
-const initialState = {
+const initialState: initialStateProfileType = {
   myPostsData: [
     { id: 1, message: "Hi Whats New?", likesCount: 3 },
     { id: 2, message: "Hello", likesCount: 6 },
@@ -14,11 +14,14 @@ const initialState = {
     { id: 4, message: "Fine", likesCount: 11 },
     { id: 5, message: "Lets found smth", likesCount: 0 },
     { id: 6, message: "Check Our Posts", likesCount: 66 },
-  ] as Array<myPostsDataType>,
-  newPostProfileTitle: "" as string,
+  ],
+  newPostProfileTitle: "",
 };
 
-type initialStateType = typeof initialState;
+export type initialStateProfileType = {
+  myPostsData: myPostsDataType[];
+  newPostProfileTitle: string;
+};
 
 export const updatePostTitleActionCreator = (title: string) => {
   return { type: "UPDATE-POST-TITLE", title: title } as const;
@@ -29,9 +32,9 @@ export const addPostActionCreator = () => ({
 });
 
 export const profileReducer = (
-  state: initialStateType = initialState,
+  state: initialStateProfileType = initialState,
   action: dispatchActionTypes
-): initialStateType => {
+): initialStateProfileType => {
   switch (action.type) {
     case "ADD-POST":
       const newPost: myPostsDataType = {

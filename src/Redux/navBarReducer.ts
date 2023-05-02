@@ -1,18 +1,18 @@
 import React from "react";
 import { dispatchActionTypes, store } from "./Redux-store";
 
-const initialState = [
+const initialState: initialStateNavType = [
   "Profile",
   "Messages",
   "News",
   "Music",
   "Settings",
-] as string[];
-type initialStateType = typeof initialState;
+];
+export type initialStateNavType = string[];
 
 export const navBarReducer = (
-  state: initialStateType = initialState,
+  state: initialStateNavType = initialState,
   action: dispatchActionTypes
-): initialStateType => {
+): initialStateNavType => {
   return state;
 };

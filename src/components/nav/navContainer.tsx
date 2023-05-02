@@ -1,8 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Nav } from "./nav";
+import { AppStateType } from "../../Redux/Redux-store";
+import { initialStateNavType } from "../../Redux/navBarReducer";
 
-const mapStateToProps = (state: any) => {
+type mapStateToProps = {
+  navBar: initialStateNavType;
+};
+
+const mapStateToProps = (state: mapStateToProps) => {
   return {
     navBar: state.navBar,
   };

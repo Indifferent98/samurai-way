@@ -7,7 +7,7 @@ import { Route } from "react-router-dom";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { News } from "./components/News/News";
-import { dispatchActionTypes, stateType } from "./Redux/Redux-store";
+import { dispatchActionTypes } from "./Redux/Redux-store";
 
 import { Profile } from "./components/Profile/Profile";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
@@ -18,7 +18,7 @@ function App(): JSX.Element {
   return (
     <div className="app-wrapper">
       <Header />
-      <NavContainer />;
+      <NavContainer />
       <div className="app-wrapper-Profile">
         <Route path="/Messages" render={() => <DialogsContainer />} />
         <Route path="/Profile" render={() => <Profile />} />

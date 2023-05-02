@@ -31,20 +31,20 @@ type updatePostTitleActionCreatorType = ReturnType<
   typeof updatePostTitleActionCreator
 >;
 
-export type stateType = {
-  messagesPage: {
-    dialogsData: dialogsDataType[];
-    messageData: messageDataType[];
-    newMessageToMessagesTitle: string;
-  };
+// export type stateType = {
+//   messagesPage: {
+//     dialogsData: dialogsDataType[];
+//     messageData: messageDataType[];
+//     newMessageToMessagesTitle: string;
+//   };
 
-  profilePage: {
-    myPostsData: myPostsDataType[];
-    newPostProfileTitle: string;
-  };
+//   profilePage: {
+//     myPostsData: myPostsDataType[];
+//     newPostProfileTitle: string;
+//   };
 
-  navBar: string[];
-};
+//   navBar: string[];
+// };
 
 export type dispatchActionTypes =
   | addMessageActionCreatorType
@@ -59,12 +59,12 @@ export type dispatchActionTypes =
 //   getState: () => stateType;
 //   dispatch: (action: dispatchActionTypes) => void;
 // };
-export type AppStateType = ReturnType<typeof reducers>;
+export type AppStateType = ReturnType<typeof reducer>;
 
-export const reducers = combineReducers({
+export const reducer = combineReducers({
   navBar: navBarReducer,
   profilePage: profileReducer,
   messagesPage: dialogsReducer,
 });
 
-export const store = createStore(reducers);
+export const store = createStore(reducer);
