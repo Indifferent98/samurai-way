@@ -15,18 +15,24 @@ import {
 import { MyPosts } from "./MyPosts";
 
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 
 type MapStatePropsType = {
   profilePage: initialStateProfileType;
 };
 
-const mapStateToProps = (state: MapStatePropsType) => {
+type MapDispatchPropsType = {
+  onPostChangeHandler: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  addPostButtonHandler: () => void;
+};
+
+const mapStateToProps = (state: MapStatePropsType): MapStatePropsType => {
   return {
     profilePage: state.profilePage,
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
   return {
     onPostChangeHandler: (e: ChangeEvent<HTMLTextAreaElement>) => {
       dispatch(updatePostTitleActionCreator(e.currentTarget.value));

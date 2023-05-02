@@ -14,6 +14,7 @@ import {
 import { Dialogs } from "./Dialogs";
 import { connect } from "react-redux";
 import { AppStateType, dispatchActionTypes } from "../../Redux/Redux-store";
+import { Dispatch } from "redux";
 
 // export const DialogsContainer = (): JSX.Element => {
 //   return (
@@ -43,13 +44,18 @@ type mapStateToPropsType = {
   messagesPage: initialStateDialogsType;
 };
 
-const mapStateToProps = (state: mapStateToPropsType) => {
+type mapDispatchToPropsType = {
+  onChangeTextAreaHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  addMessageTitleHandler: () => void;
+};
+
+const mapStateToProps = (state: mapStateToPropsType): mapStateToPropsType => {
   return {
     messagesPage: state.messagesPage,
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
   return {
     onChangeTextAreaHandler: (e: ChangeEvent<HTMLInputElement>) => {
       dispatch(updateMessageTitleCreator(e.currentTarget.value));
