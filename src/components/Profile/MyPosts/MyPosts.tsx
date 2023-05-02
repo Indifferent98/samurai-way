@@ -8,15 +8,15 @@ import {
   updatePostTitleActionCreator,
 } from "../../../Redux/profileReducer";
 type MyPostsPropsType = {
+  profilePage: { myPostsData: myPostsDataType[]; newPostProfileTitle: string };
+
   addPostButtonHandler: () => void;
 
-  myPostsData: myPostsDataType[];
-  newPostProfileTitle: string;
   onPostChangeHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 const MyPosts = (props: MyPostsPropsType): JSX.Element => {
-  let postsForApplicationPost = props.myPostsData.map((t) => (
+  let postsForApplicationPost = props.profilePage.myPostsData.map((t) => (
     <Post like={t.likesCount} message={t.message} />
   ));
 
@@ -35,7 +35,7 @@ const MyPosts = (props: MyPostsPropsType): JSX.Element => {
         <div>
           New Post
           <textarea
-            value={props.newPostProfileTitle}
+            value={props.profilePage.newPostProfileTitle}
             onChange={onPostChangeHandler}
             placeholder="Что нового?"
           ></textarea>

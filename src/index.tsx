@@ -5,18 +5,25 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { stateType, store } from "./Redux/Redux-store";
-const renderEntireTree = (store: any) => {
+import { Provider } from "react-redux";
+
+// Добавить провайдера
+const renderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <App store={store} />
+      <Provider store={store}>
+        {/* <StoreContext.Provider value={store}> */}
+        <App />
+        {/* </StoreContext.Provider> */}
+      </Provider>
     </BrowserRouter>,
     document.getElementById("root")
   );
 };
 
 //первая отрисовка
-renderEntireTree(store);
+renderEntireTree();
 store.subscribe(() => {
-  const state = store.getState();
-  renderEntireTree(store);
+  // const state = store.getState();
+  renderEntireTree();
 }); //меняет callSubscriber в state

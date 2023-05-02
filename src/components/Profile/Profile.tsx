@@ -6,15 +6,12 @@ import { dispatchActionTypes } from "../../Redux/Redux-store";
 import { myPostsDataType } from "../../Redux/profileReducer";
 import { MyPostsContainer } from "./MyPosts/MyPostsContainer";
 
-type ContentPropsType = {
-  store: any;
-};
-
-export const Profile = (props: ContentPropsType): JSX.Element => {
+export const Profile = (): JSX.Element => {
   return (
     <>
       <ProfileInfo />
-      <MyPostsContainer store={props.store} />
+
+      <MyPostsContainer />
     </>
   );
 };

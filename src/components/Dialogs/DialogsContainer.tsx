@@ -11,31 +11,51 @@ import {
   updateMessageTitleCreator,
 } from "../../Redux/dialogsReducer";
 import { Dialogs } from "./Dialogs";
+import { connect } from "react-redux";
+import { dispatchActionTypes } from "../../Redux/Redux-store";
 
-type DialogsContainer = {
-  store: any;
+// export const DialogsContainer = (): JSX.Element => {
+//   return (
+//     <StoreContext.Consumer>
+//       {(store) => {
+//         const state = store.getState();
+//         const addMessageTitleHandler = () => {
+//           store.dispatch(addMessageCreator());
+//         };
+
+//         const onChangeTextAreaHandler = (e: ChangeEvent<HTMLInputElement>) => {
+//           store.dispatch(updateMessageTitleCreator(e.currentTarget.value));
+//         };
+//         return (
+//           <Dialogs
+//             onChangeTextAreaHandler={onChangeTextAreaHandler}
+//             addMessageTitleHandler={addMessageTitleHandler}
+//             messagePage={store.getState().messagePage}
+//           />
+//         );
+//       }}
+//     </StoreContext.Consumer>
+//   );
+// };
+
+const mapStateToProps = (state: any) => {
+  return {
+    messagePage: state.messagePage,
+  };
 };
 
-export const DialogsContainer = (props: DialogsContainer): JSX.Element => {
-  const state = props.store.getState();
-  const addMessageTitleHandler = () => {
-    const action = addMessageCreator();
-    props.store.dispatch(action);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onChangeTextAreaHandler: (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(updateMessageTitleCreator(e.currentTarget.value));
+    },
+    addMessageTitleHandler: () => {
+      dispatch(addMessageCreator());
+    },
   };
-
-  const onChangeTextAreaHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const title = e.currentTarget.value;
-    const action = updateMessageTitleCreator(title);
-    props.store.dispatch(action);
-  };
-
-  return (
-    <Dialogs
-      onChangeTextAreaHandler={onChangeTextAreaHandler}
-      addMessageTitleHandler={addMessageTitleHandler}
-      newMessageToMessagesTitle={state.messagesPage.newMessageToMessagesTitle}
-      dialogsData={state.messagesPage.dialogsData}
-      messageData={state.messagesPage.messageData}
-    />
-  );
 };
+
+export const DialogsContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dialogs);

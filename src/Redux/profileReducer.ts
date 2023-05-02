@@ -24,10 +24,9 @@ export const updatePostTitleActionCreator = (title: string) => {
   return { type: "UPDATE-POST-TITLE", title: title } as const;
 };
 
-export const addPostActionCreator = () =>
-  ({
-    type: "ADD-POST",
-  } as const);
+export const addPostActionCreator = () => ({
+  type: "ADD-POST" as const,
+});
 
 export const profileReducer = (
   state: initialStateType = initialState,

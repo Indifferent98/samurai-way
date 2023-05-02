@@ -12,22 +12,16 @@ import { dispatchActionTypes, stateType } from "./Redux/Redux-store";
 import { Profile } from "./components/Profile/Profile";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 
-type AppPropsType = {
-  store: any;
-};
+import { NavContainer } from "./components/nav/navContainer";
 
-function App(props: AppPropsType): JSX.Element {
-  const state = props.store.getState();
+function App(): JSX.Element {
   return (
     <div className="app-wrapper">
       <Header />
-      <Nav list={state.navBar} />
+      <NavContainer />;
       <div className="app-wrapper-Profile">
-        <Route
-          path="/Messages"
-          render={() => <DialogsContainer store={props.store} />}
-        />
-        <Route path="/Profile" render={() => <Profile store={props.store} />} />
+        <Route path="/Messages" render={() => <DialogsContainer />} />
+        <Route path="/Profile" render={() => <Profile />} />
         <Route path="/Music" render={() => <Music />} />
 
         <Route path="/Settings" render={() => <Settings />} />

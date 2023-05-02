@@ -3,11 +3,11 @@ import s from "./nav.module.css";
 import { NavLink } from "react-router-dom";
 // const s = { nav: "nav_nav__3Z1IF", item: "nav_item__fwMVs" };
 type NavPropsType = {
-  list: string[];
+  navBar: string[];
 };
 
 const Nav = (props: NavPropsType): JSX.Element => {
-  const listNavBarItem = props.list.map((t, i) => {
+  const listNavBarItem = props.navBar.map((t, i) => {
     let link = "/";
     link += t;
     return (
