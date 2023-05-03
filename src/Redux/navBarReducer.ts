@@ -6,6 +6,7 @@ const initialState: initialStateNavType = [
   "Messages",
   "News",
   "Music",
+  "Users",
   "Settings",
 ];
 export type initialStateNavType = string[];

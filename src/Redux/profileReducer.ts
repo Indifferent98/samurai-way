@@ -6,6 +6,7 @@ export type myPostsDataType = {
   message: string;
   likesCount: number;
 };
+
 const initialState: initialStateProfileType = {
   myPostsData: [
     { id: 1, message: "Hi Whats New?", likesCount: 3 },
@@ -51,6 +52,8 @@ export const profileReducer = (
 
     case "UPDATE-POST-TITLE":
       return { ...state, newPostProfileTitle: action.title };
+
+    default:
+      return { ...state };
   }
-  return { ...state };
 };

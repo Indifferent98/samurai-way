@@ -11,6 +11,8 @@ import { Profile } from "./components/Profile/Profile";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 
 import { NavContainer } from "./components/nav/navContainer";
+import { Users } from "./components/Users/Users";
+import { UsersContainter } from "./components/Users/UsersContainer";
 
 function App(): JSX.Element {
   return (
@@ -21,9 +23,9 @@ function App(): JSX.Element {
         <Route path="/Messages" render={() => <DialogsContainer />} />
         <Route path="/Profile" render={() => <Profile />} />
         <Route path="/Music" render={() => <Music />} />
-
         <Route path="/Settings" render={() => <Settings />} />
         <Route path="/News" render={() => <News />} />
+        <Route path="/Users" render={() => <UsersContainter />} />
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { UsersReducer } from "./UsersReducer";
 import React from "react";
 import { combineReducers, createStore } from "redux";
 
@@ -37,6 +38,7 @@ export const reducer = combineReducers({
   navBar: navBarReducer,
   profilePage: profileReducer,
   messagesPage: dialogsReducer,
+  usersPage: UsersReducer,
 });
 
 export const store = createStore(reducer);

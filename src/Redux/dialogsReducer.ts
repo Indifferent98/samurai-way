@@ -1,13 +1,16 @@
 import React from "react";
 import { dispatchActionTypes } from "./Redux-store";
+
 export type messageDataType = {
   id: number;
   message: string;
 };
+
 export type dialogsDataType = {
   id: number;
   name: string;
 };
+
 const initialState: initialStateDialogsType = {
   dialogsData: [
     { id: 1, name: "Timur" },
@@ -61,6 +64,8 @@ export const dialogsReducer = (
 
     case "UPDATE-MESSAGE-TITLE":
       return { ...state, newMessageToMessagesTitle: action.title };
+
+    default:
+      return { ...state };
   }
-  return state;
 };
