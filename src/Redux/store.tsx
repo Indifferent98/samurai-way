@@ -104,7 +104,7 @@ import React from "react";
 //   },
 
 //   dispatch(action) {
-//     debugger;
+//
 
 //     this._state.profilePage = profileReducer(this._state.profilePage, action);
 

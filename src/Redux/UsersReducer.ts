@@ -5,13 +5,20 @@ type addressType = {
   city: string;
 };
 
-type usersContainerType = {
+type photosType = {
+  small: null | string;
+  large: null | string;
+};
+
+export type usersContainerType = {
   name: string;
-  secondName: string;
-  status: string;
+  // secondName: string;
+  status: string | null;
+  uniqueUrlName: null;
   id: number;
-  followStatus: boolean;
-  address: addressType;
+  photos: photosType;
+  followed: boolean;
+  // address: addressType;
 };
 export type initialStateUsersType = {
   users: usersContainerType[];
@@ -21,39 +28,34 @@ const initialState: initialStateUsersType = {
   users: [
     {
       name: "Dimych",
-      secondName: "EEE",
-      address: {
-        country: "Belarus",
-        city: "Minsk",
-      },
+
       id: 1111,
 
       status: "i am so pretty",
-      followStatus: true,
+      followed: true,
+      photos: { small: null, large: null },
+      uniqueUrlName: null,
     },
     {
       name: "Evgen",
-      secondName: "R",
-      address: {
-        country: "Russia",
-        city: "Moscow",
-      },
+
       id: 141,
 
       status: "i am so good",
-      followStatus: false,
+      followed: false,
+      photos: { small: null, large: null },
+      uniqueUrlName: null,
     },
+
     {
       name: "Vladimir",
-      secondName: "R",
-      address: {
-        country: "Russia",
-        city: "ST-P",
-      },
+
       id: 132,
 
       status: "js learn mood",
-      followStatus: true,
+      followed: true,
+      photos: { small: null, large: null },
+      uniqueUrlName: null,
     },
   ],
 };
@@ -75,11 +77,14 @@ type setUsersActionCreatorType = {
   users: usersContainerType[];
 };
 export const setUsersActionCreator = (
-  users: initialStateUsersType
-): setUsersActionCreatorType => ({
-  type: "SET-USERS",
-  users: users.users,
-});
+  users: usersContainerType[]
+): setUsersActionCreatorType => {
+  debugger;
+  return {
+    type: "SET-USERS",
+    users: users,
+  };
+};
 
 type actionType = ChangeFollowActionCreatorType | setUsersActionCreatorType;
 
@@ -87,13 +92,12 @@ export const UsersReducer = (
   state: initialStateUsersType = initialState,
   action: actionType
 ): initialStateUsersType => {
-  debugger;
   switch (action.type) {
     case "CHANGE-FOLLOW-STATUS":
       return {
         ...state,
         users: state.users.map((t) =>
-          t.id === action.id ? { ...t, followStatus: !t.followStatus } : t
+          t.id === action.id ? { ...t, followed: !t.followed } : t
         ),
       };
 

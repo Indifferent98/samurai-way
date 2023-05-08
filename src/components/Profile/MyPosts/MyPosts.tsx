@@ -5,7 +5,6 @@ import { Post } from "./Post/Post";
 import { MyPostsPropsType } from "./MyPostsContainer";
 
 const MyPosts = (props: MyPostsPropsType): JSX.Element => {
-  debugger;
   let postsForApplicationPost = props.profilePage.myPostsData.map((t) => (
     <Post key={t.id} like={t.likesCount} message={t.message} />
   ));

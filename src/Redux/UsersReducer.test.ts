@@ -11,47 +11,39 @@ test("FOLLOW status should be changed", () => {
     users: [
       {
         name: "Dimych",
-        secondName: "EEE",
-        address: {
-          country: "Belarus",
-          city: "Minsk",
-        },
+
         id: 1111,
 
         status: "i am so pretty",
-        followStatus: true,
+        followed: true,
+        photos: { small: null, large: null },
+        uniqueUrlName: null,
       },
       {
         name: "Evgen",
-        secondName: "R",
-        address: {
-          country: "Russia",
-          city: "Moscow",
-        },
-        id: 141,
 
+        id: 141,
+        photos: { small: null, large: null },
+        uniqueUrlName: null,
         status: "i am so good",
-        followStatus: false,
+        followed: false,
       },
       {
         name: "Vladimir",
-        secondName: "R",
-        address: {
-          country: "Russia",
-          city: "ST-P",
-        },
+        photos: { small: null, large: null },
+        uniqueUrlName: null,
         id: 132,
 
         status: "js learn mood",
-        followStatus: true,
+        followed: true,
       },
     ],
   };
 
   const newState = UsersReducer(initialState, ChangeFollowActionCreator(141));
 
-  expect(newState.users[1].followStatus).toBe(true);
-  expect(initialState.users[1].followStatus).toBe(false);
+  expect(newState.users[1].followed).toBe(true);
+  expect(initialState.users[1].followed).toBe(false);
 });
 
 test("Users should be set", () => {
@@ -59,39 +51,30 @@ test("Users should be set", () => {
     users: [
       {
         name: "Dimych",
-        secondName: "EEE",
-        address: {
-          country: "Belarus",
-          city: "Minsk",
-        },
+        photos: { small: null, large: null },
+        uniqueUrlName: null,
         id: 1111,
 
         status: "i am so pretty",
-        followStatus: true,
+        followed: true,
       },
       {
         name: "Evgen",
-        secondName: "R",
-        address: {
-          country: "Russia",
-          city: "Moscow",
-        },
+        photos: { small: null, large: null },
+        uniqueUrlName: null,
         id: 141,
 
         status: "i am so good",
-        followStatus: false,
+        followed: false,
       },
       {
         name: "Vladimir",
-        secondName: "R",
-        address: {
-          country: "Russia",
-          city: "ST-P",
-        },
+        photos: { small: null, large: null },
+        uniqueUrlName: null,
         id: 132,
 
         status: "js learn mood",
-        followStatus: true,
+        followed: true,
       },
     ],
   };
@@ -100,22 +83,19 @@ test("Users should be set", () => {
     users: [
       {
         name: "Dimychwwwwwwwwww",
-        secondName: "wwwwwwwwwwwww",
-        address: {
-          country: "Belarus",
-          city: "Minsk",
-        },
+        photos: { small: null, large: null },
+        uniqueUrlName: null,
         id: 1111,
 
         status: "i am so pretty",
-        followStatus: true,
+        followed: true,
       },
     ],
   };
 
   const newState = UsersReducer(
     initialState,
-    setUsersActionCreator(usersToSet)
+    setUsersActionCreator([...usersToSet.users])
   );
 
   expect(newState.users.length).toBe(1);

@@ -16,7 +16,6 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   ));
 
   const addMessageTitleHandler = () => {
-    debugger;
     props.addMessageTitleHandler();
   };
 
