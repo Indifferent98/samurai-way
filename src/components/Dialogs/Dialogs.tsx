@@ -8,11 +8,11 @@ import { DialogsPropsType } from "./DialogsContainer";
 
 export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   const dialogsDataForApplication = props.messagesPage.dialogsData.map((t) => (
-    <DialogItem name={t.name} id={t.id.toString()} />
+    <DialogItem name={t.name} key={t.id} id={t.id.toString()} />
   ));
 
   const messageDataForApplication = props.messagesPage.messageData.map((t) => (
-    <Message messageData={t.message} />
+    <Message key={t.id} messageData={t.message} />
   ));
 
   const addMessageTitleHandler = () => {

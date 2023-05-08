@@ -7,7 +7,7 @@ import { MyPostsPropsType } from "./MyPostsContainer";
 const MyPosts = (props: MyPostsPropsType): JSX.Element => {
   debugger;
   let postsForApplicationPost = props.profilePage.myPostsData.map((t) => (
-    <Post like={t.likesCount} message={t.message} />
+    <Post key={t.id} like={t.likesCount} message={t.message} />
   ));
 
   const addPostButtonHandler = () => {

@@ -3,6 +3,7 @@ import { Users } from "./Users";
 import {
   ChangeFollowActionCreator,
   initialStateUsersType,
+  setUsersActionCreator,
 } from "../../Redux/UsersReducer";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
@@ -17,12 +18,16 @@ const mapStateToProps = (state: mapStateToPropsType) => ({
 
 type mapDispatchToPropsType = {
   changeFollowStatus: (id: number) => void;
+  setUsers: (users: initialStateUsersType) => void;
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
   return {
     changeFollowStatus: (id: number) => {
       dispatch(ChangeFollowActionCreator(id));
+    },
+    setUsers: (users) => {
+      dispatch(setUsersActionCreator(users));
     },
   };
 };

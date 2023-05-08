@@ -8,7 +8,12 @@ const Nav = (props: NavPropsType): JSX.Element => {
     let link = "/";
     link += t;
     return (
-      <NavLink to={link} activeClassName={s.activeLink} className={s.item}>
+      <NavLink
+        key={i}
+        to={link}
+        activeClassName={s.activeLink}
+        className={s.item}
+      >
         {t}
       </NavLink>
     );

@@ -48,7 +48,7 @@ const initialState: initialStateUsersType = {
       secondName: "R",
       address: {
         country: "Russia",
-        city: "Novosibirsk",
+        city: "ST-P",
       },
       id: 132,
 
@@ -87,6 +87,7 @@ export const UsersReducer = (
   state: initialStateUsersType = initialState,
   action: actionType
 ): initialStateUsersType => {
+  debugger;
   switch (action.type) {
     case "CHANGE-FOLLOW-STATUS":
       return {
@@ -97,6 +98,7 @@ export const UsersReducer = (
       };
 
     case "SET-USERS":
+      debugger;
       return { ...state, users: [...action.users] };
 
     default:
