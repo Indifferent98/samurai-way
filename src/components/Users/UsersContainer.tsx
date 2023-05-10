@@ -1,5 +1,5 @@
 import react from "react";
-import { Users } from "./Users";
+
 import {
   ChangeFollowActionCreator,
   initialStateUsersType,
@@ -8,6 +8,7 @@ import {
 } from "../../Redux/UsersReducer";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
+import { UserClass } from "./Users";
 
 type mapStateToPropsType = {
   usersPage: initialStateUsersType;
@@ -39,4 +40,4 @@ export type usersPropsType = mapStateToPropsType & mapDispatchToPropsType;
 export const UsersContainter = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Users);
+)(UserClass);

@@ -11,7 +11,7 @@ import { Profile } from "./components/Profile/Profile";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 
 import { NavContainer } from "./components/nav/navContainer";
-import { Users } from "./components/Users/Users";
+
 import { UsersContainter } from "./components/Users/UsersContainer";
 
 function App(): JSX.Element {
