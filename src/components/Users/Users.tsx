@@ -3,6 +3,7 @@ import React from "react";
 
 import s from "./Users.module.css";
 import { usersPropsType } from "./UsersContainer";
+import { Preloader } from "../Preloader/Preloader";
 
 export class UserClass extends React.Component<usersPropsType> {
   componentDidMount(): void {
@@ -11,9 +12,11 @@ export class UserClass extends React.Component<usersPropsType> {
       this.props.usersPage.users.length === 3
     )
       axios
-        .get("https://social-network.samuraijs.com/api/1.0/users")
+        .get("https://social-network.samuraijs.com/api/1.0/users?count=30")
         .then((response) => {
-          this.props.setUsers(response.data.items);
+          setTimeout(() => {
+            this.props.setUsers(response.data.items);
+          }, 2000);
         });
   }
 
@@ -22,7 +25,12 @@ export class UserClass extends React.Component<usersPropsType> {
   };
 
   render() {
-    return (
+    return !this.props.usersPage.users.length ||
+      this.props.usersPage.users.length === 3 ? (
+      <>
+        users is loading <br /> <Preloader />
+      </>
+    ) : (
       <div>
         {this.props.usersPage.users.map((t) => (
           <div key={t.id} className={s.user}>

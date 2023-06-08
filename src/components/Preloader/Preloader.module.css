@@ -1,0 +1,33 @@
+body {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.preloadingBlock_el {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.preloadingBlock_el path {
+  fill: #486642;
+}
+.preloadingBlock_el path:first-child {
+  fill: #ffffff;
+}
+.preloadingBlock_el svg {
+  animation: rotate 1s steps(12, end) infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
