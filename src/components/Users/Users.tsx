@@ -5,7 +5,7 @@ import s from "./Users.module.css";
 import { usersPropsType } from "./UsersContainer";
 
 export class UserClass extends React.Component<usersPropsType> {
-  getUsers = () => {
+  componentDidMount(): void {
     if (
       this.props.usersPage.users.length === 0 ||
       this.props.usersPage.users.length === 3
@@ -15,7 +15,7 @@ export class UserClass extends React.Component<usersPropsType> {
         .then((response) => {
           this.props.setUsers(response.data.items);
         });
-  };
+  }
 
   changeFollowStatus = (id: number) => {
     this.props.changeFollowStatus(id);
@@ -24,7 +24,6 @@ export class UserClass extends React.Component<usersPropsType> {
   render() {
     return (
       <div>
-        <button onClick={this.getUsers}>Get users</button>
         {this.props.usersPage.users.map((t) => (
           <div key={t.id} className={s.user}>
             <div className={s.avatar}>
