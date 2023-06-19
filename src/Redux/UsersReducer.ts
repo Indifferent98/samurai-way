@@ -85,7 +85,6 @@ type setUsersActionCreatorType = {
 export const setUsersActionCreator = (
   users: usersContainerType[]
 ): setUsersActionCreatorType => {
-  debugger;
   return {
     type: "SET-USERS",
     users: users,
@@ -136,7 +135,6 @@ export const UsersReducer = (
       };
 
     case "SET-USERS":
-      debugger;
       return { ...state, users: [...action.users] };
 
     case "SET-TOTAL-USERS-COUNT":

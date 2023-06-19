@@ -12,9 +12,6 @@ export class Users extends React.Component<usersPropsType> {
         `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${this.props.usersPage.currentPage}`
       )
       .then((response) => {
-        console.log(
-          `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${this.props.usersPage.currentPage}`
-        );
         setTimeout(() => {
           this.props.setUsers(response.data.items);
         }, 500);
@@ -22,41 +19,27 @@ export class Users extends React.Component<usersPropsType> {
       });
   }
   componentWillUnmount(): void {}
-  // shouldComponentUpdate(
-  //   nextProps: Readonly<usersPropsType>,
-  //   nextState: Readonly<{}>,
-  //   nextContext: any
-  // ): boolean {
-  //   return nextProps.usersPage.currentPage !== this.props.usersPage.currentPage;
-  // }
 
-  componentDidUpdate(
-    prevProps: Readonly<usersPropsType>,
-    prevState: Readonly<{}>,
-    snapshot?: any
-  ): void {
-    if (prevProps.usersPage.currentPage !== this.props.usersPage.currentPage) {
-    }
-  }
-  // componentDidUpdate(
-
-  // ): void {
-  //
-  // }
   changeFollowStatus = (id: number) => {
     this.props.changeFollowStatus(id);
   };
 
-  changePage(pageNumber: number) {
+  changeCurrentPage(pageNumber: number) {
     this.props.changeUserPage(pageNumber);
-    console.log(
-      `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${this.props.usersPage.currentPage}`
-    );
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${pageNumber}`
+      )
+      .then((response) => {
+        this.props.setUsers(response.data.items);
+        this.props.getTotalUsersCount(response.data.totalCount);
+      });
   }
 
   render() {
-    let pagesCount =
-      this.props.usersPage.totalCount / this.props.usersPage.pageSize;
+    let pagesCount = Math.ceil(
+      this.props.usersPage.totalCount / this.props.usersPage.pageSize
+    );
     let pages: number[] = [];
     for (let i = 1; i <= pagesCount; i++) {
       pages.push(i);
@@ -80,7 +63,7 @@ export class Users extends React.Component<usersPropsType> {
           {pages.map((u) => (
             <span
               onClick={() => {
-                this.changePage(u);
+                this.changeCurrentPage(u);
               }}
               className={
                 u === this.props.usersPage.currentPage ? s.currentPage : ""

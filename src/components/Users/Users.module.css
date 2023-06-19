@@ -62,7 +62,8 @@
   font-size: 20px;
   margin-bottom: 30px;
 }
-
+.pageButton span {
+}
 .currentPage {
   font-size: 700;
   color: brown;
