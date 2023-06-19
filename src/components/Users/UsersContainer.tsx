@@ -8,7 +8,7 @@ import {
 } from "../../Redux/UsersReducer";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { UserClass } from "./Users";
+import { Users } from "./Users";
 
 type mapStateToPropsType = {
   usersPage: initialStateUsersType;
@@ -40,4 +40,4 @@ export type usersPropsType = mapStateToPropsType & mapDispatchToPropsType;
 export const UsersContainter = connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserClass);
+)(Users);

@@ -5,33 +5,36 @@ import s from "./Users.module.css";
 import { usersPropsType } from "./UsersContainer";
 import { Preloader } from "../Preloader/Preloader";
 
-export class UserClass extends React.Component<usersPropsType> {
+export class Users extends React.Component<usersPropsType> {
   componentDidMount(): void {
-    if (
-      this.props.usersPage.users.length === 0 ||
-      this.props.usersPage.users.length === 3
-    )
-      axios
-        .get("https://social-network.samuraijs.com/api/1.0/users?count=30")
-        .then((response) => {
-          setTimeout(() => {
-            this.props.setUsers(response.data.items);
-          }, 2000);
-        });
+    axios
+      .get("https://social-network.samuraijs.com/api/1.0/users?page=2432")
+      .then((response) => {
+        setTimeout(() => {
+          this.props.setUsers(response.data.items);
+        }, 500);
+      });
   }
+  componentWillUnmount(): void {}
 
   changeFollowStatus = (id: number) => {
     this.props.changeFollowStatus(id);
   };
 
   render() {
-    return !this.props.usersPage.users.length ||
-      this.props.usersPage.users.length === 3 ? (
+    return this.props.usersPage.users.length <= 3 ? (
       <>
         users is loading <br /> <Preloader />
       </>
     ) : (
       <div>
+        <div>
+          <span>1 </span>
+          <span>2 </span>
+          <span>3 </span>
+          <span>4 </span>
+          <span>5 </span>
+        </div>
         {this.props.usersPage.users.map((t) => (
           <div key={t.id} className={s.user}>
             <div className={s.avatar}>
