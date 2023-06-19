@@ -2,9 +2,11 @@ import react from "react";
 
 import {
   ChangeFollowActionCreator,
+  setTotalUsersCountAC,
   initialStateUsersType,
   setUsersActionCreator,
   usersContainerType,
+  changeCurrentPageAC,
 } from "../../Redux/UsersReducer";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
@@ -21,6 +23,8 @@ const mapStateToProps = (state: mapStateToPropsType) => ({
 type mapDispatchToPropsType = {
   changeFollowStatus: (id: number) => void;
   setUsers: (users: usersContainerType[]) => void;
+  getTotalUsersCount: (usersCount: number) => void;
+  changeUserPage: (newPage: number) => void;
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
@@ -29,8 +33,13 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
       dispatch(ChangeFollowActionCreator(id));
     },
     setUsers: (users) => {
-      debugger;
       dispatch(setUsersActionCreator(users));
+    },
+    getTotalUsersCount: (usersCount: number) => {
+      dispatch(setTotalUsersCountAC(usersCount));
+    },
+    changeUserPage: (newPage: number) => {
+      dispatch(changeCurrentPageAC(newPage));
     },
   };
 };

@@ -38,6 +38,9 @@ test("FOLLOW status should be changed", () => {
         followed: true,
       },
     ],
+    pageSize: 15,
+    totalCount: 0,
+    currentPage: 1,
   };
 
   const newState = UsersReducer(initialState, ChangeFollowActionCreator(141));
@@ -77,6 +80,9 @@ test("Users should be set", () => {
         followed: true,
       },
     ],
+    pageSize: 15,
+    totalCount: 0,
+    currentPage: 1,
   };
 
   const usersToSet: initialStateUsersType = {
@@ -91,6 +97,9 @@ test("Users should be set", () => {
         followed: true,
       },
     ],
+    pageSize: 15,
+    totalCount: 0,
+    currentPage: 1,
   };
 
   const newState = UsersReducer(

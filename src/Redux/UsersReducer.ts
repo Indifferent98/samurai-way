@@ -22,6 +22,9 @@ export type usersContainerType = {
 };
 export type initialStateUsersType = {
   users: usersContainerType[];
+  pageSize: number;
+  totalCount: number;
+  currentPage: number;
 };
 
 const initialState: initialStateUsersType = {
@@ -58,6 +61,9 @@ const initialState: initialStateUsersType = {
       uniqueUrlName: null,
     },
   ],
+  pageSize: 100,
+  totalCount: 0,
+  currentPage: 1,
 };
 
 type ChangeFollowActionCreatorType = {
@@ -86,7 +92,35 @@ export const setUsersActionCreator = (
   };
 };
 
-type actionType = ChangeFollowActionCreatorType | setUsersActionCreatorType;
+type setTotalUsersCountACType = {
+  usersCount: number;
+  type: "SET-TOTAL-USERS-COUNT";
+};
+
+export const setTotalUsersCountAC = (
+  usersCount: number
+): setTotalUsersCountACType => ({
+  usersCount,
+  type: "SET-TOTAL-USERS-COUNT",
+});
+
+type changeCurrentPageACType = {
+  type: "CHANGE-CURRENT-PAGE";
+  newPage: number;
+};
+
+export const changeCurrentPageAC = (
+  newPage: number
+): changeCurrentPageACType => ({
+  type: "CHANGE-CURRENT-PAGE",
+  newPage,
+});
+
+type actionType =
+  | ChangeFollowActionCreatorType
+  | setUsersActionCreatorType
+  | setTotalUsersCountACType
+  | changeCurrentPageACType;
 
 export const UsersReducer = (
   state: initialStateUsersType = initialState,
@@ -104,6 +138,12 @@ export const UsersReducer = (
     case "SET-USERS":
       debugger;
       return { ...state, users: [...action.users] };
+
+    case "SET-TOTAL-USERS-COUNT":
+      return { ...state, totalCount: action.usersCount };
+
+    case "CHANGE-CURRENT-PAGE":
+      return { ...state, currentPage: action.newPage };
 
     default:
       return state;

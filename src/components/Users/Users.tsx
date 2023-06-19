@@ -8,32 +8,87 @@ import { Preloader } from "../Preloader/Preloader";
 export class Users extends React.Component<usersPropsType> {
   componentDidMount(): void {
     axios
-      .get("https://social-network.samuraijs.com/api/1.0/users?page=2432")
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${this.props.usersPage.currentPage}`
+      )
       .then((response) => {
+        console.log(
+          `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${this.props.usersPage.currentPage}`
+        );
         setTimeout(() => {
           this.props.setUsers(response.data.items);
         }, 500);
+        this.props.getTotalUsersCount(response.data.totalCount);
       });
   }
   componentWillUnmount(): void {}
+  // shouldComponentUpdate(
+  //   nextProps: Readonly<usersPropsType>,
+  //   nextState: Readonly<{}>,
+  //   nextContext: any
+  // ): boolean {
+  //   return nextProps.usersPage.currentPage !== this.props.usersPage.currentPage;
+  // }
 
+  componentDidUpdate(
+    prevProps: Readonly<usersPropsType>,
+    prevState: Readonly<{}>,
+    snapshot?: any
+  ): void {
+    if (prevProps.usersPage.currentPage !== this.props.usersPage.currentPage) {
+    }
+  }
+  // componentDidUpdate(
+
+  // ): void {
+  //
+  // }
   changeFollowStatus = (id: number) => {
     this.props.changeFollowStatus(id);
   };
 
+  changePage(pageNumber: number) {
+    this.props.changeUserPage(pageNumber);
+    console.log(
+      `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${this.props.usersPage.currentPage}`
+    );
+  }
+
   render() {
+    let pagesCount =
+      this.props.usersPage.totalCount / this.props.usersPage.pageSize;
+    let pages: number[] = [];
+    for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i);
+    }
+
     return this.props.usersPage.users.length <= 3 ? (
       <>
         users is loading <br /> <Preloader />
       </>
     ) : (
       <div>
-        <div>
-          <span>1 </span>
-          <span>2 </span>
-          <span>3 </span>
-          <span>4 </span>
-          <span>5 </span>
+        <button
+          onClick={() => {
+            console.log(this);
+            this.render();
+          }}
+        >
+          dsfgdfgsdf
+        </button>
+        <div className={s.pageButton}>
+          {pages.map((u) => (
+            <span
+              onClick={() => {
+                this.changePage(u);
+              }}
+              className={
+                u === this.props.usersPage.currentPage ? s.currentPage : ""
+              }
+            >
+              {u}{" "}
+            </span>
+          ))}
         </div>
         {this.props.usersPage.users.map((t) => (
           <div key={t.id} className={s.user}>
