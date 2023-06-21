@@ -42,3 +42,6 @@ export const reducer = combineReducers({
 });
 
 export const store = createStore(reducer);
+
+//@ts-ignore
+window.store = store;
