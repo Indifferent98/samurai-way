@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Users.module.css";
 import { Preloader } from "../Preloader/Preloader";
-import { mapStateToPropsType } from "./UsersContainer";
+
 import { initialStateUsersType } from "../../Redux/UsersReducer";
 
 type UsersPropsType = {
@@ -19,7 +19,7 @@ export const Users = (props: UsersPropsType) => {
     pages.push(i);
   }
   console.log(props);
-  return props.usersPage.users.length <= 3 ? (
+  return props.usersPage.preloaderIsActive ? (
     <>
       users is loading <br /> <Preloader />
     </>

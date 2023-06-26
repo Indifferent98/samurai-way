@@ -25,6 +25,7 @@ export type initialStateUsersType = {
   pageSize: number;
   totalCount: number;
   currentPage: number;
+  preloaderIsActive: boolean;
 };
 
 const initialState: initialStateUsersType = {
@@ -64,6 +65,7 @@ const initialState: initialStateUsersType = {
   pageSize: 100,
   totalCount: 0,
   currentPage: 1,
+  preloaderIsActive: false,
 };
 
 type ChangeFollowActionCreatorType = {
@@ -115,11 +117,19 @@ export const changeCurrentPageAC = (
   newPage,
 });
 
+type changePreloaderStatusAC = ReturnType<typeof changePreloaderStatusAC>;
+export const changePreloaderStatusAC = (status: boolean) =>
+  ({
+    type: "CHANGE-PRELOADER-STATUS",
+    status,
+  } as const);
+
 type actionType =
   | ChangeFollowActionCreatorType
   | setUsersActionCreatorType
   | setTotalUsersCountACType
-  | changeCurrentPageACType;
+  | changeCurrentPageACType
+  | changePreloaderStatusAC;
 
 export const UsersReducer = (
   state: initialStateUsersType = initialState,
