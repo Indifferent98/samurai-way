@@ -7,6 +7,7 @@ import {
   setUsersActionCreator,
   usersContainerType,
   changeCurrentPageAC,
+  changePreloaderStatusAC,
 } from "../../Redux/UsersReducer";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
@@ -25,6 +26,7 @@ type mapDispatchToPropsType = {
   setUsers: (users: usersContainerType[]) => void;
   getTotalUsersCount: (usersCount: number) => void;
   changeUserPage: (newPage: number) => void;
+  changePreloaderStatus: (newStatus: boolean) => void;
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
@@ -40,6 +42,9 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     },
     changeUserPage: (newPage: number) => {
       dispatch(changeCurrentPageAC(newPage));
+    },
+    changePreloaderStatus: (newStatus: boolean) => {
+      dispatch(changePreloaderStatusAC(newStatus));
     },
   };
 };

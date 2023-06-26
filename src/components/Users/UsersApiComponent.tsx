@@ -7,6 +7,7 @@ import { Users } from "./Users";
 
 export class UsersApiComponent extends React.Component<usersPropsType> {
   componentDidMount(): void {
+    this.props.changePreloaderStatus(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${this.props.usersPage.currentPage}`
@@ -16,6 +17,7 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
           this.props.setUsers(response.data.items);
         }, 500);
         this.props.getTotalUsersCount(response.data.totalCount);
+        this.props.changePreloaderStatus(false);
       });
   }
   componentWillUnmount(): void {}
@@ -25,6 +27,7 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
   };
 
   changeCurrentPage(pageNumber: number) {
+    this.props.changePreloaderStatus(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${pageNumber}`
@@ -33,6 +36,7 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
         this.props.setUsers(response.data.items);
         this.props.getTotalUsersCount(response.data.totalCount);
         this.props.changeUserPage(pageNumber);
+        this.props.changePreloaderStatus(false);
       });
   }
 

@@ -153,6 +153,9 @@ export const UsersReducer = (
     case "CHANGE-CURRENT-PAGE":
       return { ...state, currentPage: action.newPage };
 
+    case "CHANGE-PRELOADER-STATUS":
+      return { ...state, preloaderIsActive: action.status };
+
     default:
       return state;
   }
