@@ -30,37 +30,30 @@ export type initialStateUsersType = {
 
 const initialState: initialStateUsersType = {
   users: [
-    {
-      name: "Dimych",
-
-      id: 1111,
-
-      status: "i am so pretty",
-      followed: true,
-      photos: { small: null, large: null },
-      uniqueUrlName: null,
-    },
-    {
-      name: "Evgen",
-
-      id: 141,
-
-      status: "i am so good",
-      followed: false,
-      photos: { small: null, large: null },
-      uniqueUrlName: null,
-    },
-
-    {
-      name: "Vladimir",
-
-      id: 132,
-
-      status: "js learn mood",
-      followed: true,
-      photos: { small: null, large: null },
-      uniqueUrlName: null,
-    },
+    // {
+    //   name: "Dimych",
+    //   id: 1111,
+    //   status: "i am so pretty",
+    //   followed: true,
+    //   photos: { small: null, large: null },
+    //   uniqueUrlName: null,
+    // },
+    // {
+    //   name: "Evgen",
+    //   id: 141,
+    //   status: "i am so good",
+    //   followed: false,
+    //   photos: { small: null, large: null },
+    //   uniqueUrlName: null,
+    // },
+    // {
+    //   name: "Vladimir",
+    //   id: 132,
+    //   status: "js learn mood",
+    //   followed: true,
+    //   photos: { small: null, large: null },
+    //   uniqueUrlName: null,
+    // },
   ],
   pageSize: 100,
   totalCount: 0,

@@ -18,6 +18,12 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
         }, 500);
         this.props.getTotalUsersCount(response.data.totalCount);
         this.props.changePreloaderStatus(false);
+      })
+      .catch(() => {
+        debugger;
+        setTimeout(() => {
+          this.componentDidMount();
+        }, 10000);
       });
   }
   componentWillUnmount(): void {}
@@ -37,6 +43,11 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
         this.props.getTotalUsersCount(response.data.totalCount);
         this.props.changeUserPage(pageNumber);
         this.props.changePreloaderStatus(false);
+      })
+      .catch(() => {
+        setTimeout(() => {
+          this.changeCurrentPage(pageNumber);
+        }, 10000);
       });
   }
 
