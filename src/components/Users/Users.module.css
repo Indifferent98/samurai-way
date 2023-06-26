@@ -68,3 +68,10 @@
   font-size: 700;
   color: brown;
 }
+
+.preloader {
+  margin: 0 auto;
+  margin-top: 70px;
+  width: max-content;
+  font-size: 30px;
+}

@@ -19,9 +19,12 @@ export const Users = (props: UsersPropsType) => {
     pages.push(i);
   }
   console.log(props);
-  return props.usersPage.preloaderIsActive ? (
+  // props.usersPage.preloaderIsActive
+  return true ? (
     <>
-      users is loading <br /> <Preloader />
+      <div className={s.preloader}>
+        <Preloader />
+      </div>
     </>
   ) : (
     <div>
