@@ -13,6 +13,7 @@ import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import { NavContainer } from "./components/nav/navContainer";
 
 import { UsersContainter } from "./components/Users/UsersContainer";
+import { ProfileApi } from "./components/Profile/ProfileInfo/ProfileApi";
 import { ProfileContainer } from "./components/Profile/ProfileInfo/ProfileContainer";
 
 function App(): JSX.Element {
@@ -22,7 +23,7 @@ function App(): JSX.Element {
       <NavContainer />
       <div className="app-wrapper-Profile">
         <Route path="/Messages" render={() => <DialogsContainer />} />
-        <Route path="/Profile" render={() => <ProfileContainer id={3} />} />
+        <Route path="/Profile" render={() => <ProfileContainer />} />
         <Route path="/Music" render={() => <Music />} />
         <Route path="/Settings" render={() => <Settings />} />
         <Route path="/News" render={() => <News />} />

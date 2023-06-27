@@ -18,7 +18,26 @@ const initialState: initialStateProfileType = {
     { id: 6, message: "Check Our Posts", likesCount: 66 },
   ],
   newPostProfileTitle: "",
-  profile: null,
+  profile: {
+    contacts: {
+      github: "",
+      vk: "",
+      facebook: "",
+      instagram: "",
+      twitter: "",
+      website: "",
+      youtube: "",
+      mainLink: "",
+    },
+    userId: 2,
+    lookingForAJob: true,
+    lookingForAJobDescription: "helloooooooo",
+    fullName: "Evgeny",
+    photos: {
+      large: "",
+      small: "",
+    },
+  },
 };
 
 type contactsType = {
@@ -41,14 +60,14 @@ export type getUserProfileType = {
   lookingForAJob: boolean;
   lookingForAJobDescription: string;
   fullName: string;
-  contacts: contactsType;
   photos: photosType;
+  contacts: contactsType;
 };
 
 export type initialStateProfileType = {
   myPostsData: myPostsDataType[];
   newPostProfileTitle: string;
-  profile: null | getUserProfileType;
+  profile: getUserProfileType;
 };
 
 export const updatePostTitleActionCreator = (title: string) => {

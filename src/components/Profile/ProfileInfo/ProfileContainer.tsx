@@ -1,6 +1,4 @@
-import axios from "axios";
 import React from "react";
-import { Profile } from "../Profile";
 
 import {
   getUserProfileType,
@@ -8,24 +6,8 @@ import {
   setUserProfileAC,
 } from "../../../Redux/profileReducer";
 import { Dispatch } from "redux";
-
-type ProfileContainerPropsType = {
-  id: number;
-};
-
-export class ProfileContainer extends React.Component<ProfileContainerPropsType> {
-  componentDidMount(): void {
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/profile/${this.props.id}`
-      )
-      .then((res) => {});
-  }
-
-  render() {
-    return <Profile />;
-  }
-}
+import { connect } from "react-redux";
+import { ProfileApi } from "./ProfileApi";
 
 type mapDispatchToPropsType = {
   setUserProfile: (profile: getUserProfileType) => void;
@@ -34,7 +16,7 @@ type mapDispatchToPropsType = {
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
   return {
     setUserProfile(profile: getUserProfileType) {
-      setUserProfileAC(profile);
+      dispatch(setUserProfileAC(profile));
     },
   };
 };
@@ -43,8 +25,12 @@ type mapStateToPropsType = {
   profilePage: initialStateProfileType;
 };
 
-const mapStateToProps = (
-  state: initialStateProfileType
-): mapStateToPropsType => {
-  return { profilePage: state };
+const mapStateToProps = (state: mapStateToPropsType) => {
+  return { profilePage: state.profilePage };
 };
+
+export type ProfileApiType = mapStateToPropsType & mapDispatchToPropsType;
+export const ProfileContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileApi);

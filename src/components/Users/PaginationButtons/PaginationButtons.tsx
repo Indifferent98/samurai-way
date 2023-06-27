@@ -64,7 +64,7 @@ export const PaginationButtons = (
   //   }
 
   //   pages.forEach((t, i) => {
-  //     debugger;
+  //
 
   //   });
 

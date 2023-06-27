@@ -16,7 +16,26 @@ const initialState: initialStateProfileType = {
     { id: 6, message: "Check Our Posts", likesCount: 66 },
   ],
   newPostProfileTitle: "fffff",
-  profile: null,
+  profile: {
+    contacts: {
+      github: "",
+      vk: "",
+      facebook: "",
+      instagram: "",
+      twitter: "",
+      website: "",
+      youtube: "",
+      mainLink: "",
+    },
+    userId: 2,
+    lookingForAJob: true,
+    lookingForAJobDescription: "helloooooooo",
+    fullName: "Evgeny",
+    photos: {
+      large: "",
+      small: "",
+    },
+  },
 };
 
 test("Post should be added", () => {
@@ -38,7 +57,26 @@ test("Post title should be update", () => {
       { id: 6, message: "Check Our Posts", likesCount: 66 },
     ],
     newPostProfileTitle: "",
-    profile: null,
+    profile: {
+      contacts: {
+        github: "",
+        vk: "",
+        facebook: "",
+        instagram: "",
+        twitter: "",
+        website: "",
+        youtube: "",
+        mainLink: "",
+      },
+      userId: 2,
+      lookingForAJob: true,
+      lookingForAJobDescription: "helloooooooo",
+      fullName: "Evgeny",
+      photos: {
+        large: "",
+        small: "",
+      },
+    },
   };
 
   const newState = profileReducer(
