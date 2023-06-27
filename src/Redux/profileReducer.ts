@@ -1,3 +1,4 @@
+import { addMessageCreator } from "./dialogsReducer";
 import React from "react";
 import { dispatchActionTypes } from "./Redux-store";
 
@@ -17,26 +18,61 @@ const initialState: initialStateProfileType = {
     { id: 6, message: "Check Our Posts", likesCount: 66 },
   ],
   newPostProfileTitle: "",
+  profile: null,
+};
+
+type contactsType = {
+  github: string;
+  vk: string;
+  facebook: string;
+  instagram: string;
+  twitter: string;
+  website: string;
+  youtube: string;
+  mainLink: string;
+};
+type photosType = {
+  small: string;
+  large: string;
+};
+
+export type getUserProfileType = {
+  userId: number;
+  lookingForAJob: boolean;
+  lookingForAJobDescription: string;
+  fullName: string;
+  contacts: contactsType;
+  photos: photosType;
 };
 
 export type initialStateProfileType = {
   myPostsData: myPostsDataType[];
   newPostProfileTitle: string;
+  profile: null | getUserProfileType;
 };
 
 export const updatePostTitleActionCreator = (title: string) => {
-  return { type: "UPDATE-POST-TITLE", title: title } as const;
+  return { type: "UPDATE-POST-TITLE", title } as const;
 };
 
 export const addPostActionCreator = () => ({
   type: "ADD-POST" as const,
 });
 
+export const setUserProfileAC = (profile: getUserProfileType) =>
+  ({
+    type: "SET-USER-PFOILE",
+    profile,
+  } as const);
+
 export const profileReducer = (
   state: initialStateProfileType = initialState,
   action: dispatchActionTypes
 ): initialStateProfileType => {
   switch (action.type) {
+    case "UPDATE-POST-TITLE":
+      return { ...state, newPostProfileTitle: action.title };
+
     case "ADD-POST":
       const newPost: myPostsDataType = {
         id: 77,
@@ -50,8 +86,8 @@ export const profileReducer = (
         newPostProfileTitle: "",
       };
 
-    case "UPDATE-POST-TITLE":
-      return { ...state, newPostProfileTitle: action.title };
+    case "SET-USER-PFOILE":
+      return { ...state, profile: action.profile };
 
     default:
       return { ...state };

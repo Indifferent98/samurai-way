@@ -71,15 +71,13 @@ export const ChangeFollowAC = (userId: number): ChangeFollowACType => ({
   id: userId,
 });
 
-type setUsersACType = {
-  type: "SET-USERS";
-  users: usersContainerType[];
-};
-export const setUsersAC = (users: usersContainerType[]): setUsersACType => {
+type setUsersACType = ReturnType<typeof setUsersAC>;
+
+export const setUsersAC = (users: usersContainerType[]) => {
   return {
     type: "SET-USERS",
     users: users,
-  };
+  } as const;
 };
 
 type setTotalUsersCountACType = {

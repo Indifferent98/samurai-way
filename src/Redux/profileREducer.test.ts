@@ -6,19 +6,20 @@ import {
   updatePostTitleActionCreator,
 } from "./profileReducer";
 
-test("Post should be added", () => {
-  const initialState: initialStateProfileType = {
-    myPostsData: [
-      { id: 1, message: "Hi Whats New?", likesCount: 3 },
-      { id: 2, message: "Hello", likesCount: 6 },
-      { id: 3, message: "How Are you", likesCount: 754 },
-      { id: 4, message: "Fine", likesCount: 11 },
-      { id: 5, message: "Lets found smth", likesCount: 0 },
-      { id: 6, message: "Check Our Posts", likesCount: 66 },
-    ],
-    newPostProfileTitle: "fffff",
-  };
+const initialState: initialStateProfileType = {
+  myPostsData: [
+    { id: 1, message: "Hi Whats New?", likesCount: 3 },
+    { id: 2, message: "Hello", likesCount: 6 },
+    { id: 3, message: "How Are you", likesCount: 754 },
+    { id: 4, message: "Fine", likesCount: 11 },
+    { id: 5, message: "Lets found smth", likesCount: 0 },
+    { id: 6, message: "Check Our Posts", likesCount: 66 },
+  ],
+  newPostProfileTitle: "fffff",
+  profile: null,
+};
 
+test("Post should be added", () => {
   const newState = profileReducer(initialState, addPostActionCreator());
 
   expect(newState.myPostsData.length).toBe(7);
@@ -37,6 +38,7 @@ test("Post title should be update", () => {
       { id: 6, message: "Check Our Posts", likesCount: 66 },
     ],
     newPostProfileTitle: "",
+    profile: null,
   };
 
   const newState = profileReducer(

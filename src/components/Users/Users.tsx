@@ -4,6 +4,7 @@ import { Preloader } from "../Preloader/Preloader";
 
 import { initialStateUsersType } from "../../Redux/UsersReducer";
 import { PaginationButtons } from "./PaginationButtons/PaginationButtons";
+import { NavLink } from "react-router-dom";
 
 type UsersPropsType = {
   usersPage: initialStateUsersType;
@@ -42,19 +43,21 @@ export const Users = (props: UsersPropsType) => {
           changeCurrentPage={props.changeCurrentPage}
         />
       </div>
-      {props.usersPage.users.map((t: any) => (
+      {props.usersPage.users.map((t) => (
         <div key={t.id} className={s.user}>
           <div className={s.avatar}>
             <div>
-              <img
-                className={s.img}
-                src={
-                  t.photos.small
-                    ? t.photos.small
-                    : "https://static.vecteezy.com/system/resources/previews/013/659/682/non_2x/human-avatar-user-ui-account-square-clip-art-icon-vector.jpg"
-                }
-                alt="here must be avatar"
-              />
+              <NavLink to={`/Profile/${t.id}`}>
+                <img
+                  className={s.img}
+                  src={
+                    t.photos.small
+                      ? t.photos.small
+                      : "https://static.vecteezy.com/system/resources/previews/013/659/682/non_2x/human-avatar-user-ui-account-square-clip-art-icon-vector.jpg"
+                  }
+                  alt="here must be avatar"
+                />
+              </NavLink>
             </div>
             <div>
               <button
