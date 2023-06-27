@@ -1,10 +1,10 @@
 import react from "react";
 import {
-  ChangeFollowActionCreator,
+  ChangeFollowAC,
   UsersReducer,
   changePreloaderStatusAC,
   initialStateUsersType,
-  setUsersActionCreator,
+  setUsersAC,
 } from "./UsersReducer";
 
 const initialState: initialStateUsersType = {
@@ -45,7 +45,7 @@ const initialState: initialStateUsersType = {
 };
 
 test("FOLLOW status should be changed", () => {
-  const newState = UsersReducer(initialState, ChangeFollowActionCreator(141));
+  const newState = UsersReducer(initialState, ChangeFollowAC(141));
 
   expect(newState.users[1].followed).toBe(true);
   expect(initialState.users[1].followed).toBe(false);
@@ -72,7 +72,7 @@ test("Users should be set", () => {
 
   const newState = UsersReducer(
     initialState,
-    setUsersActionCreator([...usersToSet.users])
+    setUsersAC([...usersToSet.users])
   );
 
   expect(newState.users.length).toBe(1);

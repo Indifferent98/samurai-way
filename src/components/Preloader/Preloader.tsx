@@ -7,13 +7,16 @@ export const Preloader = () => {
 
   console.log(activeClass);
   useEffect(() => {
-    setInterval(() => {
+    const timer = setInterval(() => {
       setActiveClass((state) => {
         if (usersText.split("").length - 1 === state) {
           return 0;
         } else return state + 1;
       });
     }, 100);
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   const mappedUsersText = usersText

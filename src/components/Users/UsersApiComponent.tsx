@@ -20,7 +20,6 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
         this.props.changePreloaderStatus(false);
       })
       .catch(() => {
-        debugger;
         setTimeout(() => {
           this.componentDidMount();
         }, 10000);

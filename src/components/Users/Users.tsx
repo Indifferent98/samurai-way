@@ -1,8 +1,9 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import s from "./Users.module.css";
 import { Preloader } from "../Preloader/Preloader";
 
 import { initialStateUsersType } from "../../Redux/UsersReducer";
+import { PaginationButtons } from "./PaginationButtons/PaginationButtons";
 
 type UsersPropsType = {
   usersPage: initialStateUsersType;
@@ -11,16 +12,15 @@ type UsersPropsType = {
 };
 
 export const Users = (props: UsersPropsType) => {
-  let pagesCount = Math.ceil(
-    props.usersPage.totalCount / props.usersPage.pageSize
-  );
-  let pages: number[] = [];
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
-  console.log(props);
-  // props.usersPage.preloaderIsActive
-  return true ? (
+  const [newPage, setNewPage] = useState(props.usersPage.currentPage);
+  const onClickPageHandler = () => {
+    props.changeCurrentPage(newPage);
+  };
+  const onChangePageHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewPage(+e.currentTarget.value);
+  };
+
+  return props.usersPage.preloaderIsActive ? (
     <>
       <div className={s.preloader}>
         <Preloader />
@@ -29,19 +29,18 @@ export const Users = (props: UsersPropsType) => {
   ) : (
     <div>
       <div className={s.pageButton}>
-        {pages.map((u) => {
-          const changeCurrentPage = () => {
-            props.changeCurrentPage(u);
-          };
-          return (
-            <span
-              onClick={changeCurrentPage}
-              className={u === props.usersPage.currentPage ? s.currentPage : ""}
-            >
-              {u}{" "}
-            </span>
-          );
-        })}
+        <div>
+          {" "}
+          change page{" "}
+          <input type="number" value={newPage} onChange={onChangePageHandler} />
+          <button onClick={onClickPageHandler}>+</button>
+        </div>
+        <PaginationButtons
+          totalCount={props.usersPage.totalCount}
+          pageSize={props.usersPage.pageSize}
+          currentPage={props.usersPage.currentPage}
+          changeCurrentPage={props.changeCurrentPage}
+        />
       </div>
       {props.usersPage.users.map((t: any) => (
         <div key={t.id} className={s.user}>

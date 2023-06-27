@@ -61,25 +61,21 @@ const initialState: initialStateUsersType = {
   preloaderIsActive: false,
 };
 
-type ChangeFollowActionCreatorType = {
+type ChangeFollowACType = {
   type: "CHANGE-FOLLOW-STATUS";
   id: number;
 };
 
-export const ChangeFollowActionCreator = (
-  userId: number
-): ChangeFollowActionCreatorType => ({
+export const ChangeFollowAC = (userId: number): ChangeFollowACType => ({
   type: "CHANGE-FOLLOW-STATUS",
   id: userId,
 });
 
-type setUsersActionCreatorType = {
+type setUsersACType = {
   type: "SET-USERS";
   users: usersContainerType[];
 };
-export const setUsersActionCreator = (
-  users: usersContainerType[]
-): setUsersActionCreatorType => {
+export const setUsersAC = (users: usersContainerType[]): setUsersACType => {
   return {
     type: "SET-USERS",
     users: users,
@@ -118,8 +114,8 @@ export const changePreloaderStatusAC = (status: boolean) =>
   } as const);
 
 type actionType =
-  | ChangeFollowActionCreatorType
-  | setUsersActionCreatorType
+  | ChangeFollowACType
+  | setUsersACType
   | setTotalUsersCountACType
   | changeCurrentPageACType
   | changePreloaderStatusAC;

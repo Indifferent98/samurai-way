@@ -1,10 +1,10 @@
 import react from "react";
 
 import {
-  ChangeFollowActionCreator,
+  ChangeFollowAC,
   setTotalUsersCountAC,
   initialStateUsersType,
-  setUsersActionCreator,
+  setUsersAC,
   usersContainerType,
   changeCurrentPageAC,
   changePreloaderStatusAC,
@@ -29,29 +29,37 @@ type mapDispatchToPropsType = {
   changePreloaderStatus: (newStatus: boolean) => void;
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-  return {
-    changeFollowStatus: (id: number) => {
-      dispatch(ChangeFollowActionCreator(id));
-    },
-    setUsers: (users) => {
-      dispatch(setUsersActionCreator(users));
-    },
-    getTotalUsersCount: (usersCount: number) => {
-      dispatch(setTotalUsersCountAC(usersCount));
-    },
-    changeUserPage: (newPage: number) => {
-      dispatch(changeCurrentPageAC(newPage));
-    },
-    changePreloaderStatus: (newStatus: boolean) => {
-      dispatch(changePreloaderStatusAC(newStatus));
-    },
-  };
+// const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+//   return {
+//     changeFollowStatus: (id: number) => {
+//       dispatch(ChangeFollowAC(id));
+//     },
+//     setUsers: (users) => {
+//       dispatch(setUsersAC(users));
+//     },
+//     getTotalUsersCount: (usersCount: number) => {
+//       dispatch(setTotalUsersCountAC(usersCount));
+//     },
+//     changeUserPage: (newPage: number) => {
+//       dispatch(changeCurrentPageAC(newPage));
+//     },
+//     changePreloaderStatus: (newStatus: boolean) => {
+//       dispatch(changePreloaderStatusAC(newStatus));
+//     },
+//   };
+// };
+
+const actionstObj = {
+  changeFollowStatus: ChangeFollowAC,
+  setUsers: setUsersAC,
+  getTotalUsersCount: setTotalUsersCountAC,
+  changeUserPage: changeCurrentPageAC,
+  changePreloaderStatus: changePreloaderStatusAC,
 };
 
 export type usersPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
 export const UsersContainter = connect(
   mapStateToProps,
-  mapDispatchToProps
+  actionstObj
 )(UsersApiComponent);
