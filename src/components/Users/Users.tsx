@@ -10,6 +10,7 @@ type UsersPropsType = {
   usersPage: initialStateUsersType;
   changeFollowStatus: (id: number) => void;
   changeCurrentPage: (pageNumber: number) => void;
+  changeCurrentUserId: (newId: number) => void;
 };
 
 export const Users = (props: UsersPropsType) => {
@@ -49,6 +50,10 @@ export const Users = (props: UsersPropsType) => {
             <div>
               <NavLink to={`/Profile/${t.id}`}>
                 <img
+                  onClick={() => {
+                    debugger;
+                    props.changeCurrentUserId(t.id);
+                  }}
                   className={s.img}
                   src={
                     t.photos.small

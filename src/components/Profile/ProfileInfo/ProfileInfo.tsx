@@ -1,9 +1,12 @@
 import React from "react";
 import s from "./ProfileInfo.module.css";
 import { ProfilePropsType } from "../Profile";
+import { Preloader } from "../../Preloader/Preloader";
 
 export const ProfileInfo = (props: ProfilePropsType): JSX.Element => {
-  return (
+  return props.profile === null || props.profile === undefined ? (
+    <Preloader />
+  ) : (
     <>
       <img
         className={s.contentImg}
@@ -13,9 +16,14 @@ export const ProfileInfo = (props: ProfilePropsType): JSX.Element => {
       <div className={s.profileHeadder}>
         <img
           className={s.contentAvatar}
-          src="https://i.pinimg.com/originals/fb/d4/85/fbd485151b22d7ccfb912435ac65315a.jpg"
+          src={
+            props.profile.photos.large
+              ? props.profile.photos.large
+              : "https://i.pinimg.com/originals/fb/d4/85/fbd485151b22d7ccfb912435ac65315a.jpg"
+          }
           alt=""
         />
+
         <div className={s.profileInfo}>
           <div className={s.profileInfoItem}>Evgeny:</div>
           <div className={s.profileInfoItem}>Age:</div>
@@ -50,7 +58,21 @@ export const ProfileInfo = (props: ProfilePropsType): JSX.Element => {
             <span>{props.profile.contacts.website}</span>
           </div>
           <div className={s.profileInfoItem}>
-            <span> youtube:{props.profile.contacts.youtube}</span>
+            youtube: <span> {props.profile.contacts.youtube}</span>
+          </div>
+          <div className={s.profileInfoItem}>
+            Fullname: <span> {props.profile.fullName}</span>
+          </div>
+          <div className={s.profileInfoItem}>
+            lookingForAJob:{" "}
+            <span>{JSON.stringify(props.profile.lookingForAJob)}</span>
+          </div>
+          <div className={s.profileInfoItem}>
+            lookingForAJobDescription:{" "}
+            <span>
+              {" "}
+              {JSON.stringify(props.profile.lookingForAJobDescription)}
+            </span>
           </div>
         </div>
       </div>

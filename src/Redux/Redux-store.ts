@@ -4,6 +4,7 @@ import { combineReducers, createStore } from "redux";
 
 import {
   addPostActionCreator,
+  changeCurrentUserIdAC,
   profileReducer,
   setUserProfileAC,
   updatePostTitleActionCreator,
@@ -27,13 +28,16 @@ type updatePostTitleActionCreatorType = ReturnType<
   typeof updatePostTitleActionCreator
 >;
 type setUserProfileACType = ReturnType<typeof setUserProfileAC>;
-
+export type changeCurrentUserIdACType = ReturnType<
+  typeof changeCurrentUserIdAC
+>;
 export type dispatchActionTypes =
   | addMessageActionCreatorType
   | updateMessageTitleActionCreatorType
   | addPostActionCreatorType
   | updatePostTitleActionCreatorType
-  | setUserProfileACType;
+  | setUserProfileACType
+  | changeCurrentUserIdACType;
 
 export type AppStateType = ReturnType<typeof reducer>;
 

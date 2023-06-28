@@ -84,6 +84,12 @@ export const setUserProfileAC = (profile: getUserProfileType) =>
     profile,
   } as const);
 
+export const changeCurrentUserIdAC = (newId: number) =>
+  ({
+    type: "CHANGE-CURRENT-USER-ID",
+    newId,
+  } as const);
+
 export const profileReducer = (
   state: initialStateProfileType = initialState,
   action: dispatchActionTypes
@@ -107,6 +113,9 @@ export const profileReducer = (
 
     case "SET-USER-PFOILE":
       return { ...state, profile: action.profile };
+
+    case "CHANGE-CURRENT-USER-ID":
+      return { ...state, profile: { ...state.profile, userId: action.newId } };
 
     default:
       return { ...state };

@@ -12,6 +12,7 @@ import {
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { UsersApiComponent } from "./UsersApiComponent";
+import { changeCurrentUserIdAC } from "../../Redux/profileReducer";
 
 export type mapStateToPropsType = {
   usersPage: initialStateUsersType;
@@ -27,6 +28,7 @@ type mapDispatchToPropsType = {
   getTotalUsersCount: (usersCount: number) => void;
   changeUserPage: (newPage: number) => void;
   changePreloaderStatus: (newStatus: boolean) => void;
+  changeCurrentUserId: (newId: number) => void;
 };
 
 // const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
@@ -55,6 +57,7 @@ const actionstObj = {
   getTotalUsersCount: setTotalUsersCountAC,
   changeUserPage: changeCurrentPageAC,
   changePreloaderStatus: changePreloaderStatusAC,
+  changeCurrentUserId: changeCurrentUserIdAC,
 };
 
 export type usersPropsType = mapStateToPropsType & mapDispatchToPropsType;

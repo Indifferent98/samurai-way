@@ -1,6 +1,7 @@
 import React from "react";
 
 import {
+  changeCurrentUserIdAC,
   getUserProfileType,
   initialStateProfileType,
   setUserProfileAC,

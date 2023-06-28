@@ -50,12 +50,17 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
       });
   }
 
+  changeCurrentUserId(newId: number) {
+    this.props.changeCurrentUserId(newId);
+  }
+
   render() {
     return (
       <Users
         usersPage={this.props.usersPage}
         changeFollowStatus={this.props.changeFollowStatus}
         changeCurrentPage={this.changeCurrentPage.bind(this)}
+        changeCurrentUserId={this.changeCurrentUserId.bind(this)}
       />
     );
   }
