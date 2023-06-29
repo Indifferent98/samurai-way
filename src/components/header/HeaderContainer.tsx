@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Header } from "./Header";
 import axios from "axios";
 import {
+  changeCurrentUserProfile,
   initialStateType,
   requestDataType,
   setAuthUserData,
@@ -41,11 +42,11 @@ class HeaderApi extends React.Component<HeaderContainerPropsType> {
           `https://social-network.samuraijs.com/api/1.0/profile/${id}`
         );
       })
-      .then((profile) => {
-        this.photoUrl = profile.data.photos.small;
+      .then((data) => {
+        this.props.changeCurrentUserProfile(data.data);
       });
   }
-  photoUrl = "";
+
   settings = {
     withCredentials: true,
   };
@@ -53,7 +54,7 @@ class HeaderApi extends React.Component<HeaderContainerPropsType> {
   render() {
     return (
       <Header
-        photoUrl={this.photoUrl}
+        photoUrl={this.props.auth.currentUserProfile.photos.large}
         isAuth={this.props.auth.isAuth}
         login={this.props.auth.login}
       />
@@ -67,6 +68,7 @@ type mapStateToPropsType = {
 
 type mapDispatchToProps = {
   setAuthUserData: (data: requestDataType) => void;
+  changeCurrentUserProfile: (newProfile: getUserProfileType) => void;
 };
 type HeaderContainerPropsType = mapStateToPropsType & mapDispatchToProps;
 
@@ -76,4 +78,5 @@ const mapStateToProps = (state: mapStateToPropsType) => ({
 
 export const HeaderContainer = connect(mapStateToProps, {
   setAuthUserData,
+  changeCurrentUserProfile,
 })(HeaderApi);

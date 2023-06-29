@@ -1,15 +1,18 @@
+import { getUserProfileType } from "./profileReducer";
 import react from "react";
 
 export type initialStateType = requestDataType & {
   isFetching: boolean;
   isAuth: boolean;
+  currentUserProfile: getUserProfileType;
 };
 
 const SET_USER_DATA = "SET-USER-DATA";
+const CHANGE_CURRENT_USER_PROFILE = "CHANGE-CURRENT-USER-PROFILE";
 
 type setAuthUserDataType = ReturnType<typeof setAuthUserData>;
 
-type authActionsType = setAuthUserDataType;
+type authActionsType = setAuthUserDataType | changeCurrentUserProfileType;
 
 export const setAuthUserData = (data: requestDataType) =>
   ({
@@ -25,7 +28,35 @@ const initialState: initialStateType = {
   login: "",
   isAuth: false,
   isFetching: false,
+  currentUserProfile: {
+    contacts: {
+      github: "",
+      vk: "",
+      facebook: "",
+      instagram: "",
+      twitter: "",
+      website: "",
+      youtube: "",
+      mainLink: "",
+    },
+    userId: 0,
+    lookingForAJob: false,
+    lookingForAJobDescription: "",
+    fullName: "",
+    photos: {
+      large: "",
+      small: "",
+    },
+  },
 };
+
+type changeCurrentUserProfileType = ReturnType<typeof changeCurrentUserProfile>;
+
+export const changeCurrentUserProfile = (currentProfile: getUserProfileType) =>
+  ({
+    type: CHANGE_CURRENT_USER_PROFILE,
+    currentProfile,
+  } as const);
 
 export const AuthReducer = (
   state: initialStateType = initialState,
@@ -33,8 +64,16 @@ export const AuthReducer = (
 ) => {
   switch (action.type) {
     case SET_USER_DATA:
-      debugger;
       return { ...state, ...action.data, isAuth: true };
+
+    case CHANGE_CURRENT_USER_PROFILE:
+      return {
+        ...state,
+        currentUserProfile: {
+          ...state.currentUserProfile,
+          ...action.currentProfile,
+        },
+      };
 
     default:
       return { ...state };
