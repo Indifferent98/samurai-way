@@ -9,6 +9,7 @@ import {
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { ProfileApi } from "./ProfileApi";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 
 type mapDispatchToPropsType = {
   setUserProfile: (profile: getUserProfileType) => void;
@@ -26,12 +27,23 @@ type mapStateToPropsType = {
   profilePage: initialStateProfileType;
 };
 
-const mapStateToProps = (state: mapStateToPropsType) => {
+type ParamsType = { userId: string };
+
+type commonPropsType = RouteComponentProps<ParamsType>;
+export type PropsType = commonPropsType & ParamsType;
+
+const mapStateToProps = (state: mapStateToPropsType): mapStateToPropsType => {
   return { profilePage: state.profilePage };
 };
 
 export type ProfileApiType = mapStateToPropsType & mapDispatchToPropsType;
+
+export type SuperPropsType = ProfileApiType & PropsType;
+
+let withUrlDataContainerComponent = withRouter(ProfileApi);
+
 export const ProfileContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProfileApi);
+)(withUrlDataContainerComponent);
+debugger;

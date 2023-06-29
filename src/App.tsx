@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { Header } from "./components/header/Header";
 
-import { Route } from "react-router-dom";
+import { Route, match } from "react-router-dom";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { News } from "./components/News/News";
@@ -23,7 +23,12 @@ function App(): JSX.Element {
       <NavContainer />
       <div className="app-wrapper-Profile">
         <Route path="/Messages" render={() => <DialogsContainer />} />
-        <Route path="/Profile" render={() => <ProfileContainer />} />
+        <Route
+          path="/Profile/:userId"
+          render={({ match }) => (
+            <ProfileContainer userId={match.params.userId} />
+          )}
+        />
         <Route path="/Music" render={() => <Music />} />
         <Route path="/Settings" render={() => <Settings />} />
         <Route path="/News" render={() => <News />} />
