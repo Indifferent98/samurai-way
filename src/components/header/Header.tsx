@@ -2,7 +2,13 @@ import React from "react";
 import s from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 
-const Header = (): JSX.Element => {
+type HeaderPropsType = {
+  login: string;
+  isAuth: boolean;
+  photoUrl: string;
+};
+
+export const Header = (props: HeaderPropsType): JSX.Element => {
   return (
     <header className={s.header}>
       <NavLink to="/Profile">
@@ -12,8 +18,15 @@ const Header = (): JSX.Element => {
           alt=""
         />
       </NavLink>
+
+      <div className={s.loginBlock}>
+        <div className={s.loginName}>
+          {props.isAuth ? props.login : <NavLink to={"/Login"}> Login</NavLink>}
+        </div>
+        <div>
+          <img className={s.userImg} src={props.photoUrl} alt="" />
+        </div>
+      </div>
     </header>
   );
 };
-
-export { Header };

@@ -1,3 +1,4 @@
+import { AuthReducer } from "./AuthReducer";
 import { UsersReducer } from "./UsersReducer";
 import React from "react";
 import { combineReducers, createStore } from "redux";
@@ -47,6 +48,7 @@ export const reducer = combineReducers({
   profilePage: profileReducer,
   messagesPage: dialogsReducer,
   usersPage: UsersReducer,
+  auth: AuthReducer,
 });
 
 export const store = createStore(reducer);

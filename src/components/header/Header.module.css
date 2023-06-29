@@ -7,3 +7,23 @@
   height: 50px;
   width: 50px;
 }
+.loginBlock {
+  float: right;
+  margin-right: 50px;
+
+  display: flex;
+
+  align-items: center;
+}
+.userImg {
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  border: 1px solid #010e03;
+}
+
+.loginName {
+  margin-right: 15px;
+  font-size: 20px;
+  font-weight: 500;
+}

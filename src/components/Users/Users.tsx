@@ -50,10 +50,10 @@ export const Users = (props: UsersPropsType) => {
             <div>
               <NavLink to={`/Profile/${t.id}`}>
                 <img
-                  onClick={() => {
-                    debugger;
-                    props.changeCurrentUserId(t.id);
-                  }}
+                  // onClick={() => {
+                  //
+                  //   props.changeCurrentUserId(t.id);
+                  // }}
                   className={s.img}
                   src={
                     t.photos.small

@@ -15,16 +15,17 @@ import { NavContainer } from "./components/nav/navContainer";
 import { UsersContainter } from "./components/Users/UsersContainer";
 import { ProfileApi } from "./components/Profile/ProfileInfo/ProfileApi";
 import { ProfileContainer } from "./components/Profile/ProfileInfo/ProfileContainer";
+import { HeaderContainer } from "./components/header/HeaderContainer";
 
 function App(): JSX.Element {
   return (
     <div className="app-wrapper">
-      <Header />
+      <HeaderContainer />
       <NavContainer />
       <div className="app-wrapper-Profile">
         <Route path="/Messages" render={() => <DialogsContainer />} />
         <Route
-          path="/Profile/:userId"
+          path="/Profile/:userId?"
           render={({ match }) => (
             <ProfileContainer userId={match.params.userId} />
           )}

@@ -27,7 +27,7 @@ type mapStateToPropsType = {
   profilePage: initialStateProfileType;
 };
 
-type ParamsType = { userId: string };
+type ParamsType = { userId?: string };
 
 type commonPropsType = RouteComponentProps<ParamsType>;
 export type PropsType = commonPropsType & ParamsType;
@@ -46,4 +46,3 @@ export const ProfileContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(withUrlDataContainerComponent);
-debugger;
