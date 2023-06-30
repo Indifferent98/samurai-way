@@ -11,12 +11,19 @@ export class ProfileApi extends React.Component<SuperPropsType> {
       userId = "2";
     }
     axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/profile/${userId}`,
+        this.settings
+      )
       .then((res) => {
         this.props.setUserProfile(res.data);
       });
   }
 
+  settings = {
+    withCredentials: true,
+    headers: { "API-KEY": "34d100b8-894d-4061-9da0-9a27cb217fe9" },
+  };
   render() {
     return <Profile profile={this.props.profilePage.profile} />;
   }

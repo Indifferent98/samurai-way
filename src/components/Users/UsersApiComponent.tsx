@@ -1,16 +1,19 @@
 import axios from "axios";
 import React from "react";
-
+import s from "./Users.module.css";
 import { usersPropsType } from "./UsersContainer";
 
 import { Users } from "./Users";
+import { Preloader } from "../Preloader/Preloader";
 
 export class UsersApiComponent extends React.Component<usersPropsType> {
   componentDidMount(): void {
     this.props.changePreloaderStatus(true);
+    debugger;
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${this.props.usersPage.currentPage}`
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${this.props.usersPage.currentPage}`,
+        this.settings
       )
       .then((response) => {
         setTimeout(() => {
@@ -27,6 +30,11 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
   }
   componentWillUnmount(): void {}
 
+  settings = {
+    withCredentials: true,
+    headers: { "API-KEY": "34d100b8-894d-4061-9da0-9a27cb217fe9" },
+  };
+
   changeFollowStatus = (id: number) => {
     this.props.changeFollowStatus(id);
   };
@@ -35,7 +43,8 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
     this.props.changePreloaderStatus(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${pageNumber}`
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPage.pageSize}&page=${pageNumber}`,
+        this.settings
       )
       .then((response) => {
         this.props.setUsers(response.data.items);
@@ -55,7 +64,13 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
   }
 
   render() {
-    return (
+    return this.props.usersPage.preloaderIsActive ? (
+      <>
+        <div className={s.preloader}>
+          <Preloader />
+        </div>
+      </>
+    ) : (
       <Users
         usersPage={this.props.usersPage}
         changeFollowStatus={this.props.changeFollowStatus}

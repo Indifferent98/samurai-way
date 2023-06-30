@@ -25,7 +25,6 @@ type axiosGetAuthResponseType = {
 
 class HeaderApi extends React.Component<HeaderContainerPropsType> {
   componentDidMount(): void {
-    debugger;
     axios
       .get<axiosGetAuthResponseType>(
         "https://social-network.samuraijs.com/api/1.0/auth/me",
@@ -37,11 +36,12 @@ class HeaderApi extends React.Component<HeaderContainerPropsType> {
           return res.data.data.id;
         }
       })
-      .then((id) => {
-        return axios.get<getUserProfileType>(
-          `https://social-network.samuraijs.com/api/1.0/profile/${id}`
-        );
-      })
+      .then((id) =>
+        axios.get<getUserProfileType>(
+          `https://social-network.samuraijs.com/api/1.0/profile/${id}`,
+          this.settings
+        )
+      )
       .then((data) => {
         this.props.changeCurrentUserProfile(data.data);
       });
@@ -49,6 +49,7 @@ class HeaderApi extends React.Component<HeaderContainerPropsType> {
 
   settings = {
     withCredentials: true,
+    headers: { "API-KEY": "34d100b8-894d-4061-9da0-9a27cb217fe9" },
   };
 
   render() {

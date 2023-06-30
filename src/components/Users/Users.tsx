@@ -5,6 +5,7 @@ import { Preloader } from "../Preloader/Preloader";
 import { initialStateUsersType } from "../../Redux/UsersReducer";
 import { PaginationButtons } from "./PaginationButtons/PaginationButtons";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 type UsersPropsType = {
   usersPage: initialStateUsersType;
@@ -22,13 +23,12 @@ export const Users = (props: UsersPropsType) => {
     setNewPage(+e.currentTarget.value);
   };
 
-  return props.usersPage.preloaderIsActive ? (
-    <>
-      <div className={s.preloader}>
-        <Preloader />
-      </div>
-    </>
-  ) : (
+  const settings = {
+    withCredentials: true,
+    headers: { "API-KEY": "34d100b8-894d-4061-9da0-9a27cb217fe9" },
+  };
+
+  return (
     <div>
       <div className={s.pageButton}>
         <div>
@@ -67,7 +67,26 @@ export const Users = (props: UsersPropsType) => {
             <div>
               <button
                 onClick={() => {
-                  props.changeFollowStatus(t.id);
+                  if (t.followed) {
+                    axios
+                      .delete(
+                        `https://social-network.samuraijs.com/api/1.0/follow/${t.id}`,
+                        settings
+                      )
+                      .then(() => {
+                        props.changeFollowStatus(t.id);
+                      });
+                  } else {
+                    axios
+                      .post(
+                        `https://social-network.samuraijs.com/api/1.0/follow/${t.id}`,
+                        {},
+                        settings
+                      )
+                      .then(() => {
+                        props.changeFollowStatus(t.id);
+                      });
+                  }
                 }}
                 className={s.follow}
                 style={{
