@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 import { Header } from "./Header";
-import axios from "axios";
+
 import {
   changeCurrentUserProfile,
   initialStateType,
@@ -15,9 +15,9 @@ import {
   getUserProfileType,
   initialStateProfileType,
 } from "../../Redux/profileReducer";
+import { socialNetWorkApi } from "../../DAL/socialNetWorkApi";
 
-type axiosGetAuthResponseType = {
-  data: requestDataType;
+export type responseType = {
   messages: string[];
   fieldsErrors: [];
   resultCode: number;
@@ -25,23 +25,18 @@ type axiosGetAuthResponseType = {
 
 class HeaderApi extends React.Component<HeaderContainerPropsType> {
   componentDidMount(): void {
-    axios
-      .get<axiosGetAuthResponseType>(
-        "https://social-network.samuraijs.com/api/1.0/auth/me",
-        this.settings
-      )
+    socialNetWorkApi
+      .getAuth()
       .then((res) => {
         if (!res.data.resultCode) {
           this.props.setAuthUserData(res.data.data);
           return res.data.data.id;
         }
       })
-      .then((id) =>
-        axios.get<getUserProfileType>(
-          `https://social-network.samuraijs.com/api/1.0/profile/${id}`,
-          this.settings
-        )
-      )
+      .then((id) => {
+        return socialNetWorkApi.getProfile(id ? id : 999999999999);
+      })
+
       .then((data) => {
         this.props.changeCurrentUserProfile(data.data);
       });

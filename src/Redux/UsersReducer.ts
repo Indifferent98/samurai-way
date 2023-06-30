@@ -12,13 +12,11 @@ type photosType = {
 
 export type usersContainerType = {
   name: string;
-  // secondName: string;
   status: string | null;
   uniqueUrlName: null;
   id: number;
   photos: photosType;
   followed: boolean;
-  // address: addressType;
 };
 export type initialStateUsersType = {
   users: usersContainerType[];

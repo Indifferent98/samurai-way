@@ -5,7 +5,8 @@ import { Preloader } from "../Preloader/Preloader";
 import { initialStateUsersType } from "../../Redux/UsersReducer";
 import { PaginationButtons } from "./PaginationButtons/PaginationButtons";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
+
+import { socialNetWorkApi } from "../../DAL/socialNetWorkApi";
 
 type UsersPropsType = {
   usersPage: initialStateUsersType;
@@ -68,24 +69,13 @@ export const Users = (props: UsersPropsType) => {
               <button
                 onClick={() => {
                   if (t.followed) {
-                    axios
-                      .delete(
-                        `https://social-network.samuraijs.com/api/1.0/follow/${t.id}`,
-                        settings
-                      )
-                      .then(() => {
-                        props.changeFollowStatus(t.id);
-                      });
+                    socialNetWorkApi.unFollowUser(t.id).then(() => {
+                      props.changeFollowStatus(t.id);
+                    });
                   } else {
-                    axios
-                      .post(
-                        `https://social-network.samuraijs.com/api/1.0/follow/${t.id}`,
-                        {},
-                        settings
-                      )
-                      .then(() => {
-                        props.changeFollowStatus(t.id);
-                      });
+                    socialNetWorkApi.followUser(t.id).then(() => {
+                      props.changeFollowStatus(t.id);
+                    });
                   }
                 }}
                 className={s.follow}
