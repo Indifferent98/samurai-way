@@ -9,11 +9,17 @@ import {
   changeCurrentPageAC,
   changePreloaderStatusAC,
   changeFollowingInProgressStatusAC,
+  // followUserTC,
+  // unFollowUserTC,
+  getUsersTC,
+  followUserTC,
+  unFollowUserTC,
 } from "../../Redux/UsersReducer";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { UsersApiComponent } from "./UsersApiComponent";
 import { changeCurrentUserIdAC } from "../../Redux/profileReducer";
+import { AppStateType } from "../../Redux/Redux-store";
 
 export type mapStateToPropsType = {
   usersPage: initialStateUsersType;
@@ -24,13 +30,18 @@ const mapStateToProps = (state: mapStateToPropsType) => ({
 });
 
 type mapDispatchToPropsType = {
-  changeFollowStatus: (id: number) => void;
+  // followUserTC: (userId: number) => void;
+  // unFollowUserTC: (userId: number) => void;
+  getUsers: (pageSize: number, currentPage: number) => void;
+  changeFollowStatus: (id: number, isFollow: boolean) => void;
   setUsers: (users: getUsersContainerType[]) => void;
   getTotalUsersCount: (usersCount: number) => void;
   changeUserPage: (newPage: number) => void;
   changePreloaderStatus: (newStatus: boolean) => void;
   changeCurrentUserId: (newId: number) => void;
   changeFollowingInProgressStatus: (newStatus: boolean, userId: number) => void;
+  followUser: (userId: number, isFollow: boolean) => void;
+  unFollowUser: (userId: number, isFollow: boolean) => void;
 };
 
 // const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
@@ -61,8 +72,14 @@ const actionstObj = {
   changePreloaderStatus: changePreloaderStatusAC,
   changeCurrentUserId: changeCurrentUserIdAC,
   changeFollowingInProgressStatus: changeFollowingInProgressStatusAC,
+  // followUser: followUserTC,
+  // unFollowUser: unFollowUserTC,
+  getUsers: getUsersTC,
+  followUser: followUserTC,
+  unFollowUser: unFollowUserTC,
 };
 
+// export type usersPropsType = mapStateToPropsType & mapDispatchToPropsType;
 export type usersPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
 export const UsersContainter = connect(

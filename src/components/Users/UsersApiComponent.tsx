@@ -8,49 +8,31 @@ import { socialNetWorkApi } from "../../DAL/socialNetWorkApi";
 
 export class UsersApiComponent extends React.Component<usersPropsType> {
   componentDidMount(): void {
-    this.props.changePreloaderStatus(true);
-
-    socialNetWorkApi
-      .getUsers(this.props.usersPage.pageSize, this.props.usersPage.currentPage)
-      .then((response) => {
-        setTimeout(() => {
-          this.props.setUsers(response.data.items);
-        }, 500);
-        this.props.getTotalUsersCount(response.data.totalCount);
-        this.props.changePreloaderStatus(false);
-      })
-      .catch(() => {
-        setTimeout(() => {
-          this.componentDidMount();
-        }, 10000);
-      });
+    this.props.getUsers(
+      this.props.usersPage.pageSize,
+      this.props.usersPage.currentPage
+    );
   }
   componentWillUnmount(): void {}
+
+  followUser(userId: number, isFollow: boolean) {
+    this.props.followUser(userId, isFollow);
+  }
+  unFollowUser(userId: number, isFollow: boolean) {
+    this.props.unFollowUser(userId, isFollow);
+  }
 
   settings = {
     withCredentials: true,
     headers: { "API-KEY": "34d100b8-894d-4061-9da0-9a27cb217fe9" },
   };
 
-  changeFollowStatus = (id: number) => {
-    this.props.changeFollowStatus(id);
+  changeFollowStatus = (id: number, isFollow: boolean) => {
+    this.props.changeFollowStatus(id, isFollow);
   };
 
   changeCurrentPage(pageNumber: number) {
-    this.props.changePreloaderStatus(true);
-    socialNetWorkApi
-      .getUsers(this.props.usersPage.pageSize, pageNumber)
-      .then((response) => {
-        this.props.setUsers(response.data.items);
-        this.props.getTotalUsersCount(response.data.totalCount);
-        this.props.changeUserPage(pageNumber);
-        this.props.changePreloaderStatus(false);
-      })
-      .catch(() => {
-        setTimeout(() => {
-          this.changeCurrentPage(pageNumber);
-        }, 10000);
-      });
+    this.props.getUsers(this.props.usersPage.pageSize, pageNumber);
   }
 
   changeFollowingInProgressStatus(newStatus: boolean, userId: number) {
@@ -73,6 +55,8 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
         changeFollowingInProgressStatus={this.changeFollowingInProgressStatus.bind(
           this
         )}
+        followUser={this.followUser.bind(this)}
+        unFollowUser={this.unFollowUser.bind(this)}
         usersPage={this.props.usersPage}
         changeFollowStatus={this.props.changeFollowStatus}
         changeCurrentPage={this.changeCurrentPage.bind(this)}

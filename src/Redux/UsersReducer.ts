@@ -1,4 +1,7 @@
 import react from "react";
+import { socialNetWorkApi } from "../DAL/socialNetWorkApi";
+import { AppStateType } from "./Redux-store";
+import { Dispatch } from "redux";
 
 type addressType = {
   country: string;
@@ -42,11 +45,16 @@ const initialState: initialStateUsersType = {
 type ChangeFollowACType = {
   type: "CHANGE-FOLLOW-STATUS";
   id: number;
+  isFollowed: boolean;
 };
 
-export const ChangeFollowAC = (userId: number): ChangeFollowACType => ({
+export const ChangeFollowAC = (
+  userId: number,
+  isFollowed: boolean
+): ChangeFollowACType => ({
   type: "CHANGE-FOLLOW-STATUS",
   id: userId,
+  isFollowed,
 });
 
 type setUsersACType = ReturnType<typeof setUsersAC>;
@@ -115,7 +123,7 @@ export const UsersReducer = (
       return {
         ...state,
         users: state.users.map((t) =>
-          t.id === action.id ? { ...t, followed: !t.followed } : t
+          t.id === action.id ? { ...t, followed: action.isFollowed } : t
         ),
       };
 
@@ -148,3 +156,49 @@ export const UsersReducer = (
       return state;
   }
 };
+
+// export const unFollowUserTC = (userId: number) => (dispatch: Dispatch) => {
+//   socialNetWorkApi.unFollowUser(userId).then(() => {
+//     dispatch(ChangeFollowAC(userId));
+//     dispatch(changeFollowingInProgressStatusAC(false, userId));
+//   });
+// };
+
+// export const followUserTC = (userId: number) => (dispatch: Dispatch) => {
+//   socialNetWorkApi.followUser(userId).then(() => {
+//     dispatch(ChangeFollowAC(userId));
+//     dispatch(changeFollowingInProgressStatusAC(false, userId));
+//   });
+// };
+
+export const followUserTC =
+  (userId: number, isFollow: boolean) => (dispatch: Dispatch) => {
+    dispatch(changeFollowingInProgressStatusAC(true, userId));
+
+    socialNetWorkApi.followUser(userId).then(() => {
+      dispatch(ChangeFollowAC(userId, isFollow));
+      dispatch(changeFollowingInProgressStatusAC(false, userId));
+    });
+  };
+
+export const unFollowUserTC =
+  (userId: number, isFollow: boolean) => (dispatch: Dispatch) => {
+    dispatch(changeFollowingInProgressStatusAC(true, userId));
+
+    socialNetWorkApi.unFollowUser(userId).then(() => {
+      dispatch(ChangeFollowAC(userId, isFollow));
+      dispatch(changeFollowingInProgressStatusAC(false, userId));
+    });
+  };
+
+export const getUsersTC =
+  (pageSize: number, currentPage: number) => (dispatch: Dispatch) => {
+    dispatch(changePreloaderStatusAC(true));
+
+    socialNetWorkApi.getUsers(pageSize, currentPage).then((response) => {
+      dispatch(setUsersAC(response.data.items));
+      dispatch(changeCurrentPageAC(currentPage));
+      dispatch(setTotalUsersCountAC(response.data.totalCount));
+      dispatch(changePreloaderStatusAC(false));
+    });
+  };

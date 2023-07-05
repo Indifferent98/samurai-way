@@ -1,7 +1,7 @@
 import { AuthReducer } from "./AuthReducer";
 import { UsersReducer } from "./UsersReducer";
 import React from "react";
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 
 import {
   addPostActionCreator,
@@ -18,6 +18,7 @@ import {
 } from "./dialogsReducer";
 
 import { navBarReducer } from "./navBarReducer";
+import thunk from "redux-thunk";
 
 ///types -
 type addMessageActionCreatorType = ReturnType<typeof addMessageCreator>;
@@ -51,7 +52,7 @@ export const reducer = combineReducers({
   auth: AuthReducer,
 });
 
-export const store = createStore(reducer);
+export const store = createStore(reducer, applyMiddleware(thunk));
 
 //@ts-ignore
 window.store = store;

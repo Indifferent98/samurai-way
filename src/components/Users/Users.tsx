@@ -10,10 +10,13 @@ import { socialNetWorkApi } from "../../DAL/socialNetWorkApi";
 
 type UsersPropsType = {
   usersPage: initialStateUsersType;
-  changeFollowStatus: (id: number) => void;
+  changeFollowStatus: (id: number, isFollow: boolean) => void;
   changeCurrentPage: (pageNumber: number) => void;
   changeCurrentUserId: (newId: number) => void;
   changeFollowingInProgressStatus: (newStatus: boolean, userId: number) => void;
+  followUser: (userId: number, isFollow: boolean) => void;
+  unFollowUser: (userId: number, isFollow: boolean) => void;
+  // unFollowUser: (userId: number) => void;
 };
 
 export const Users = (props: UsersPropsType) => {
@@ -70,17 +73,11 @@ export const Users = (props: UsersPropsType) => {
               <button
                 disabled={t.followingInProgress}
                 onClick={() => {
-                  props.changeFollowingInProgressStatus(true, t.id);
                   if (t.followed) {
-                    socialNetWorkApi.unFollowUser(t.id).then(() => {
-                      props.changeFollowStatus(t.id);
-                      props.changeFollowingInProgressStatus(false, t.id);
-                    });
+                    props.unFollowUser(t.id, false);
                   } else {
-                    socialNetWorkApi.followUser(t.id).then(() => {
-                      props.changeFollowStatus(t.id);
-                      props.changeFollowingInProgressStatus(false, t.id);
-                    });
+                    // props.unFollowUser(t.id);
+                    props.followUser(t.id, true);
                   }
                 }}
                 className={s.follow}

@@ -52,7 +52,7 @@ const initialState: initialStateUsersType = {
 };
 
 test("FOLLOW status should be changed", () => {
-  const newState = UsersReducer(initialState, ChangeFollowAC(141));
+  const newState = UsersReducer(initialState, ChangeFollowAC(141, true));
 
   expect(newState.users[1].followed).toBe(true);
   expect(initialState.users[1].followed).toBe(false);

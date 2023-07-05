@@ -10,7 +10,7 @@ type getUsersType = { items: getUsersContainerType[] } & {
   error: null | string;
 };
 
-type defaultRequestTyoe<D = {}> = {
+type defaultRequestType<D = {}> = {
   data: D;
   messages: string[];
   resultCode: number;
@@ -34,12 +34,12 @@ export const socialNetWorkApi = {
   },
 
   followUser(userId: number) {
-    return instance.post<defaultRequestTyoe>(`follow/${userId}`, {});
+    return instance.post<defaultRequestType>(`follow/${userId}`, {});
   },
   getUsers(usersCount: number, page: number) {
     return instance.get<getUsersType>(`users?count=${usersCount}&page=${page}`);
   },
   getAuth() {
-    return instance.get<defaultRequestTyoe<requestDataType>>(`auth/me`);
+    return instance.get<defaultRequestType<requestDataType>>(`auth/me`);
   },
 };

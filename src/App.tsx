@@ -12,10 +12,10 @@ import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 
 import { NavContainer } from "./components/nav/navContainer";
 
-import { UsersContainter } from "./components/Users/UsersContainer";
 import { ProfileApi } from "./components/Profile/ProfileInfo/ProfileApi";
 import { ProfileContainer } from "./components/Profile/ProfileInfo/ProfileContainer";
 import { HeaderContainer } from "./components/header/HeaderContainer";
+import { UsersContainter } from "./components/Users/UsersContainer";
 
 function App(): JSX.Element {
   return (
