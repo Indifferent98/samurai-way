@@ -8,6 +8,7 @@ import {
   getUsersContainerType,
   changeCurrentPageAC,
   changePreloaderStatusAC,
+  changeFollowingInProgressStatusAC,
 } from "../../Redux/UsersReducer";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
@@ -29,6 +30,7 @@ type mapDispatchToPropsType = {
   changeUserPage: (newPage: number) => void;
   changePreloaderStatus: (newStatus: boolean) => void;
   changeCurrentUserId: (newId: number) => void;
+  changeFollowingInProgressStatus: (newStatus: boolean, userId: number) => void;
 };
 
 // const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
@@ -58,6 +60,7 @@ const actionstObj = {
   changeUserPage: changeCurrentPageAC,
   changePreloaderStatus: changePreloaderStatusAC,
   changeCurrentUserId: changeCurrentUserIdAC,
+  changeFollowingInProgressStatus: changeFollowingInProgressStatusAC,
 };
 
 export type usersPropsType = mapStateToPropsType & mapDispatchToPropsType;

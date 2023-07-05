@@ -89,12 +89,22 @@ export const changePreloaderStatusAC = (status: boolean) =>
     status,
   } as const);
 
+type changeFollowingInProgressStatusACType = ReturnType<
+  typeof changeFollowingInProgressStatusAC
+>;
+export const changeFollowingInProgressStatusAC = (
+  newStatus: boolean,
+  userId: number
+) =>
+  ({ type: "CHANGE-FOLLOWING-IN-PROGRESS-STATUS", newStatus, userId } as const);
+
 type actionType =
   | ChangeFollowACType
   | setUsersACType
   | setTotalUsersCountACType
   | changeCurrentPageACType
-  | changePreloaderStatusAC;
+  | changePreloaderStatusAC
+  | changeFollowingInProgressStatusACType;
 
 export const UsersReducer = (
   state: initialStateUsersType = initialState,
@@ -123,6 +133,16 @@ export const UsersReducer = (
 
     case "CHANGE-PRELOADER-STATUS":
       return { ...state, preloaderIsActive: action.status };
+
+    case "CHANGE-FOLLOWING-IN-PROGRESS-STATUS":
+      return {
+        ...state,
+        users: state.users.map((u) =>
+          u.id === action.userId
+            ? { ...u, followingInProgress: action.newStatus }
+            : u
+        ),
+      };
 
     default:
       return state;

@@ -13,6 +13,7 @@ type UsersPropsType = {
   changeFollowStatus: (id: number) => void;
   changeCurrentPage: (pageNumber: number) => void;
   changeCurrentUserId: (newId: number) => void;
+  changeFollowingInProgressStatus: (newStatus: boolean, userId: number) => void;
 };
 
 export const Users = (props: UsersPropsType) => {
@@ -67,14 +68,18 @@ export const Users = (props: UsersPropsType) => {
             </div>
             <div>
               <button
+                disabled={t.followingInProgress}
                 onClick={() => {
+                  props.changeFollowingInProgressStatus(true, t.id);
                   if (t.followed) {
                     socialNetWorkApi.unFollowUser(t.id).then(() => {
                       props.changeFollowStatus(t.id);
+                      props.changeFollowingInProgressStatus(false, t.id);
                     });
                   } else {
                     socialNetWorkApi.followUser(t.id).then(() => {
                       props.changeFollowStatus(t.id);
+                      props.changeFollowingInProgressStatus(false, t.id);
                     });
                   }
                 }}

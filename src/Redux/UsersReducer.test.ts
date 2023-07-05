@@ -2,6 +2,7 @@ import react from "react";
 import {
   ChangeFollowAC,
   UsersReducer,
+  changeFollowingInProgressStatusAC,
   changePreloaderStatusAC,
   getUsersContainerType,
   initialStateUsersType,
@@ -86,4 +87,15 @@ test("Preloader status should be changed", () => {
   newState = UsersReducer(initialState, changePreloaderStatusAC(false));
   expect(newState.preloaderIsActive).toBe(false);
   expect(initialState.preloaderIsActive).toBe(false);
+});
+
+test("User FOLLOWING PROGRESS STATUS should be changed", () => {
+  let newState = UsersReducer(
+    initialState,
+    changeFollowingInProgressStatusAC(true, 141)
+  );
+
+  expect(newState.users[1].followingInProgress).toBe(true);
+  expect(newState.users[0].followingInProgress).toBe(false);
+  expect(newState.users[2].followingInProgress).toBe(false);
 });

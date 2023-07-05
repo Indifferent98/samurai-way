@@ -53,6 +53,10 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
       });
   }
 
+  changeFollowingInProgressStatus(newStatus: boolean, userId: number) {
+    this.props.changeFollowingInProgressStatus(newStatus, userId);
+  }
+
   changeCurrentUserId(newId: number) {
     this.props.changeCurrentUserId(newId);
   }
@@ -66,6 +70,9 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
       </>
     ) : (
       <Users
+        changeFollowingInProgressStatus={this.changeFollowingInProgressStatus.bind(
+          this
+        )}
         usersPage={this.props.usersPage}
         changeFollowStatus={this.props.changeFollowStatus}
         changeCurrentPage={this.changeCurrentPage.bind(this)}
