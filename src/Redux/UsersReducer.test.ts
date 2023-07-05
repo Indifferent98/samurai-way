@@ -3,6 +3,7 @@ import {
   ChangeFollowAC,
   UsersReducer,
   changePreloaderStatusAC,
+  getUsersContainerType,
   initialStateUsersType,
   setUsersAC,
 } from "./UsersReducer";
@@ -18,6 +19,7 @@ const initialState: initialStateUsersType = {
       followed: true,
       photos: { small: null, large: null },
       uniqueUrlName: null,
+      followingInProgress: false,
     },
     {
       name: "Evgen",
@@ -27,6 +29,8 @@ const initialState: initialStateUsersType = {
       uniqueUrlName: null,
       status: "i am so good",
       followed: false,
+
+      followingInProgress: false,
     },
     {
       name: "Vladimir",
@@ -36,6 +40,8 @@ const initialState: initialStateUsersType = {
 
       status: "js learn mood",
       followed: true,
+
+      followingInProgress: false,
     },
   ],
   pageSize: 15,
@@ -52,32 +58,24 @@ test("FOLLOW status should be changed", () => {
 });
 
 test("Users should be set", () => {
-  const usersToSet: initialStateUsersType = {
-    users: [
-      {
-        name: "Dimychwwwwwwwwww",
-        photos: { small: null, large: null },
-        uniqueUrlName: null,
-        id: 1111,
+  const usersToSet: getUsersContainerType[] = [
+    {
+      name: "Dimychwwwwwwwwww",
+      photos: { small: null, large: null },
+      uniqueUrlName: null,
+      id: 1111,
 
-        status: "i am so pretty",
-        followed: true,
-      },
-    ],
-    pageSize: 15,
-    totalCount: 0,
-    currentPage: 1,
-    preloaderIsActive: false,
-  };
+      status: "i am so pretty",
+      followed: true,
+    },
+  ];
 
-  const newState = UsersReducer(
-    initialState,
-    setUsersAC([...usersToSet.users])
-  );
+  const newState = UsersReducer(initialState, setUsersAC(usersToSet));
 
   expect(newState.users.length).toBe(1);
   expect(initialState.users.length).toBe(3);
   expect(newState.users[0].name).toBe("Dimychwwwwwwwwww");
+  expect(newState.users[0].followingInProgress).toBeDefined();
 });
 
 test("Preloader status should be changed", () => {

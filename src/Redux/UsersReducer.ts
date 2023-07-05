@@ -10,7 +10,7 @@ type photosType = {
   large: null | string;
 };
 
-export type usersContainerType = {
+export type getUsersContainerType = {
   name: string;
   status: string | null;
   uniqueUrlName: null;
@@ -18,6 +18,11 @@ export type usersContainerType = {
   photos: photosType;
   followed: boolean;
 };
+
+export type usersContainerType = getUsersContainerType & {
+  followingInProgress: boolean;
+};
+
 export type initialStateUsersType = {
   users: usersContainerType[];
   pageSize: number;
@@ -46,7 +51,7 @@ export const ChangeFollowAC = (userId: number): ChangeFollowACType => ({
 
 type setUsersACType = ReturnType<typeof setUsersAC>;
 
-export const setUsersAC = (users: usersContainerType[]) => {
+export const setUsersAC = (users: getUsersContainerType[]) => {
   return {
     type: "SET-USERS",
     users: users,
@@ -105,7 +110,10 @@ export const UsersReducer = (
       };
 
     case "SET-USERS":
-      return { ...state, users: [...action.users] };
+      return {
+        ...state,
+        users: action.users.map((u) => ({ ...u, followingInProgress: false })),
+      };
 
     case "SET-TOTAL-USERS-COUNT":
       return { ...state, totalCount: action.usersCount };

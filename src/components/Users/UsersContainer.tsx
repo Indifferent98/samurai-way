@@ -5,7 +5,7 @@ import {
   setTotalUsersCountAC,
   initialStateUsersType,
   setUsersAC,
-  usersContainerType,
+  getUsersContainerType,
   changeCurrentPageAC,
   changePreloaderStatusAC,
 } from "../../Redux/UsersReducer";
@@ -24,7 +24,7 @@ const mapStateToProps = (state: mapStateToPropsType) => ({
 
 type mapDispatchToPropsType = {
   changeFollowStatus: (id: number) => void;
-  setUsers: (users: usersContainerType[]) => void;
+  setUsers: (users: getUsersContainerType[]) => void;
   getTotalUsersCount: (usersCount: number) => void;
   changeUserPage: (newPage: number) => void;
   changePreloaderStatus: (newStatus: boolean) => void;

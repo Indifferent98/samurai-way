@@ -9,7 +9,6 @@ import { socialNetWorkApi } from "../../DAL/socialNetWorkApi";
 export class UsersApiComponent extends React.Component<usersPropsType> {
   componentDidMount(): void {
     this.props.changePreloaderStatus(true);
-    debugger;
 
     socialNetWorkApi
       .getUsers(this.props.usersPage.pageSize, this.props.usersPage.currentPage)
