@@ -9,9 +9,11 @@ import { Dialogs } from "./Dialogs";
 import { connect } from "react-redux";
 
 import { Dispatch } from "redux";
+import { initialStateType } from "../../Redux/AuthReducer";
 
 type mapStateToPropsType = {
   messagesPage: initialStateDialogsType;
+  auth: initialStateType;
 };
 
 type mapDispatchToPropsType = {
@@ -24,6 +26,7 @@ export type DialogsPropsType = mapStateToPropsType & mapDispatchToPropsType;
 const mapStateToProps = (state: mapStateToPropsType): mapStateToPropsType => {
   return {
     messagesPage: state.messagesPage,
+    auth: state.auth,
   };
 };
 

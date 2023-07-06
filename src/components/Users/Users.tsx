@@ -4,7 +4,7 @@ import { Preloader } from "../Preloader/Preloader";
 
 import { initialStateUsersType } from "../../Redux/UsersReducer";
 import { PaginationButtons } from "./PaginationButtons/PaginationButtons";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 
 import { socialNetWorkApi } from "../../DAL/socialNetWorkApi";
 
@@ -16,6 +16,7 @@ type UsersPropsType = {
   changeFollowingInProgressStatus: (newStatus: boolean, userId: number) => void;
   followUser: (userId: number, newFollowStatus: boolean) => void;
   unFollowUser: (userId: number, newFollowStatus: boolean) => void;
+  isAuth: boolean;
   // unFollowUser: (userId: number) => void;
 };
 
@@ -32,6 +33,10 @@ export const Users = (props: UsersPropsType) => {
     withCredentials: true,
     headers: { "API-KEY": "34d100b8-894d-4061-9da0-9a27cb217fe9" },
   };
+
+  if (!props.isAuth) {
+    return <Redirect to={"/Login"} />;
+  }
 
   return (
     <div>

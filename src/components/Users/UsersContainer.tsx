@@ -20,13 +20,16 @@ import { connect } from "react-redux";
 import { UsersApiComponent } from "./UsersApiComponent";
 import { changeCurrentUserIdAC } from "../../Redux/profileReducer";
 import { AppStateType } from "../../Redux/Redux-store";
+import { initialStateType } from "../../Redux/AuthReducer";
 
 export type mapStateToPropsType = {
   usersPage: initialStateUsersType;
+  auth: initialStateType;
 };
 
 const mapStateToProps = (state: mapStateToPropsType) => ({
   usersPage: state.usersPage,
+  auth: state.auth,
 });
 
 type mapDispatchToPropsType = {

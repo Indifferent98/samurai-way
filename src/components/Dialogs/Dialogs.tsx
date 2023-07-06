@@ -5,6 +5,7 @@ import { DialogItem } from "./DialogItem/DialogItem";
 import { Message } from "./Message/Message";
 
 import { DialogsPropsType } from "./DialogsContainer";
+import { Redirect } from "react-router-dom";
 
 export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   const dialogsDataForApplication = props.messagesPage.dialogsData.map((t) => (
@@ -22,6 +23,10 @@ export const Dialogs = (props: DialogsPropsType): JSX.Element => {
   const onChangeTextAreaHandler = (e: ChangeEvent<HTMLInputElement>) => {
     props.onChangeTextAreaHandler(e);
   };
+
+  if (!props.auth.isAuth) {
+    return <Redirect to={"/Login"} />;
+  }
 
   return (
     <div className={s.dialogs}>

@@ -52,6 +52,7 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
       </>
     ) : (
       <Users
+        isAuth={this.props.auth.isAuth}
         changeFollowingInProgressStatus={this.changeFollowingInProgressStatus.bind(
           this
         )}
