@@ -16,6 +16,7 @@ import { ProfileApi } from "./components/Profile/ProfileInfo/ProfileApi";
 import { ProfileContainer } from "./components/Profile/ProfileInfo/ProfileContainer";
 import { HeaderContainer } from "./components/header/HeaderContainer";
 import { UsersContainter } from "./components/Users/UsersContainer";
+import { Login } from "./components/Login/LoginPage";
 
 function App(): JSX.Element {
   return (
@@ -34,6 +35,7 @@ function App(): JSX.Element {
         <Route path="/Settings" render={() => <Settings />} />
         <Route path="/News" render={() => <News />} />
         <Route path="/Users" render={() => <UsersContainter />} />
+        <Route path="/Login" render={() => <Login />} />
       </div>
     </div>
   );

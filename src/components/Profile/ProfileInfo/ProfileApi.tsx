@@ -3,6 +3,7 @@ import { Profile } from "../Profile";
 import { ProfileApiType, PropsType, SuperPropsType } from "./ProfileContainer";
 import { getUserProfileType } from "../../../Redux/profileReducer";
 import { socialNetWorkApi } from "../../../DAL/socialNetWorkApi";
+import { Redirect } from "react-router-dom";
 
 export class ProfileApi extends React.Component<SuperPropsType> {
   componentDidMount(): void {
@@ -10,7 +11,7 @@ export class ProfileApi extends React.Component<SuperPropsType> {
     if (!userId) {
       userId = "2";
     }
-
+    console.log(this.props);
     this.props.setUserProfileThunk(userId);
   }
 
@@ -18,7 +19,13 @@ export class ProfileApi extends React.Component<SuperPropsType> {
     withCredentials: true,
     headers: { "API-KEY": "34d100b8-894d-4061-9da0-9a27cb217fe9" },
   };
+
   render() {
-    return <Profile profile={this.props.profilePage.profile} />;
+    return (
+      <Profile
+        isAuth={this.props.auth.isAuth}
+        profile={this.props.profilePage.profile}
+      />
+    );
   }
 }

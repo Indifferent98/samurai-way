@@ -86,15 +86,19 @@ export const setAuthChangeProfile = () => (dispatch: Dispatch) => {
   socialNetWorkApi
     .getAuth()
     .then((res) => {
-      if (!res.data.resultCode) {
+      if (res.data.resultCode === 0) {
         dispatch(setAuthUserData(res.data.data));
+
         return res.data.data.id;
+      } else {
+        return new Promise((res, rej) => {
+          rej();
+        });
       }
     })
     .then((id) => {
-      return socialNetWorkApi.getProfile(id ? id : 999999999999);
+      return socialNetWorkApi.getProfile(id ? Number(id) : 9999999);
     })
-
     .then((data) => {
       dispatch(changeCurrentUserProfile(data.data));
     });

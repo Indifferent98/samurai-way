@@ -1,6 +1,9 @@
 import React from "react";
 import s from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import unknowImage from "./../../assets/unknownImage.jpg";
+import { setAuthChangeProfile } from "../../Redux/AuthReducer";
+import { useDispatch } from "react-redux";
 
 type HeaderPropsType = {
   login: string;
@@ -9,6 +12,10 @@ type HeaderPropsType = {
 };
 
 export const Header = (props: HeaderPropsType): JSX.Element => {
+  // const dispatch = useDispatch();
+  // const authLoginClickHandler = () => {
+  //   dispatch(setAuthChangeProfile());
+  // };
   return (
     <header className={s.header}>
       <NavLink to="/Profile">
@@ -21,10 +28,20 @@ export const Header = (props: HeaderPropsType): JSX.Element => {
 
       <div className={s.loginBlock}>
         <div className={s.loginName}>
-          {props.isAuth ? props.login : <NavLink to={"/Login"}> Login</NavLink>}
+          {props.isAuth ? (
+            props.login
+          ) : (
+            <NavLink to={"/Login"}>
+              <span /*</NavLink>onClick={authLoginClickHandler}*/>Login</span>
+            </NavLink>
+          )}
         </div>
         <div>
-          <img className={s.userImg} src={props.photoUrl} alt="" />
+          <img
+            className={s.userImg}
+            src={props.photoUrl ? props.photoUrl : unknowImage}
+            alt=""
+          />
         </div>
       </div>
     </header>
