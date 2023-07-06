@@ -7,6 +7,7 @@ import {
   changeCurrentUserProfile,
   initialStateType,
   requestDataType,
+  setAuthChangeProfile,
   setAuthUserData,
 } from "../../Redux/AuthReducer";
 import { Dispatch } from "redux";
@@ -25,21 +26,7 @@ export type responseType = {
 
 class HeaderApi extends React.Component<HeaderContainerPropsType> {
   componentDidMount(): void {
-    socialNetWorkApi
-      .getAuth()
-      .then((res) => {
-        if (!res.data.resultCode) {
-          this.props.setAuthUserData(res.data.data);
-          return res.data.data.id;
-        }
-      })
-      .then((id) => {
-        return socialNetWorkApi.getProfile(id ? id : 999999999999);
-      })
-
-      .then((data) => {
-        this.props.changeCurrentUserProfile(data.data);
-      });
+    this.props.setAuthChangeProfile();
   }
 
   settings = {
@@ -65,6 +52,7 @@ type mapStateToPropsType = {
 type mapDispatchToProps = {
   setAuthUserData: (data: requestDataType) => void;
   changeCurrentUserProfile: (newProfile: getUserProfileType) => void;
+  setAuthChangeProfile: () => void;
 };
 type HeaderContainerPropsType = mapStateToPropsType & mapDispatchToProps;
 
@@ -75,4 +63,5 @@ const mapStateToProps = (state: mapStateToPropsType) => ({
 export const HeaderContainer = connect(mapStateToProps, {
   setAuthUserData,
   changeCurrentUserProfile,
+  setAuthChangeProfile,
 })(HeaderApi);

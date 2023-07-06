@@ -1,6 +1,8 @@
+import { socialNetWorkApi } from "./../DAL/socialNetWorkApi";
 import { addMessageCreator } from "./dialogsReducer";
 import React from "react";
 import { dispatchActionTypes } from "./Redux-store";
+import { Dispatch } from "redux";
 
 export type myPostsDataType = {
   id: number;
@@ -120,4 +122,10 @@ export const profileReducer = (
     default:
       return { ...state };
   }
+};
+
+export const setUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
+  socialNetWorkApi.getProfile(Number(userId)).then((res) => {
+    dispatch(setUserProfileAC(res.data));
+  });
 };

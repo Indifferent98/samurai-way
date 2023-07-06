@@ -1,3 +1,5 @@
+import { Dispatch } from "redux";
+import { socialNetWorkApi } from "../DAL/socialNetWorkApi";
 import { getUserProfileType } from "./profileReducer";
 import react from "react";
 
@@ -78,4 +80,22 @@ export const AuthReducer = (
     default:
       return { ...state };
   }
+};
+
+export const setAuthChangeProfile = () => (dispatch: Dispatch) => {
+  socialNetWorkApi
+    .getAuth()
+    .then((res) => {
+      if (!res.data.resultCode) {
+        dispatch(setAuthUserData(res.data.data));
+        return res.data.data.id;
+      }
+    })
+    .then((id) => {
+      return socialNetWorkApi.getProfile(id ? id : 999999999999);
+    })
+
+    .then((data) => {
+      dispatch(changeCurrentUserProfile(data.data));
+    });
 };

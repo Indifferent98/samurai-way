@@ -10,12 +10,12 @@ import { socialNetWorkApi } from "../../DAL/socialNetWorkApi";
 
 type UsersPropsType = {
   usersPage: initialStateUsersType;
-  changeFollowStatus: (id: number, isFollow: boolean) => void;
+  changeFollowStatus: (id: number, newFollowStatus: boolean) => void;
   changeCurrentPage: (pageNumber: number) => void;
   changeCurrentUserId: (newId: number) => void;
   changeFollowingInProgressStatus: (newStatus: boolean, userId: number) => void;
-  followUser: (userId: number, isFollow: boolean) => void;
-  unFollowUser: (userId: number, isFollow: boolean) => void;
+  followUser: (userId: number, newFollowStatus: boolean) => void;
+  unFollowUser: (userId: number, newFollowStatus: boolean) => void;
   // unFollowUser: (userId: number) => void;
 };
 

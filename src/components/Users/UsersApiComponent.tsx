@@ -15,11 +15,11 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
   }
   componentWillUnmount(): void {}
 
-  followUser(userId: number, isFollow: boolean) {
-    this.props.followUser(userId, isFollow);
+  followUser(userId: number, newFollowStatus: boolean) {
+    this.props.followUser(userId, newFollowStatus);
   }
-  unFollowUser(userId: number, isFollow: boolean) {
-    this.props.unFollowUser(userId, isFollow);
+  unFollowUser(userId: number, newFollowStatus: boolean) {
+    this.props.unFollowUser(userId, newFollowStatus);
   }
 
   settings = {
@@ -27,8 +27,8 @@ export class UsersApiComponent extends React.Component<usersPropsType> {
     headers: { "API-KEY": "34d100b8-894d-4061-9da0-9a27cb217fe9" },
   };
 
-  changeFollowStatus = (id: number, isFollow: boolean) => {
-    this.props.changeFollowStatus(id, isFollow);
+  changeFollowStatus = (id: number, newFollowStatus: boolean) => {
+    this.props.changeFollowStatus(id, newFollowStatus);
   };
 
   changeCurrentPage(pageNumber: number) {

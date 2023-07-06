@@ -5,6 +5,7 @@ import {
   getUserProfileType,
   initialStateProfileType,
   setUserProfileAC,
+  setUserProfileTC,
 } from "../../../Redux/profileReducer";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
@@ -13,14 +14,20 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 
 type mapDispatchToPropsType = {
   setUserProfile: (profile: getUserProfileType) => void;
+  setUserProfileThunk: (userId: string) => void;
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-  return {
-    setUserProfile(profile: getUserProfileType) {
-      dispatch(setUserProfileAC(profile));
-    },
-  };
+// const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+//   return {
+//     setUserProfile(profile: getUserProfileType) {
+//       dispatch(setUserProfileAC(profile));
+//     },
+//   };
+// };
+
+const dispatchObj = {
+  setUserProfile: setUserProfileAC,
+  setUserProfileThunk: setUserProfileTC,
 };
 
 type mapStateToPropsType = {
@@ -32,9 +39,9 @@ type ParamsType = { userId?: string };
 type commonPropsType = RouteComponentProps<ParamsType>;
 export type PropsType = commonPropsType & ParamsType;
 
-const mapStateToProps = (state: mapStateToPropsType): mapStateToPropsType => {
-  return { profilePage: state.profilePage };
-};
+const mapStateToProps = (state: mapStateToPropsType): mapStateToPropsType => ({
+  profilePage: state.profilePage,
+});
 
 export type ProfileApiType = mapStateToPropsType & mapDispatchToPropsType;
 
@@ -44,5 +51,5 @@ let withUrlDataContainerComponent = withRouter(ProfileApi);
 
 export const ProfileContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  dispatchObj
 )(withUrlDataContainerComponent);

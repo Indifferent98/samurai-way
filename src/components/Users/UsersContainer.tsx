@@ -33,15 +33,15 @@ type mapDispatchToPropsType = {
   // followUserTC: (userId: number) => void;
   // unFollowUserTC: (userId: number) => void;
   getUsers: (pageSize: number, currentPage: number) => void;
-  changeFollowStatus: (id: number, isFollow: boolean) => void;
+  changeFollowStatus: (id: number, newFollowStatus: boolean) => void;
   setUsers: (users: getUsersContainerType[]) => void;
   getTotalUsersCount: (usersCount: number) => void;
   changeUserPage: (newPage: number) => void;
   changePreloaderStatus: (newStatus: boolean) => void;
   changeCurrentUserId: (newId: number) => void;
   changeFollowingInProgressStatus: (newStatus: boolean, userId: number) => void;
-  followUser: (userId: number, isFollow: boolean) => void;
-  unFollowUser: (userId: number, isFollow: boolean) => void;
+  followUser: (userId: number, newFollowStatus: boolean) => void;
+  unFollowUser: (userId: number, newFollowStatus: boolean) => void;
 };
 
 // const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {

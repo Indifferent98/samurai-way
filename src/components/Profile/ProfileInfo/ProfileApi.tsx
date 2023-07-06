@@ -10,9 +10,8 @@ export class ProfileApi extends React.Component<SuperPropsType> {
     if (!userId) {
       userId = "2";
     }
-    socialNetWorkApi.getProfile(Number(userId)).then((res) => {
-      this.props.setUserProfile(res.data);
-    });
+
+    this.props.setUserProfileThunk(userId);
   }
 
   settings = {
