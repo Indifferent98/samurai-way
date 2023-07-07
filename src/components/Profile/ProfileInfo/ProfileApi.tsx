@@ -7,6 +7,7 @@ import { Redirect } from "react-router-dom";
 
 export class ProfileApi extends React.Component<SuperPropsType> {
   componentDidMount(): void {
+    debugger;
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = "2";
@@ -21,11 +22,6 @@ export class ProfileApi extends React.Component<SuperPropsType> {
   };
 
   render() {
-    return (
-      <Profile
-        isAuth={this.props.auth.isAuth}
-        profile={this.props.profilePage.profile}
-      />
-    );
+    return <Profile profile={this.props.profilePage.profile} />;
   }
 }

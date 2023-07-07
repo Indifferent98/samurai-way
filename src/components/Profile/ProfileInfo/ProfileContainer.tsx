@@ -13,6 +13,7 @@ import { ProfileApi } from "./ProfileApi";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { AppStateType } from "../../../Redux/Redux-store";
 import { initialStateType } from "../../../Redux/AuthReducer";
+import { WithAuthRedirect } from "../../HOC/WithAuthRedirectHOC";
 
 type mapDispatchToPropsType = {
   setUserProfile: (profile: getUserProfileType) => void;
@@ -34,7 +35,6 @@ const dispatchObj = {
 
 type mapStateToPropsType = {
   profilePage: initialStateProfileType;
-  auth: initialStateType;
 };
 
 type ParamsType = { userId?: string };
@@ -42,9 +42,8 @@ type ParamsType = { userId?: string };
 type commonPropsType = RouteComponentProps<ParamsType>;
 export type PropsType = commonPropsType & ParamsType;
 
-const mapStateToProps = (state: mapStateToPropsType): mapStateToPropsType => {
-  debugger;
-  return { profilePage: state.profilePage, auth: state.auth };
+const mapStateToProps = (state: mapStateToPropsType) => {
+  return { profilePage: state.profilePage };
 };
 
 export type ProfileApiType = mapStateToPropsType & mapDispatchToPropsType;
@@ -53,7 +52,6 @@ export type SuperPropsType = ProfileApiType & PropsType;
 
 let withUrlDataContainerComponent = withRouter(ProfileApi);
 
-export const ProfileContainer = connect(
-  mapStateToProps,
-  dispatchObj
-)(withUrlDataContainerComponent);
+export const ProfileContainer = WithAuthRedirect(
+  connect(mapStateToProps, dispatchObj)(withUrlDataContainerComponent)
+);

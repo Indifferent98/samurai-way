@@ -25,12 +25,7 @@ function App(): JSX.Element {
       <NavContainer />
       <div className="app-wrapper-Profile">
         <Route path="/Messages" render={() => <DialogsContainer />} />
-        <Route
-          path="/Profile/:userId?"
-          render={({ match }) => (
-            <ProfileContainer userId={match.params.userId} />
-          )}
-        />
+        <Route path="/Profile/:userId?" render={() => <ProfileContainer />} />
         <Route path="/Music" render={() => <Music />} />
         <Route path="/Settings" render={() => <Settings />} />
         <Route path="/News" render={() => <News />} />

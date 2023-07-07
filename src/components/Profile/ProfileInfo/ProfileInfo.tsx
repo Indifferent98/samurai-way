@@ -70,7 +70,6 @@ export const ProfileInfo = (props: ProfilePropsType): JSX.Element => {
           <div className={s.profileInfoItem}>
             lookingForAJobDescription:{" "}
             <span>
-              {" "}
               {JSON.stringify(props.profile.lookingForAJobDescription)}
             </span>
           </div>
