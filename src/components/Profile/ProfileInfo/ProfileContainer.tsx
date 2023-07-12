@@ -20,13 +20,7 @@ type mapDispatchToPropsType = {
   setUserProfileThunk: (userId: string) => void;
 };
 
-// const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-//   return {
-//     setUserProfile(profile: getUserProfileType) {
-//       dispatch(setUserProfileAC(profile));
-//     },
-//   };
-// };
+
 
 const dispatchObj = {
   setUserProfile: setUserProfileAC,
