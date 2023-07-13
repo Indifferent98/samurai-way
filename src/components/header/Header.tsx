@@ -12,10 +12,6 @@ type HeaderPropsType = {
 };
 
 export const Header = (props: HeaderPropsType): JSX.Element => {
-  // const dispatch = useDispatch();
-  // const authLoginClickHandler = () => {
-  //   dispatch(setAuthChangeProfile());
-  // };
   return (
     <header className={s.header}>
       <NavLink to="/Profile">

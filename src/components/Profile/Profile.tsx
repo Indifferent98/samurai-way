@@ -4,7 +4,6 @@ import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
 
 import { MyPostsContainer } from "./MyPosts/MyPostsContainer";
 import { getUserProfileType } from "../../Redux/profileReducer";
-import { Redirect } from "react-router-dom";
 
 export type ProfilePropsType = {
   profile: getUserProfileType;
